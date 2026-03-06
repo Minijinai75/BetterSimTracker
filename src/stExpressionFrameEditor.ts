@@ -85,7 +85,7 @@ export function sanitizeStExpressionFrame(
 }
 
 export function formatStExpressionFrameSummary(value: StExpressionImageOptions): string {
-  return `Zoom ${value.zoom.toFixed(2)} | X ${value.positionX}% | Y ${value.positionY}%`;
+  return `縮放 ${value.zoom.toFixed(2)} | X ${value.positionX}% | Y ${value.positionY}%`;
 }
 
 function ensureEditorStyles(): void {
@@ -342,20 +342,20 @@ export function openStExpressionFrameEditor(input: OpenStExpressionFrameEditorIn
   modal.innerHTML = `
     <div class="bst-st-frame-top">
       <div>
-        <h4>${input.title ?? "Adjust ST Expression Framing"}</h4>
-        <p>${input.description ?? "Preview and adjust zoom plus crop position for ST expression mood images."}</p>
+        <h4>${input.title ?? "調整 ST 表情取景框"}</h4>
+        <p>${input.description ?? "預覽並調整 ST 表情心情圖片的縮放與裁切位置。"}</p>
       </div>
-      <button type="button" class="bst-st-frame-close" data-action="close" title="Close">&times;</button>
+      <button type="button" class="bst-st-frame-close" data-action="close" title="關閉">&times;</button>
     </div>
     ${hasPreview ? `
     <div class="bst-st-frame-layout">
       <div class="bst-st-frame-preview-card">
-        <div class="bst-st-frame-preview-title">Mood card preview</div>
+        <div class="bst-st-frame-preview-title">心情卡片預覽</div>
         <div class="bst-st-frame-preview-frame" data-role="previewFrame">
-          <img src="${escapeHtml(initialChoice?.imageUrl ?? PREVIEW_IMAGE)}" alt="ST expression framing preview" data-role="previewImage">
+          <img src="${escapeHtml(initialChoice?.imageUrl ?? PREVIEW_IMAGE)}" alt="ST 表情取景預覽" data-role="previewImage">
         </div>
         <div class="bst-st-frame-preview-picker">
-          <label>Preview Character</label>
+          <label>預覽角色</label>
           <select data-role="previewCharacter"${previewChoices.length <= 1 ? " disabled" : ""}>
             ${previewChoices.map(choice => `
               <option value="${escapeHtml(choice.name)}"${choice.name === selectedPreviewName ? " selected" : ""}>${escapeHtml(choice.name)}</option>
@@ -365,7 +365,7 @@ export function openStExpressionFrameEditor(input: OpenStExpressionFrameEditorIn
       </div>
       <div class="bst-st-frame-controls">
         <div class="bst-st-frame-control">
-          <label>Zoom <strong data-role="zoomValue"></strong></label>
+          <label>縮放 <strong data-role="zoomValue"></strong></label>
           <div class="bst-st-frame-range-row">
             <input type="range" min="0.5" max="3" step="0.05" data-role="zoomRange">
             <div class="bst-st-frame-stepper">
@@ -375,7 +375,7 @@ export function openStExpressionFrameEditor(input: OpenStExpressionFrameEditorIn
           </div>
         </div>
         <div class="bst-st-frame-control">
-          <label>Position X <strong data-role="xValue"></strong></label>
+          <label>水平位置 X <strong data-role="xValue"></strong></label>
           <div class="bst-st-frame-range-row">
             <input type="range" min="0" max="100" step="1" data-role="xRange">
             <div class="bst-st-frame-stepper">
@@ -385,7 +385,7 @@ export function openStExpressionFrameEditor(input: OpenStExpressionFrameEditorIn
           </div>
         </div>
         <div class="bst-st-frame-control">
-          <label>Position Y <strong data-role="yValue"></strong></label>
+          <label>垂直位置 Y <strong data-role="yValue"></strong></label>
           <div class="bst-st-frame-range-row">
             <input type="range" min="0" max="100" step="1" data-role="yRange">
             <div class="bst-st-frame-stepper">
@@ -395,28 +395,28 @@ export function openStExpressionFrameEditor(input: OpenStExpressionFrameEditorIn
           </div>
         </div>
         <div class="bst-st-frame-control">
-          <label>Position pad <strong>nudge by 2%</strong></label>
+          <label>位置微調 <strong>每次移動 2%</strong></label>
           <div class="bst-st-frame-pad">
             <button type="button" class="bst-empty" aria-hidden="true"></button>
-            <button type="button" data-action="nudge" data-dx="0" data-dy="-2">Up</button>
+            <button type="button" data-action="nudge" data-dx="0" data-dy="-2">上</button>
             <button type="button" class="bst-empty" aria-hidden="true"></button>
-            <button type="button" data-action="nudge" data-dx="-2" data-dy="0">Left</button>
-            <button type="button" data-action="center">Center</button>
-            <button type="button" data-action="nudge" data-dx="2" data-dy="0">Right</button>
+            <button type="button" data-action="nudge" data-dx="-2" data-dy="0">左</button>
+            <button type="button" data-action="center">置中</button>
+            <button type="button" data-action="nudge" data-dx="2" data-dy="0">右</button>
             <button type="button" class="bst-empty" aria-hidden="true"></button>
-            <button type="button" data-action="nudge" data-dx="0" data-dy="2">Down</button>
+            <button type="button" data-action="nudge" data-dx="0" data-dy="2">下</button>
             <button type="button" class="bst-empty" aria-hidden="true"></button>
           </div>
         </div>
         <div class="bst-st-frame-actions">
-          <button type="button" data-action="reset">Reset to defaults</button>
-          <button type="button" class="bst-st-frame-primary" data-action="close">Done</button>
+          <button type="button" data-action="reset">還原預設值</button>
+          <button type="button" class="bst-st-frame-primary" data-action="close">完成</button>
         </div>
       </div>
     </div>
     ` : `
     <div class="bst-st-frame-layout-empty">
-      <p>${input.emptyPreviewText ?? "At least one character with ST expressions is required to preview framing."}</p>
+      <p>${input.emptyPreviewText ?? "需要至少一個擁有 ST 表情的角色才能預覽取景設定。"}</p>
     </div>
     `}
   `;
