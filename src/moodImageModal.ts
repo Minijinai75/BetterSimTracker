@@ -19,14 +19,14 @@ export function openMoodImageModal(imageUrl: string, altText: string, characterN
   const closeButton = document.createElement("button");
   closeButton.type = "button";
   closeButton.className = "bst-mood-preview-close";
-  closeButton.setAttribute("aria-label", "Close image preview");
+  closeButton.setAttribute("aria-label", "關閉圖片預覽");
   closeButton.innerHTML = "&times;";
   closeButton.addEventListener("click", () => closeMoodImageModal());
 
   const image = document.createElement("img");
   image.className = "bst-mood-preview-image";
   image.src = imageUrl;
-  image.alt = altText || "Mood image";
+  image.alt = altText || "心情圖片";
   image.addEventListener("click", () => {
     if (Date.now() - moodPreviewOpenedAt < 220) return;
     closeMoodImageModal();
@@ -35,7 +35,7 @@ export function openMoodImageModal(imageUrl: string, altText: string, characterN
   const caption = document.createElement("div");
   caption.className = "bst-mood-preview-caption";
   const captionParts = [characterName, moodText].filter(part => typeof part === "string" && part.trim());
-  caption.textContent = captionParts.length ? captionParts.join(" - ") : (altText || "Mood image");
+  caption.textContent = captionParts.length ? captionParts.join(" - ") : (altText || "心情圖片");
 
   modal.style.setProperty("position", "relative", "important");
   modal.style.setProperty("width", "min(960px, 94vw)", "important");
@@ -158,7 +158,7 @@ export function closeMoodImageModal(immediate = false): void {
       try {
         dialog.close();
       } catch {
-        // Ignore close errors from already-closing dialog.
+        // 忽略已關閉 dialog 的關閉錯誤。
       }
     }
     dialog.remove();
