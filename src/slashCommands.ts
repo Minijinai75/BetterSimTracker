@@ -92,7 +92,7 @@ function coerceArgs(raw: unknown): string {
 
 function renderHelp(): string {
   return [
-    "Commands:",
+    "指令列表:",
     `${COMMAND_PREFIX} status`,
     `${COMMAND_PREFIX} extract`,
     `${COMMAND_PREFIX} clear`,
@@ -122,21 +122,21 @@ export function registerSlashCommands(deps: SlashCommandDeps): void {
   const handleStatus = (): void => {
     const resolved = withContext();
     if (!resolved) {
-      notify("Tracker context not ready.", "warning");
+      notify("追蹤器尚未就緒。", "warning");
       return;
     }
     const { settings } = resolved;
     const enabled = formatEnabledStats(settings);
-    const mode = settings.sequentialExtraction ? "sequential" : "unified";
-    const inject = settings.injectTrackerIntoPrompt ? "on" : "off";
-    const debug = settings.debug ? "on" : "off";
+    const mode = settings.sequentialExtraction ? "循序" : "統一";
+    const inject = settings.injectTrackerIntoPrompt ? "開啟" : "關閉";
+    const debug = settings.debug ? "開啟" : "關閉";
     const latestIndex = deps.getLatestMessageIndex();
-    notify(`Status: stats=${enabled}; mode=${mode}; inject=${inject}; debug=${debug}; last=${latestIndex ?? "none"}`);
+    notify(`狀態: stats=${enabled}; mode=${mode}; inject=${inject}; debug=${debug}; last=${latestIndex ?? "無"}`);
   };
 
   const handleExtract = async (): Promise<void> => {
     if (deps.isExtracting()) {
-      notify("Extraction already running.", "warning");
+      notify("提取正在進行中。", "warning");
       return;
     }
     await deps.runExtraction("manual_refresh");
@@ -144,13 +144,13 @@ export function registerSlashCommands(deps: SlashCommandDeps): void {
 
   const handleClear = (): void => {
     deps.clearCurrentChat();
-    notify("Tracker data cleared for current chat.", "success");
+    notify("已清除目前對話的追蹤資料。", "success");
   };
 
   const handleToggle = (args: string[]): void => {
     const resolved = withContext();
     if (!resolved) {
-      notify("Tracker context not ready.", "warning");
+      notify("追蹤器尚未就緒。", "warning");
       return;
     }
     const rawTarget = String(args[0] ?? "").trim();
@@ -158,7 +158,7 @@ export function registerSlashCommands(deps: SlashCommandDeps): void {
     const customTargetId = rawTarget.toLowerCase();
     const customTarget = (resolved.settings.customStats ?? []).find(stat => stat.id === customTargetId);
     if (!target && !customTarget) {
-      notify("Usage: /bst toggle <affection|trust|desire|connection|mood|lastThought|custom_stat_id>", "warning");
+      notify("用法: /bst toggle <affection|trust|desire|connection|mood|lastThought|自訂統計ID>", "warning");
       return;
     }
     const { context, settings } = resolved;
@@ -184,18 +184,18 @@ export function registerSlashCommands(deps: SlashCommandDeps): void {
     deps.saveSettings(context, nextSettings);
     deps.refreshFromStoredData();
     deps.queuePromptSync(context);
-    notify(`Toggled ${toggledName}: ${current ? "off" : "on"}.`, "success");
+    notify(`已切換 ${toggledName}: ${current ? "關閉" : "開啟"}。`, "success");
   };
 
   const handleInject = (args: string[]): void => {
     const resolved = withContext();
     if (!resolved) {
-      notify("Tracker context not ready.", "warning");
+      notify("追蹤器尚未就緒。", "warning");
       return;
     }
     const value = (args[0] ?? "").toLowerCase();
     if (value !== "on" && value !== "off") {
-      notify("Usage: /bst inject on|off", "warning");
+      notify("用法: /bst inject on|off", "warning");
       return;
     }
     const { context, settings } = resolved;
@@ -203,25 +203,25 @@ export function registerSlashCommands(deps: SlashCommandDeps): void {
     deps.setSettings(nextSettings);
     deps.saveSettings(context, nextSettings);
     deps.queuePromptSync(context);
-    notify(`Prompt injection ${value}.`, "success");
+    notify(`Prompt 注入已${value === "on" ? "開啟" : "關閉"}。`, "success");
   };
 
   const handleDebug = (args: string[]): void => {
     const resolved = withContext();
     if (!resolved) {
-      notify("Tracker context not ready.", "warning");
+      notify("追蹤器尚未就緒。", "warning");
       return;
     }
     const value = (args[0] ?? "").toLowerCase();
     if (value !== "on" && value !== "off") {
-      notify("Usage: /bst debug on|off", "warning");
+      notify("用法: /bst debug on|off", "warning");
       return;
     }
     const { context, settings } = resolved;
     const nextSettings = { ...settings, debug: value === "on" };
     deps.setSettings(nextSettings);
     deps.saveSettings(context, nextSettings);
-    notify(`Debug ${value}.`, "success");
+    notify(`除錯模式已${value === "on" ? "開啟" : "關閉"}。`, "success");
   };
 
   const handleBst = async (_args: Record<string, unknown>, rawValue: string): Promise<string> => {
@@ -238,7 +238,7 @@ export function registerSlashCommands(deps: SlashCommandDeps): void {
     if (sub === "toggle") return String(handleToggle(args) ?? "");
     if (sub === "inject") return String(handleInject(args) ?? "");
     if (sub === "debug") return String(handleDebug(args) ?? "");
-    notify(`Unknown subcommand "${sub}". ${renderHelp()}`, "warning");
+    notify(`未知的子命令 "${sub}"。${renderHelp()}`, "warning");
     return "";
   };
 
@@ -254,13 +254,13 @@ export function registerSlashCommands(deps: SlashCommandDeps): void {
       }));
     };
 
-    add("bst", handleBst, "BetterSimTracker commands. Use /bst help.");
-    add("bst-status", async () => { handleStatus(); return ""; }, "Show tracker status.");
-    add("bst-extract", async () => { await handleExtract(); return ""; }, "Extract stats for latest AI message.");
-    add("bst-clear", async () => { handleClear(); return ""; }, "Clear tracker data for current chat.");
-    add("bst-toggle", async (_args, raw) => { handleToggle(parseArgs(raw)); return ""; }, "Toggle a tracked stat.");
-    add("bst-inject", async (_args, raw) => { handleInject(parseArgs(raw)); return ""; }, "Toggle prompt injection.");
-    add("bst-debug", async (_args, raw) => { handleDebug(parseArgs(raw)); return ""; }, "Toggle debug mode.");
+    add("bst", handleBst, "BetterSimTracker 指令。使用 /bst help 查看說明。");
+    add("bst-status", async () => { handleStatus(); return ""; }, "顯示追蹤器狀態。");
+    add("bst-extract", async () => { await handleExtract(); return ""; }, "對最新 AI 訊息執行統計提取。");
+    add("bst-clear", async () => { handleClear(); return ""; }, "清除目前對話的追蹤資料。");
+    add("bst-toggle", async (_args, raw) => { handleToggle(parseArgs(raw)); return ""; }, "切換某項追蹤統計的開關。");
+    add("bst-inject", async (_args, raw) => { handleInject(parseArgs(raw)); return ""; }, "切換 Prompt 注入的開關。");
+    add("bst-debug", async (_args, raw) => { handleDebug(parseArgs(raw)); return ""; }, "切換除錯模式的開關。");
     return true;
   };
 
@@ -269,7 +269,7 @@ export function registerSlashCommands(deps: SlashCommandDeps): void {
     attempts += 1;
     if (attemptRegister()) {
       if (deps.getSettings()?.debug) {
-        notify("Slash commands registered.", "success");
+        notify("Slash 指令已註冊。", "success");
       }
       return;
     }
