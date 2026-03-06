@@ -452,7 +452,7 @@ function renderDateTimeStructuredChips(
     const raw = String(value ?? "").trim();
     return raw
       ? `<span class="bst-array-item-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(raw)}">${escapeHtml(raw)}</span>`
-      : `<span class="bst-array-item-empty">Not set</span>`;
+      : `<span class="bst-array-item-empty">未設定</span>`;
   }
   const formatDatePart = (rawDate: string): string => {
     const match = rawDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
@@ -506,7 +506,7 @@ function renderDateTimeStructuredChips(
     });
   return chips.length
     ? chips.join("")
-    : `<span class="bst-array-item-empty">Not set</span>`;
+    : `<span class="bst-array-item-empty">未設定</span>`;
 }
 
 function truncateDisplayText(value: string, maxLength: number | null | undefined): string {
@@ -4356,10 +4356,10 @@ export function renderTracker(
             collapsedTrackerMessages.delete(idx);
           }
           collapse.setAttribute("aria-expanded", String(!nextCollapsed));
-          collapse.setAttribute("title", nextCollapsed ? "Expand cards" : "Collapse cards");
+          collapse.setAttribute("title", nextCollapsed ? "展開卡片" : "收合卡片");
           collapse.innerHTML = nextCollapsed
-            ? `<span class="bst-root-action-icon" aria-hidden="true">&#9656;</span><span class="bst-root-action-label">Expand cards</span>`
-            : `<span class="bst-root-action-icon" aria-hidden="true">&#9662;</span><span class="bst-root-action-label">Collapse cards</span>`;
+            ? `<span class="bst-root-action-icon" aria-hidden="true">&#9656;</span><span class="bst-root-action-label">展開卡片</span>`
+            : `<span class="bst-root-action-icon" aria-hidden="true">&#9662;</span><span class="bst-root-action-label">收合卡片</span>`;
           root.dataset.bstRenderSignature = "";
           onRequestRerender?.();
           return;
@@ -4438,11 +4438,11 @@ export function renderTracker(
       loadingBox.className = "bst-loading";
       loadingBox.innerHTML = `
         <div class="bst-loading-row">
-          <span>AI message is generating</span>
-          <span>running</span>
+          <span>AI 訊息生成中</span>
+          <span>執行中</span>
         </div>
         <div class="bst-loading-track bst-loading-track-indeterminate"><div class="bst-loading-fill"></div></div>
-        <div class="bst-loading-sub">Tracker will run after generation finishes.</div>
+        <div class="bst-loading-sub">追蹤器將在生成完成後執行。</div>
       `;
       root.appendChild(loadingBox);
       continue;
@@ -4462,14 +4462,14 @@ export function renderTracker(
       const ratio = Math.max(0, Math.min(1, done / total));
       const percent = Math.round(ratio * 100);
       const left = `stage ${Math.min(done + 1, total)}/${total}`;
-      let title = uiState.stepLabel ?? "Preparing tracker context";
-      let subtitle = "Collecting recent messages and active characters.";
+      let title = uiState.stepLabel ?? "準備追蹤器上下文";
+      let subtitle = "收集最近訊息與活躍角色。";
       if (done === 1) {
-        title = uiState.stepLabel ?? "Requesting relationship analysis";
-        subtitle = "Sending extraction prompt to backend/profile.";
+        title = uiState.stepLabel ?? "請求關係分析";
+        subtitle = "傳送提取 Prompt 至後端/Profile。";
       } else if (done >= 2) {
-        title = uiState.stepLabel ?? "Parsing and applying tracker update";
-        subtitle = "Validating AI delta output and updating relationship state.";
+        title = uiState.stepLabel ?? "解析並套用追蹤器更新";
+        subtitle = "驗證 AI 差異輸出並更新關係狀態。";
       }
       if (uiState.stepLabel && uiState.stepLabel !== title) {
         subtitle = uiState.stepLabel;
@@ -4484,7 +4484,7 @@ export function renderTracker(
         <div class="bst-loading-track"><div class="bst-loading-fill" style="width:${Math.round(ratio * 100)}%"></div></div>
         <div class="bst-loading-sub">${subtitle}</div>
         <div class="bst-loading-actions">
-          <button class="bst-btn bst-btn-danger bst-loading-stop" data-bst-action="cancel-extraction">Stop</button>
+          <button class="bst-btn bst-btn-danger bst-loading-stop" data-bst-action="cancel-extraction">停止</button>
         </div>
       `;
       root.appendChild(loadingBox);
@@ -4525,7 +4525,7 @@ export function renderTracker(
       recoveryBox.innerHTML = `
         <div class="bst-loading-row">
           <span>${escapeHtml(recovery.title)}</span>
-          <span>${recovery.kind === "error" ? "error" : "stopped"}</span>
+          <span>${recovery.kind === "error" ? "錯誤" : "已停止"}</span>
         </div>
         <div class="bst-loading-sub">${escapeHtml(recovery.detail)}</div>
         <div class="bst-loading-actions">
@@ -4648,7 +4648,7 @@ export function renderTracker(
       const isActive = activeSet.has(normalizeName(name));
       if (!isActive && !settings.showInactive) continue;
       const displayName = resolveDisplayName?.(name)
-        ?? (name === USER_TRACKER_KEY ? "User" : name);
+        ?? (name === USER_TRACKER_KEY ? "使用者" : name);
       const isUserCard = name === USER_TRACKER_KEY;
       const moodLookupName = isUserCard ? displayName : name;
       const characterAvatar = resolveCharacterAvatar?.(name) ?? undefined;
@@ -4727,13 +4727,13 @@ export function renderTracker(
         <div class="bst-head">
           <div class="bst-name" title="${escapeHtml(displayName)}">${escapeHtml(displayName)}</div>
           <div class="bst-actions">
-            ${!isUserCard ? `<button class="bst-mini-btn" data-bst-action="graph" data-character="${name}" title="Open relationship graph"><span aria-hidden="true">&#128200;</span> <span class="bst-graph-label">Graph</span></button>` : ""}
-            ${canEdit ? `<button class="bst-mini-btn bst-mini-btn-icon" data-bst-action="edit-stats" data-bst-edit-message="${entry.messageIndex}" data-bst-edit-character="${escapeHtml(name)}" title="Edit last tracker stats for ${escapeHtml(displayName)}" aria-label="Edit last tracker stats for ${escapeHtml(displayName)}"><span aria-hidden="true">&#9998;</span></button>` : ""}
-            ${!isUserCard ? `<div class="bst-state" title="${isActive ? "Active" : settings.inactiveLabel}">${isActive ? "Active" : `${settings.inactiveLabel} <span class="fa-solid fa-ghost bst-inactive-icon" aria-hidden="true"></span>`}</div>` : ""}
+            ${!isUserCard ? `<button class="bst-mini-btn" data-bst-action="graph" data-character="${name}" title="開啟關係圖表"><span aria-hidden="true">&#128200;</span> <span class="bst-graph-label">圖表</span></button>` : ""}
+            ${canEdit ? `<button class="bst-mini-btn bst-mini-btn-icon" data-bst-action="edit-stats" data-bst-edit-message="${entry.messageIndex}" data-bst-edit-character="${escapeHtml(name)}" title="編輯最後追蹤統計 for ${escapeHtml(displayName)}" aria-label="編輯最後追蹤統計 for ${escapeHtml(displayName)}"><span aria-hidden="true">&#9998;</span></button>` : ""}
+            ${!isUserCard ? `<div class="bst-state" title="${isActive ? "活躍" : settings.inactiveLabel}">${isActive ? "活躍" : `${settings.inactiveLabel} <span class="fa-solid fa-ghost bst-inactive-icon" aria-hidden="true"></span>`}</div>` : ""}
           </div>
         </div>
         ${enabledNumeric.length || enabledNonNumeric.length || showCollapsedMood ? `
-        <div class="bst-collapsed-summary" title="Tracked stats">
+        <div class="bst-collapsed-summary" title="追蹤統計">
           ${collapsedSummary || ""}
           ${collapsedNonNumeric || ""}
           ${showCollapsedMood ? `<span class="bst-collapsed-mood" title="${moodText}">${moodToEmojiEntity(moodText)}</span>` : ""}
@@ -4770,7 +4770,7 @@ export function renderTracker(
             const visibleItems = hasOverflow && !expanded ? items.slice(0, 4) : items;
             const chips = visibleItems.length
               ? visibleItems.map(item => `<span class="bst-array-item-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(item)}">${escapeHtml(item)}</span>`).join("")
-              : `<span class="bst-array-item-empty">No items</span>`;
+              : `<span class="bst-array-item-empty">無項目</span>`;
             return `
               <div class="bst-row bst-row-non-numeric">
                 <div class="bst-label">
@@ -4779,7 +4779,7 @@ export function renderTracker(
                 <div class="bst-array-items">
                   ${chips}
                   ${hasOverflow
-                    ? `<button type="button" class="bst-array-toggle" data-bst-action="toggle-array-values" data-bst-array-key="${escapeHtml(arrayKey)}" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "Show less" : `+${items.length - 4} more`}</button>`
+                    ? `<button type="button" class="bst-array-toggle" data-bst-action="toggle-array-values" data-bst-array-key="${escapeHtml(arrayKey)}" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "顯示較少" : `+${items.length - 4} more`}</button>`
                     : ""}
                 </div>
               </div>
@@ -4797,7 +4797,7 @@ export function renderTracker(
               </div>
             `;
           }
-          const displayValue = resolved == null ? "not set" : formatNonNumericForDisplay(def, resolved);
+          const displayValue = resolved == null ? "未設定" : formatNonNumericForDisplay(def, resolved);
           return `
             <div class="bst-row bst-row-non-numeric">
               <div class="bst-label">
@@ -4821,7 +4821,7 @@ export function renderTracker(
           </div>
         </div>` : ""}
         ${settings.showLastThought && lastThoughtText !== "" && !moodImage ? renderThoughtMarkup(lastThoughtText, thoughtUiKey, "panel") : ""}
-        ${enabledNumeric.length === 0 && enabledNonNumeric.length === 0 && moodText === "" && !(settings.showLastThought && lastThoughtText !== "") ? `<div class="bst-empty">No stats recorded.</div>` : ""}
+        ${enabledNumeric.length === 0 && enabledNonNumeric.length === 0 && moodText === "" && !(settings.showLastThought && lastThoughtText !== "") ? `<div class="bst-empty">尚無統計資料。</div>` : ""}
         </div>
       `;
       const ownerClass = `bst-owner-${toOwnerClassSuffix(displayName)}`;
@@ -4889,9 +4889,9 @@ export function renderTracker(
           <div class="bst-name" title="${escapeHtml(settings.sceneCardTitle)}">${escapeHtml(settings.sceneCardTitle)}</div>
           <div class="bst-actions">
             ${canEditSceneCard
-              ? `<button class="bst-mini-btn bst-mini-btn-icon" data-bst-action="edit-stats" data-bst-edit-message="${entry.messageIndex}" data-bst-edit-character="${escapeHtml(GLOBAL_TRACKER_KEY)}" title="Edit latest Scene tracker stats" aria-label="Edit latest Scene tracker stats"><span aria-hidden="true">&#9998;</span></button>`
+              ? `<button class="bst-mini-btn bst-mini-btn-icon" data-bst-action="edit-stats" data-bst-edit-message="${entry.messageIndex}" data-bst-edit-character="${escapeHtml(GLOBAL_TRACKER_KEY)}" title="編輯最新場景追蹤統計" aria-label="編輯最新場景追蹤統計"><span aria-hidden="true">&#9998;</span></button>`
               : ""}
-            <div class="bst-state" title="Global scene stats">Global</div>
+            <div class="bst-state" title="全域場景統計">全域</div>
           </div>
         </div>
         <div class="bst-body">
@@ -4934,7 +4934,7 @@ export function renderTracker(
               }
               if (def.kind === "array") {
                 const items = Array.isArray(resolved) ? resolved : normalizeNonNumericArrayItems(resolved, def.textMaxLength);
-                const textValueRaw = items.length ? items.join(", ") : "Not set";
+                const textValueRaw = items.length ? items.join(", ") : "未設定";
                 const textValue = truncateDisplayText(textValueRaw, textMaxLength);
                 return `
                   <div class="bst-row bst-row-non-numeric">
@@ -4969,7 +4969,7 @@ export function renderTracker(
                   </div>
                 `;
               }
-              const displayValueRaw = resolved == null ? "Not set" : formatNonNumericForDisplay(def, resolved);
+              const displayValueRaw = resolved == null ? "未設定" : formatNonNumericForDisplay(def, resolved);
               const displayValue = truncateDisplayText(displayValueRaw, textMaxLength);
               return `
                 <div class="bst-row bst-row-non-numeric">
@@ -5018,7 +5018,7 @@ export function renderTracker(
                   const value = truncateDisplayText(itemValue, textMaxLength);
                   return `<span class="bst-array-item-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(itemValue)}">${escapeHtml(value)}</span>`;
                 }).join("")
-                : `<span class="bst-array-item-empty">Not set</span>`;
+                : `<span class="bst-array-item-empty">未設定</span>`;
               return `
                 <div class="bst-row bst-row-non-numeric">
                   <div class="bst-label">
@@ -5027,7 +5027,7 @@ export function renderTracker(
                   <div class="bst-array-items">
                     ${chips}
                     ${hasOverflow
-                      ? `<button type="button" class="bst-array-toggle" data-bst-action="toggle-array-values" data-bst-array-key="${escapeHtml(sceneArrayKey)}" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "Show less" : `+${items.length - arrayLimit} more`}</button>`
+                      ? `<button type="button" class="bst-array-toggle" data-bst-action="toggle-array-values" data-bst-array-key="${escapeHtml(sceneArrayKey)}" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "顯示較少" : `+${items.length - arrayLimit} more`}</button>`
                       : ""}
                   </div>
                 </div>
@@ -5055,7 +5055,7 @@ export function renderTracker(
                 </div>
               `;
             }
-            const displayValueRaw = resolved == null ? "Not set" : formatNonNumericForDisplay(def, resolved);
+            const displayValueRaw = resolved == null ? "未設定" : formatNonNumericForDisplay(def, resolved);
             const displayValue = truncateDisplayText(displayValueRaw, textMaxLength);
             return `
               <div class="bst-row bst-row-non-numeric">
@@ -5068,7 +5068,7 @@ export function renderTracker(
               </div>
             `;
           }).join("")}
-          ${sceneValues.length === 0 ? `<div class="bst-empty">No global stats recorded.</div>` : ""}
+          ${sceneValues.length === 0 ? `<div class="bst-empty">尚無全域統計資料。</div>` : ""}
         </div>
       `
       : "";
@@ -5082,8 +5082,8 @@ export function renderTracker(
     root.innerHTML = "";
 
     const totalVisibleCards = cardHtmlByName.length + (sceneCardVisible ? 1 : 0);
-    const cardNoun = totalVisibleCards === 1 ? "card" : "cards";
-    const collapseLabel = collapsed ? `Expand ${cardNoun}` : `Collapse ${cardNoun}`;
+    const cardNoun = totalVisibleCards === 1 ? "張卡片" : "張卡片";
+    const collapseLabel = collapsed ? `展開 ${cardNoun}` : `收合 ${cardNoun}`;
     const actions = document.createElement("div");
     actions.className = "bst-root-actions";
     actions.innerHTML = `
@@ -5091,8 +5091,8 @@ export function renderTracker(
         <span class="bst-root-action-icon" aria-hidden="true">${collapsed ? "&#9656;" : "&#9662;"}</span>
         <span class="bst-root-action-label">${collapseLabel}</span>
       </button>
-      ${showSummaryAction ? `<button class="bst-mini-btn bst-mini-btn-icon bst-root-action-summary${summaryBusy ? " is-loading" : ""}" data-bst-action="send-summary" data-loading="${summaryBusy ? "true" : "false"}" title="${summaryBusy ? "Generating prose summary of current tracked stats..." : "Generate prose summary of current tracked stats and post as a Note"}" aria-label="${summaryBusy ? "Generating prose summary of current tracked stats..." : "Generate prose summary of current tracked stats and post as a Note"}"${summaryBusy ? " disabled" : ""}><span aria-hidden="true">${summaryBusy ? "&#8987;" : "&#128221;"}</span></button>` : ""}
-      ${showRetrackAction ? `<button class="bst-mini-btn bst-mini-btn-icon bst-mini-btn-accent bst-root-action-retrack" data-bst-action="retrack" title="${retrackTargetsUserMessage ? "Retrack this user message" : "Retrack this AI message"}" aria-label="${retrackTargetsUserMessage ? "Retrack this user message" : "Retrack this AI message"}"><span aria-hidden="true">&#x21BB;</span></button>` : ""}
+      ${showSummaryAction ? `<button class="bst-mini-btn bst-mini-btn-icon bst-root-action-summary${summaryBusy ? " is-loading" : ""}" data-bst-action="send-summary" data-loading="${summaryBusy ? "true" : "false"}" title="${summaryBusy ? "正在生成當前追蹤統計的散文摘要..." : "生成當前追蹤統計的散文摘要並貼為備註"}" aria-label="${summaryBusy ? "正在生成當前追蹤統計的散文摘要..." : "生成當前追蹤統計的散文摘要並貼為備註"}"${summaryBusy ? " disabled" : ""}><span aria-hidden="true">${summaryBusy ? "&#8987;" : "&#128221;"}</span></button>` : ""}
+      ${showRetrackAction ? `<button class="bst-mini-btn bst-mini-btn-icon bst-mini-btn-accent bst-root-action-retrack" data-bst-action="retrack" title="${retrackTargetsUserMessage ? "重新分析此使用者訊息" : "重新分析此 AI 訊息"}" aria-label="${retrackTargetsUserMessage ? "重新分析此使用者訊息" : "重新分析此 AI 訊息"}"><span aria-hidden="true">&#x21BB;</span></button>` : ""}
     `;
     root.appendChild(actions);
 
@@ -5359,7 +5359,7 @@ function openEditStatsModal(input: {
   modal.innerHTML = `
     <div class="bst-edit-head">
       <div class="bst-edit-title">Edit Tracker Stats - ${escapeHtml(characterLabel)}</div>
-      <button class="bst-btn bst-close-btn" data-action="close" aria-label="Close edit dialog">&times;</button>
+      <button class="bst-btn bst-close-btn" data-action="close" aria-label="關閉編輯視窗">&times;</button>
     </div>
     <div class="bst-edit-sub">${escapeHtml(modalIntro)}</div>
     ${(!isUserCharacter && !isGlobalCharacter)
@@ -5402,8 +5402,8 @@ function openEditStatsModal(input: {
          </label>`
       : ""}
     <div class="bst-edit-actions">
-      <button type="button" class="bst-btn bst-btn-soft" data-action="cancel">Cancel</button>
-      <button type="button" class="bst-btn" data-action="save">Save</button>
+      <button type="button" class="bst-btn bst-btn-soft" data-action="cancel">取消</button>
+      <button type="button" class="bst-btn" data-action="save">儲存</button>
     </div>
   `;
 
@@ -5908,7 +5908,7 @@ export function openGraphModal(input: {
   modal.innerHTML = `
     <div class="bst-graph-top">
       <div class="bst-graph-title">${input.character} Relationship Trend</div>
-      <button class="bst-btn bst-close-btn" data-action="close" title="Close graph" aria-label="Close graph">&times;</button>
+      <button class="bst-btn bst-close-btn" data-action="close" title="關閉圖表" aria-label="關閉圖表">&times;</button>
     </div>
     <div class="bst-graph-controls">
       <label class="bst-graph-toggle" title="Display history range">

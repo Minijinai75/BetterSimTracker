@@ -187,8 +187,8 @@ export function openSettingsModal(input: {
         <p class="bst-settings-subtitle">Changes are saved automatically.</p>
       </div>
       <div class="bst-settings-top-actions">
-        <button class="bst-btn bst-btn-soft" data-action="toggle-all-sections" title="Expand all sections">Expand all</button>
-        <button class="bst-btn bst-close-btn" data-action="close" title="Close settings" aria-label="Close settings">&times;</button>
+        <button class="bst-btn bst-btn-soft" data-action="toggle-all-sections" title="展開所有區段">全部展開</button>
+        <button class="bst-btn bst-close-btn" data-action="close" title="關閉設定" aria-label="關閉設定">&times;</button>
       </div>
     </div>
     <div class="bst-settings-section bst-quick-help">
@@ -275,7 +275,7 @@ export function openSettingsModal(input: {
           <div class="bst-prompt-group bst-prompt-inline">
             <div class="bst-prompt-head">
               <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-wand-magic-sparkles"></span>Injection Prompt</span>
-              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateInjection" title="Reset to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateInjection" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
             </div>
             <div class="bst-prompt-body">
               <div class="bst-prompt-caption">Template (editable)</div>
@@ -455,7 +455,7 @@ export function openSettingsModal(input: {
           <div class="bst-prompt-head">
             <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-layer-group"></span>Unified Prompt</span>
             <span class="bst-prompt-toggle fa-solid fa-circle-chevron-down"></span>
-            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateUnified" title="Reset to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateUnified" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
             <div class="bst-prompt-caption">Instruction (editable)</div>
@@ -466,7 +466,7 @@ export function openSettingsModal(input: {
             </div>
             <div class="bst-protocol-editable-wrap">
               <div class="bst-prompt-caption">Protocol (advanced editable)</div>
-              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolUnified" title="Reset protocol to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolUnified" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolUnified" rows="10"></textarea>
             </div>
           </div>
@@ -475,8 +475,8 @@ export function openSettingsModal(input: {
           <div class="bst-prompt-head">
             <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-heart"></span>Seq: Affection</span>
             <span class="bst-prompt-toggle fa-solid fa-circle-chevron-down"></span>
-            <button class="bst-prompt-generate" data-action="generate-seq-prompt" data-generate-for="promptTemplateSequentialAffection" title="Generate instruction with AI."><span class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span></button>
-            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialAffection" title="Reset to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+            <button class="bst-prompt-generate" data-action="generate-seq-prompt" data-generate-for="promptTemplateSequentialAffection" title="用 AI 生成指令。"><span class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span></button>
+            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialAffection" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
             <div class="bst-prompt-caption">Instruction (editable)</div>
@@ -492,7 +492,7 @@ export function openSettingsModal(input: {
             </div>
             <div class="bst-protocol-editable-wrap">
               <div class="bst-prompt-caption">Protocol (advanced editable)</div>
-              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialAffection" title="Reset protocol to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialAffection" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialAffection" rows="10"></textarea>
             </div>
           </div>
@@ -501,8 +501,8 @@ export function openSettingsModal(input: {
           <div class="bst-prompt-head">
             <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-shield-heart"></span>Seq: Trust</span>
             <span class="bst-prompt-toggle fa-solid fa-circle-chevron-down"></span>
-            <button class="bst-prompt-generate" data-action="generate-seq-prompt" data-generate-for="promptTemplateSequentialTrust" title="Generate instruction with AI."><span class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span></button>
-            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialTrust" title="Reset to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+            <button class="bst-prompt-generate" data-action="generate-seq-prompt" data-generate-for="promptTemplateSequentialTrust" title="用 AI 生成指令。"><span class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span></button>
+            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialTrust" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
             <div class="bst-prompt-caption">Instruction (editable)</div>
@@ -518,7 +518,7 @@ export function openSettingsModal(input: {
             </div>
             <div class="bst-protocol-editable-wrap">
               <div class="bst-prompt-caption">Protocol (advanced editable)</div>
-              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialTrust" title="Reset protocol to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialTrust" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialTrust" rows="10"></textarea>
             </div>
           </div>
@@ -527,8 +527,8 @@ export function openSettingsModal(input: {
           <div class="bst-prompt-head">
             <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-fire"></span>Seq: Desire</span>
             <span class="bst-prompt-toggle fa-solid fa-circle-chevron-down"></span>
-            <button class="bst-prompt-generate" data-action="generate-seq-prompt" data-generate-for="promptTemplateSequentialDesire" title="Generate instruction with AI."><span class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span></button>
-            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialDesire" title="Reset to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+            <button class="bst-prompt-generate" data-action="generate-seq-prompt" data-generate-for="promptTemplateSequentialDesire" title="用 AI 生成指令。"><span class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span></button>
+            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialDesire" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
             <div class="bst-prompt-caption">Instruction (editable)</div>
@@ -544,7 +544,7 @@ export function openSettingsModal(input: {
             </div>
             <div class="bst-protocol-editable-wrap">
               <div class="bst-prompt-caption">Protocol (advanced editable)</div>
-              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialDesire" title="Reset protocol to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialDesire" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialDesire" rows="10"></textarea>
             </div>
           </div>
@@ -553,8 +553,8 @@ export function openSettingsModal(input: {
           <div class="bst-prompt-head">
             <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-link"></span>Seq: Connection</span>
             <span class="bst-prompt-toggle fa-solid fa-circle-chevron-down"></span>
-            <button class="bst-prompt-generate" data-action="generate-seq-prompt" data-generate-for="promptTemplateSequentialConnection" title="Generate instruction with AI."><span class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span></button>
-            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialConnection" title="Reset to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+            <button class="bst-prompt-generate" data-action="generate-seq-prompt" data-generate-for="promptTemplateSequentialConnection" title="用 AI 生成指令。"><span class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span></button>
+            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialConnection" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
             <div class="bst-prompt-caption">Instruction (editable)</div>
@@ -570,7 +570,7 @@ export function openSettingsModal(input: {
             </div>
             <div class="bst-protocol-editable-wrap">
               <div class="bst-prompt-caption">Protocol (advanced editable)</div>
-              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialConnection" title="Reset protocol to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialConnection" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialConnection" rows="10"></textarea>
             </div>
           </div>
@@ -579,7 +579,7 @@ export function openSettingsModal(input: {
           <div class="bst-prompt-head">
             <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-sliders"></span>Custom Numeric Default</span>
             <span class="bst-prompt-toggle fa-solid fa-circle-chevron-down"></span>
-            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialCustomNumeric" title="Reset to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialCustomNumeric" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
             <div class="bst-prompt-caption">Instruction (editable default used when a custom stat has no per-stat override, in all modes)</div>
@@ -590,7 +590,7 @@ export function openSettingsModal(input: {
             </div>
             <div class="bst-protocol-editable-wrap">
               <div class="bst-prompt-caption">Protocol (advanced editable)</div>
-              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialCustomNumeric" title="Reset protocol to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialCustomNumeric" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialCustomNumeric" rows="10"></textarea>
             </div>
           </div>
@@ -599,7 +599,7 @@ export function openSettingsModal(input: {
           <div class="bst-prompt-head">
             <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-list-check"></span>Custom Non-Numeric Default</span>
             <span class="bst-prompt-toggle fa-solid fa-circle-chevron-down"></span>
-            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialCustomNonNumeric" title="Reset to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialCustomNonNumeric" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
             <div class="bst-prompt-caption">Instruction (editable default used when enum/boolean/text/array custom stats have no per-stat override, in all modes)</div>
@@ -610,7 +610,7 @@ export function openSettingsModal(input: {
             </div>
             <div class="bst-protocol-editable-wrap">
               <div class="bst-prompt-caption">Protocol (advanced editable)</div>
-              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialCustomNonNumeric" title="Reset protocol to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialCustomNonNumeric" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialCustomNonNumeric" rows="10"></textarea>
             </div>
           </div>
@@ -619,8 +619,8 @@ export function openSettingsModal(input: {
           <div class="bst-prompt-head">
             <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-face-smile"></span>Seq: Mood</span>
             <span class="bst-prompt-toggle fa-solid fa-circle-chevron-down"></span>
-            <button class="bst-prompt-generate" data-action="generate-seq-prompt" data-generate-for="promptTemplateSequentialMood" title="Generate instruction with AI."><span class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span></button>
-            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialMood" title="Reset to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+            <button class="bst-prompt-generate" data-action="generate-seq-prompt" data-generate-for="promptTemplateSequentialMood" title="用 AI 生成指令。"><span class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span></button>
+            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialMood" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
             <div class="bst-prompt-caption">Instruction (editable)</div>
@@ -634,7 +634,7 @@ export function openSettingsModal(input: {
             </div>
             <div class="bst-protocol-editable-wrap">
               <div class="bst-prompt-caption">Protocol (advanced editable)</div>
-              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialMood" title="Reset protocol to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialMood" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialMood" rows="10"></textarea>
             </div>
           </div>
@@ -643,8 +643,8 @@ export function openSettingsModal(input: {
           <div class="bst-prompt-head">
             <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-brain"></span>Seq: LastThought</span>
             <span class="bst-prompt-toggle fa-solid fa-circle-chevron-down"></span>
-            <button class="bst-prompt-generate" data-action="generate-seq-prompt" data-generate-for="promptTemplateSequentialLastThought" title="Generate instruction with AI."><span class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span></button>
-            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialLastThought" title="Reset to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+            <button class="bst-prompt-generate" data-action="generate-seq-prompt" data-generate-for="promptTemplateSequentialLastThought" title="用 AI 生成指令。"><span class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span></button>
+            <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialLastThought" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
             <div class="bst-prompt-caption">Instruction (editable)</div>
@@ -658,7 +658,7 @@ export function openSettingsModal(input: {
             </div>
             <div class="bst-protocol-editable-wrap">
               <div class="bst-prompt-caption">Protocol (advanced editable)</div>
-              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialLastThought" title="Reset protocol to default."><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
+              <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialLastThought" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialLastThought" rows="10"></textarea>
             </div>
           </div>
@@ -681,18 +681,18 @@ export function openSettingsModal(input: {
       </div>
       <div data-bst-row="debugBody">
         <div class="bst-debug-actions">
-          <button class="bst-btn bst-btn-soft bst-btn-icon" data-action="retrack" title="Retrack Last AI Message" aria-label="Retrack Last AI Message">
+          <button class="bst-btn bst-btn-soft bst-btn-icon" data-action="retrack" title="重新分析最後 AI 訊息" aria-label="重新分析最後 AI 訊息">
             <span class="fa-solid fa-rotate-left" aria-hidden="true"></span>
           </button>
-          <button class="bst-btn bst-btn-danger" data-action="clear-chat" title="Delete all tracker data for the currently open chat only.">
+          <button class="bst-btn bst-btn-danger" data-action="clear-chat" title="刪除當前聊天的所有追蹤資料。">
             <span class="fa-solid fa-trash bst-btn-icon-left" aria-hidden="true"></span>
             Delete Tracker Data (Current Chat)
           </button>
-          <button class="bst-btn" data-action="dump-diagnostics" title="Collect and copy current diagnostics report to clipboard.">
+          <button class="bst-btn" data-action="dump-diagnostics" title="收集並複製目前診斷報告至剪貼簿。">
             <span class="fa-solid fa-file-export bst-btn-icon-left" aria-hidden="true"></span>
             Dump Diagnostics
           </button>
-          <button class="bst-btn bst-btn-danger" data-action="clear-diagnostics" title="Clear stored diagnostics traces and last debug record for this chat scope.">
+          <button class="bst-btn bst-btn-danger" data-action="clear-diagnostics" title="清除此聊天範圍的診斷追蹤與最後除錯記錄。">
             <span class="fa-solid fa-broom bst-btn-icon-left" aria-hidden="true"></span>
             Clear Diagnostics
           </button>
@@ -704,11 +704,11 @@ export function openSettingsModal(input: {
       </div>
     </div>
     <div class="bst-settings-footer">
-      <button class="bst-btn bst-btn-soft" data-action="retrack" title="Retrack Last AI Message">
+      <button class="bst-btn bst-btn-soft" data-action="retrack" title="重新分析最後 AI 訊息">
         <span class="fa-solid fa-rotate-left bst-btn-icon-left" aria-hidden="true"></span>
         Retrack
       </button>
-      <button class="bst-btn" data-action="close" title="Close settings">Done</button>
+      <button class="bst-btn" data-action="close" title="關閉設定">完成</button>
     </div>
   `;
   document.body.appendChild(modal);
@@ -1983,7 +1983,7 @@ export function openSettingsModal(input: {
             </div>
           </div>
           <div class="bst-custom-stat-actions">
-            <button type="button" class="bst-custom-stat-toggle ${enabled ? "is-on" : "is-off"}" data-action="custom-toggle-enabled" data-custom-id="${escapeHtml(stat.id)}" aria-pressed="${enabled ? "true" : "false"}" title="${enabled ? "Disable this stat quickly" : "Enable this stat quickly"}">
+            <button type="button" class="bst-custom-stat-toggle ${enabled ? "is-on" : "is-off"}" data-action="custom-toggle-enabled" data-custom-id="${escapeHtml(stat.id)}" aria-pressed="${enabled ? "true" : "false"}" title="${enabled ? "快速停用此統計" : "快速啟用此統計"}">
               <span class="bst-custom-stat-toggle-pill" aria-hidden="true"></span>
               <span class="bst-custom-stat-toggle-label">${enabled ? "Enabled" : "Disabled"}</span>
             </button>
@@ -2069,9 +2069,9 @@ export function openSettingsModal(input: {
             <span class="bst-scene-order-id">${escapeHtml(stat.id)}</span>
           </div>
           <div class="bst-scene-order-actions">
-            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="scene-order-edit" data-scene-order-id="${escapeHtml(id)}" title="Edit display options" aria-label="Edit display options"><span class="fa-solid fa-pen" aria-hidden="true"></span></button>
-            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="scene-order-up" data-scene-order-id="${escapeHtml(id)}" ${index === 0 ? "disabled" : ""} title="Move up" aria-label="Move up"><span class="fa-solid fa-arrow-up" aria-hidden="true"></span></button>
-            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="scene-order-down" data-scene-order-id="${escapeHtml(id)}" ${index === orderedIds.length - 1 ? "disabled" : ""} title="Move down" aria-label="Move down"><span class="fa-solid fa-arrow-down" aria-hidden="true"></span></button>
+            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="scene-order-edit" data-scene-order-id="${escapeHtml(id)}" title="編輯顯示選項" aria-label="編輯顯示選項"><span class="fa-solid fa-pen" aria-hidden="true"></span></button>
+            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="scene-order-up" data-scene-order-id="${escapeHtml(id)}" ${index === 0 ? "disabled" : ""} title="上移" aria-label="上移"><span class="fa-solid fa-arrow-up" aria-hidden="true"></span></button>
+            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="scene-order-down" data-scene-order-id="${escapeHtml(id)}" ${index === orderedIds.length - 1 ? "disabled" : ""} title="下移" aria-label="下移"><span class="fa-solid fa-arrow-down" aria-hidden="true"></span></button>
           </div>
         </div>
       `;
@@ -2100,8 +2100,8 @@ export function openSettingsModal(input: {
             <span class="bst-scene-order-id">${escapeHtml(id)}${stat.source === "built_in" ? " · built-in" : ""}</span>
           </div>
           <div class="bst-scene-order-actions">
-            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="char-order-up" data-char-order-id="${escapeHtml(id)}" ${index === 0 ? "disabled" : ""} title="Move up" aria-label="Move up"><span class="fa-solid fa-arrow-up" aria-hidden="true"></span></button>
-            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="char-order-down" data-char-order-id="${escapeHtml(id)}" ${index === orderedIds.length - 1 ? "disabled" : ""} title="Move down" aria-label="Move down"><span class="fa-solid fa-arrow-down" aria-hidden="true"></span></button>
+            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="char-order-up" data-char-order-id="${escapeHtml(id)}" ${index === 0 ? "disabled" : ""} title="上移" aria-label="上移"><span class="fa-solid fa-arrow-up" aria-hidden="true"></span></button>
+            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="char-order-down" data-char-order-id="${escapeHtml(id)}" ${index === orderedIds.length - 1 ? "disabled" : ""} title="下移" aria-label="下移"><span class="fa-solid fa-arrow-down" aria-hidden="true"></span></button>
           </div>
         </div>
       `;
@@ -2273,8 +2273,8 @@ export function openSettingsModal(input: {
             <span class="bst-scene-order-id">Position ${index + 1}</span>
           </div>
           <div class="bst-scene-order-actions">
-            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="scene-dt-part-up" data-scene-dt-part-index="${index}" ${index === 0 ? "disabled" : ""} title="Move up" aria-label="Move up"><span class="fa-solid fa-arrow-up" aria-hidden="true"></span></button>
-            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="scene-dt-part-down" data-scene-dt-part-index="${index}" ${index === dateTimePartOrderDraft.length - 1 ? "disabled" : ""} title="Move down" aria-label="Move down"><span class="fa-solid fa-arrow-down" aria-hidden="true"></span></button>
+            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="scene-dt-part-up" data-scene-dt-part-index="${index}" ${index === 0 ? "disabled" : ""} title="上移" aria-label="上移"><span class="fa-solid fa-arrow-up" aria-hidden="true"></span></button>
+            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="scene-dt-part-down" data-scene-dt-part-index="${index}" ${index === dateTimePartOrderDraft.length - 1 ? "disabled" : ""} title="下移" aria-label="下移"><span class="fa-solid fa-arrow-down" aria-hidden="true"></span></button>
           </div>
         </div>
       `).join("");
@@ -2687,7 +2687,7 @@ export function openSettingsModal(input: {
             <div class="bst-enum-options-editor">
               <div class="bst-enum-options-list" data-bst-enum-options-list></div>
               <div class="bst-enum-options-actions">
-                <button type="button" class="bst-btn bst-btn-soft bst-icon-btn" data-action="enum-option-add" aria-label="Add option" title="Add option"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+                <button type="button" class="bst-btn bst-btn-soft bst-icon-btn" data-action="enum-option-add" aria-label="新增選項" title="新增選項"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
                 <span class="bst-custom-char-counter" data-bst-enum-options-counter></span>
               </div>
             </div>
@@ -2724,7 +2724,7 @@ export function openSettingsModal(input: {
             <div class="bst-array-default-editor">
               <div class="bst-array-default-list" data-bst-array-default-list></div>
               <div class="bst-array-default-actions">
-                <button type="button" class="bst-btn bst-btn-soft bst-icon-btn" data-action="array-default-add" aria-label="Add item" title="Add item"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+                <button type="button" class="bst-btn bst-btn-soft bst-icon-btn" data-action="array-default-add" aria-label="新增項目" title="新增項目"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
                 <span class="bst-custom-char-counter" data-bst-array-default-counter></span>
               </div>
             </div>
@@ -2943,14 +2943,14 @@ export function openSettingsModal(input: {
     const arrayEditorRowHtml = (value: string, maxLength: number): string => `
       <div class="bst-array-default-row">
         <input type="text" data-bst-array-item="1" maxlength="${maxLength}" value="${escapeHtml(value)}" placeholder="Item value">
-        <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="array-default-remove" aria-label="Remove item" title="Remove item"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+        <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="array-default-remove" aria-label="移除項目" title="移除項目"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
       </div>
     `;
 
     const enumEditorRowHtml = (value: string): string => `
       <div class="bst-enum-options-row">
         <input type="text" data-bst-enum-option="1" maxlength="200" value="${escapeHtml(value)}" placeholder="Option value">
-        <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="enum-option-remove" aria-label="Remove option" title="Remove option"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+        <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="enum-option-remove" aria-label="移除選項" title="移除選項"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
       </div>
     `;
 
@@ -2983,8 +2983,8 @@ export function openSettingsModal(input: {
             <span class="bst-scene-order-id">Position ${index + 1}</span>
           </div>
           <div class="bst-scene-order-actions">
-            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="custom-dt-part-up" data-bst-custom-dt-part-index="${index}" ${index === 0 ? "disabled" : ""} title="Move up" aria-label="Move up"><span class="fa-solid fa-arrow-up" aria-hidden="true"></span></button>
-            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="custom-dt-part-down" data-bst-custom-dt-part-index="${index}" ${index === dateTimePartOrderDraft.length - 1 ? "disabled" : ""} title="Move down" aria-label="Move down"><span class="fa-solid fa-arrow-down" aria-hidden="true"></span></button>
+            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="custom-dt-part-up" data-bst-custom-dt-part-index="${index}" ${index === 0 ? "disabled" : ""} title="上移" aria-label="上移"><span class="fa-solid fa-arrow-up" aria-hidden="true"></span></button>
+            <button type="button" class="bst-btn bst-btn-soft bst-btn-icon" data-action="custom-dt-part-down" data-bst-custom-dt-part-index="${index}" ${index === dateTimePartOrderDraft.length - 1 ? "disabled" : ""} title="下移" aria-label="下移"><span class="fa-solid fa-arrow-down" aria-hidden="true"></span></button>
           </div>
         </div>
       `).join("");
