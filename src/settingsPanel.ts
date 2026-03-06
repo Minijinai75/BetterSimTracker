@@ -73,11 +73,11 @@ export function upsertSettingsPanel(input: {
       <div class="inline-drawer-content">
         <label class="checkbox_label" style="display:flex;align-items:center;gap:8px;margin:8px 0;">
           <input id="bst-settings-enabled" type="checkbox" ${input.settings.enabled ? "checked" : ""}>
-          <span>Enabled</span>
+          <span>啟用</span>
         </label>
         <button id="bst-open-settings" class="menu_button bst-open-settings-btn">
           <span class="fa-solid fa-gear" aria-hidden="true"></span>
-          Open Settings
+          開啟設定
         </button>
       </div>
     </div>
