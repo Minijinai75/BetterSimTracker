@@ -460,10 +460,10 @@ function renderDateTimeStructuredChips(
     const [, y, m, d] = match;
     const mode =
       options?.dateFormat === "dmy" ||
-      options?.dateFormat === "mdy" ||
-      options?.dateFormat === "d_mmm_yyyy" ||
-      options?.dateFormat === "mmmm_d_yyyy" ||
-      options?.dateFormat === "mmmm_do_yyyy"
+        options?.dateFormat === "mdy" ||
+        options?.dateFormat === "d_mmm_yyyy" ||
+        options?.dateFormat === "mmmm_d_yyyy" ||
+        options?.dateFormat === "mmmm_do_yyyy"
         ? options.dateFormat
         : "iso";
     return formatDateWithPreset({ year: Number(y), month: Number(m), day: Number(d) }, mode);
@@ -4740,38 +4740,38 @@ export function renderTracker(
         </div>` : ""}
         <div class="bst-body">
         ${enabledNumeric.map(({ key, label, color, defaultValue }) => {
-          const defDefault = defaultValue ?? 50;
-          const currentValueRaw = getNumericRawValue(data, key, name, isNumericGlobalScope(key));
-          const hasCurrentValue = currentValueRaw !== undefined && !Number.isNaN(currentValueRaw);
-          const effectiveValueRaw = getEffectiveNumericRawValue(key, name);
-          const value = toPercent(effectiveValueRaw ?? defDefault);
-          const previousForStat = findPreviousDataWithNumericStat(entry.messageIndex, key, name);
-          const hasPrevValue = Boolean(previousForStat);
-          const prevValue = toPercent(previousForStat ? previousForStat.value : value);
-          const delta = Math.round(value - prevValue);
-          const deltaClass = delta > 0 ? "bst-delta bst-delta-up" : delta < 0 ? "bst-delta bst-delta-down" : "bst-delta bst-delta-flat";
-          const showDelta = latestAiIndex != null && entry.messageIndex === latestAiIndex && hasPrevValue && hasCurrentValue;
-          const rowClass = showDelta && delta !== 0 ? "bst-row bst-row-changed" : "bst-row";
-          return `
+        const defDefault = defaultValue ?? 50;
+        const currentValueRaw = getNumericRawValue(data, key, name, isNumericGlobalScope(key));
+        const hasCurrentValue = currentValueRaw !== undefined && !Number.isNaN(currentValueRaw);
+        const effectiveValueRaw = getEffectiveNumericRawValue(key, name);
+        const value = toPercent(effectiveValueRaw ?? defDefault);
+        const previousForStat = findPreviousDataWithNumericStat(entry.messageIndex, key, name);
+        const hasPrevValue = Boolean(previousForStat);
+        const prevValue = toPercent(previousForStat ? previousForStat.value : value);
+        const delta = Math.round(value - prevValue);
+        const deltaClass = delta > 0 ? "bst-delta bst-delta-up" : delta < 0 ? "bst-delta bst-delta-down" : "bst-delta bst-delta-flat";
+        const showDelta = latestAiIndex != null && entry.messageIndex === latestAiIndex && hasPrevValue && hasCurrentValue;
+        const rowClass = showDelta && delta !== 0 ? "bst-row bst-row-changed" : "bst-row";
+        return `
             <div class="${rowClass}">
               <div class="bst-label"><span>${label}</span><span>${value}%${showDelta ? `<span class="${deltaClass}">${formatDelta(delta)}</span>` : ""}</span></div>
               <div class="bst-track"><div class="bst-fill" style="width:${value}%;--bst-stat-color:${color};"></div></div>
             </div>
           `;
-        }).join("")}
+      }).join("")}
         ${enabledNonNumeric.map(def => {
-          const resolved = resolveEffectiveNonNumericValue(def, name);
-          const color = def.color || "#9bd5ff";
-          if (def.kind === "array") {
-            const items = Array.isArray(resolved) ? resolved : normalizeNonNumericArrayItems(resolved, def.textMaxLength);
-            const arrayKey = `arr:${entry.messageIndex}:${normalizeName(name)}:${def.id}`;
-            const expanded = expandedArrayValueKeys.has(arrayKey);
-            const hasOverflow = items.length > 4;
-            const visibleItems = hasOverflow && !expanded ? items.slice(0, 4) : items;
-            const chips = visibleItems.length
-              ? visibleItems.map(item => `<span class="bst-array-item-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(item)}">${escapeHtml(item)}</span>`).join("")
-              : `<span class="bst-array-item-empty">無項目</span>`;
-            return `
+        const resolved = resolveEffectiveNonNumericValue(def, name);
+        const color = def.color || "#9bd5ff";
+        if (def.kind === "array") {
+          const items = Array.isArray(resolved) ? resolved : normalizeNonNumericArrayItems(resolved, def.textMaxLength);
+          const arrayKey = `arr:${entry.messageIndex}:${normalizeName(name)}:${def.id}`;
+          const expanded = expandedArrayValueKeys.has(arrayKey);
+          const hasOverflow = items.length > 4;
+          const visibleItems = hasOverflow && !expanded ? items.slice(0, 4) : items;
+          const chips = visibleItems.length
+            ? visibleItems.map(item => `<span class="bst-array-item-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(item)}">${escapeHtml(item)}</span>`).join("")
+            : `<span class="bst-array-item-empty">無項目</span>`;
+          return `
               <div class="bst-row bst-row-non-numeric">
                 <div class="bst-label">
                   <span>${escapeHtml(def.label)}</span>
@@ -4779,14 +4779,14 @@ export function renderTracker(
                 <div class="bst-array-items">
                   ${chips}
                   ${hasOverflow
-                    ? `<button type="button" class="bst-array-toggle" data-bst-action="toggle-array-values" data-bst-array-key="${escapeHtml(arrayKey)}" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "顯示較少" : `+${items.length - 4} more`}</button>`
-                    : ""}
+              ? `<button type="button" class="bst-array-toggle" data-bst-action="toggle-array-values" data-bst-array-key="${escapeHtml(arrayKey)}" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "顯示較少" : `+${items.length - 4} more`}</button>`
+              : ""}
                 </div>
               </div>
             `;
-          }
-          if (def.kind === "date_time" && def.dateTimeMode === "structured") {
-            return `
+        }
+        if (def.kind === "date_time" && def.dateTimeMode === "structured") {
+          return `
               <div class="bst-row bst-row-non-numeric">
                 <div class="bst-label">
                   <span>${escapeHtml(def.label)}</span>
@@ -4796,9 +4796,9 @@ export function renderTracker(
                 </div>
               </div>
             `;
-          }
-          const displayValue = resolved == null ? "未設定" : formatNonNumericForDisplay(def, resolved);
-          return `
+        }
+        const displayValue = resolved == null ? "未設定" : formatNonNumericForDisplay(def, resolved);
+        return `
             <div class="bst-row bst-row-non-numeric">
               <div class="bst-label">
                 <span>${escapeHtml(def.label)}</span>
@@ -4806,18 +4806,18 @@ export function renderTracker(
               </div>
             </div>
           `;
-        }).join("")}
+      }).join("")}
         ${moodText !== "" ? `
         <div class="bst-mood${moodImage ? " bst-mood-has-image" : ""}" title="${moodText} (${moodTrend})">
           <div class="bst-mood-wrap ${moodImage ? "bst-mood-wrap--image" : "bst-mood-wrap--emoji"}">
             ${moodImage
-              ? `<button type="button" class="bst-mood-image-trigger" data-bst-action="open-mood-preview" data-bst-image-src="${escapeHtml(moodImage)}" data-bst-image-alt="${escapeHtml(moodText)}" data-bst-image-character="${escapeHtml(displayName)}" data-bst-image-mood="${escapeHtml(moodText)}" aria-label="Open mood image preview for ${escapeHtml(displayName)} (${escapeHtml(moodText)})"><span class="bst-mood-image-frame${moodSource === "st_expressions" ? " bst-mood-image-frame--st-expression" : ""}"><img class="bst-mood-image${moodSource === "st_expressions" ? " bst-mood-image--st-expression" : ""}" src="${escapeHtml(moodImage)}" alt="${escapeHtml(moodText)}"${stExpressionImageStyle}></span></button>`
-              : `<span class="bst-mood-chip"><span class="bst-mood-emoji">${moodToEmojiEntity(moodText)}</span></span>`}
+            ? `<button type="button" class="bst-mood-image-trigger" data-bst-action="open-mood-preview" data-bst-image-src="${escapeHtml(moodImage)}" data-bst-image-alt="${escapeHtml(moodText)}" data-bst-image-character="${escapeHtml(displayName)}" data-bst-image-mood="${escapeHtml(moodText)}" aria-label="Open mood image preview for ${escapeHtml(displayName)} (${escapeHtml(moodText)})"><span class="bst-mood-image-frame${moodSource === "st_expressions" ? " bst-mood-image-frame--st-expression" : ""}"><img class="bst-mood-image${moodSource === "st_expressions" ? " bst-mood-image--st-expression" : ""}" src="${escapeHtml(moodImage)}" alt="${escapeHtml(moodText)}"${stExpressionImageStyle}></span></button>`
+            : `<span class="bst-mood-chip"><span class="bst-mood-emoji">${moodToEmojiEntity(moodText)}</span></span>`}
             ${moodImage && lastThoughtText
-              ? renderThoughtMarkup(lastThoughtText, thoughtUiKey, "bubble")
-              : moodImage
-                ? ""
-                : `<span class="bst-mood-badge" style="background:${moodBadgeColor(moodText)};">${moodText} (${moodTrend})</span>`}
+            ? renderThoughtMarkup(lastThoughtText, thoughtUiKey, "bubble")
+            : moodImage
+              ? ""
+              : `<span class="bst-mood-badge" style="background:${moodBadgeColor(moodText)};">${moodText} (${moodTrend})</span>`}
           </div>
         </div>` : ""}
         ${settings.showLastThought && lastThoughtText !== "" && !moodImage ? renderThoughtMarkup(lastThoughtText, thoughtUiKey, "panel") : ""}
@@ -4889,137 +4889,137 @@ export function renderTracker(
           <div class="bst-name" title="${escapeHtml(settings.sceneCardTitle)}">${escapeHtml(settings.sceneCardTitle)}</div>
           <div class="bst-actions">
             ${canEditSceneCard
-              ? `<button class="bst-mini-btn bst-mini-btn-icon" data-bst-action="edit-stats" data-bst-edit-message="${entry.messageIndex}" data-bst-edit-character="${escapeHtml(GLOBAL_TRACKER_KEY)}" title="編輯最新場景追蹤統計" aria-label="編輯最新場景追蹤統計"><span aria-hidden="true">&#9998;</span></button>`
-              : ""}
+        ? `<button class="bst-mini-btn bst-mini-btn-icon" data-bst-action="edit-stats" data-bst-edit-message="${entry.messageIndex}" data-bst-edit-character="${escapeHtml(GLOBAL_TRACKER_KEY)}" title="編輯最新場景追蹤統計" aria-label="編輯最新場景追蹤統計"><span aria-hidden="true">&#9998;</span></button>`
+        : ""}
             <div class="bst-state" title="全域場景統計">全域</div>
           </div>
         </div>
         <div class="bst-body">
           ${sceneValues.map(item => {
-            const def = item.def;
-            const resolved = item.value as string | boolean | string[];
-            const display = item.display;
-            const color = display?.colorOverride || settings.sceneCardValueColor || def.color || settings.accentColor || "#9bd5ff";
-            const statLabel = display?.labelOverride?.trim() ? display.labelOverride.trim() : def.label;
-            const showLabel = display?.showLabel !== false;
-            const valueStyle = display?.valueStyle === "chip" || display?.valueStyle === "plain" ? display.valueStyle : "auto";
-            const textMaxLength = display?.textMaxLength ?? null;
-            const statLayout = display?.layoutOverride === "chips" || display?.layoutOverride === "rows"
-              ? display.layoutOverride
-              : settings.sceneCardLayout;
-            if (statLayout === "rows") {
-              if (def.kind === "date_time" && def.dateTimeMode === "structured") {
-                return `
+          const def = item.def;
+          const resolved = item.value as string | boolean | string[];
+          const display = item.display;
+          const color = display?.colorOverride || settings.sceneCardValueColor || def.color || settings.accentColor || "#9bd5ff";
+          const statLabel = display?.labelOverride?.trim() ? display.labelOverride.trim() : def.label;
+          const showLabel = display?.showLabel !== false;
+          const valueStyle = display?.valueStyle === "chip" || display?.valueStyle === "plain" ? display.valueStyle : "auto";
+          const textMaxLength = display?.textMaxLength ?? null;
+          const statLayout = display?.layoutOverride === "chips" || display?.layoutOverride === "rows"
+            ? display.layoutOverride
+            : settings.sceneCardLayout;
+          if (statLayout === "rows") {
+            if (def.kind === "date_time" && def.dateTimeMode === "structured") {
+              return `
                   <div class="bst-row bst-row-non-numeric">
                     <div class="bst-label">
                       ${showLabel ? `<span>${escapeHtml(statLabel)}</span>` : ""}
                     </div>
                     <div class="bst-array-items">
                       ${renderDateTimeStructuredChips(resolved ?? "", color, {
-                        showWeekday: display?.dateTimeShowWeekday,
-                        showDate: display?.dateTimeShowDate,
-                        showTime: display?.dateTimeShowTime,
-                        showPhase: display?.dateTimeShowPhase,
-                        showPartLabels: display?.dateTimeShowPartLabels,
-                        labelWeekday: display?.dateTimeLabelWeekday,
-                        labelDate: display?.dateTimeLabelDate,
-                        labelTime: display?.dateTimeLabelTime,
-                        labelPhase: display?.dateTimeLabelPhase,
-                        dateFormat: display?.dateTimeDateFormat,
-                        partOrder: display?.dateTimePartOrder,
-                      })}
+                showWeekday: display?.dateTimeShowWeekday,
+                showDate: display?.dateTimeShowDate,
+                showTime: display?.dateTimeShowTime,
+                showPhase: display?.dateTimeShowPhase,
+                showPartLabels: display?.dateTimeShowPartLabels,
+                labelWeekday: display?.dateTimeLabelWeekday,
+                labelDate: display?.dateTimeLabelDate,
+                labelTime: display?.dateTimeLabelTime,
+                labelPhase: display?.dateTimeLabelPhase,
+                dateFormat: display?.dateTimeDateFormat,
+                partOrder: display?.dateTimePartOrder,
+              })}
                     </div>
                   </div>
                 `;
-              }
-              if (def.kind === "array") {
-                const items = Array.isArray(resolved) ? resolved : normalizeNonNumericArrayItems(resolved, def.textMaxLength);
-                const textValueRaw = items.length ? items.join(", ") : "未設定";
-                const textValue = truncateDisplayText(textValueRaw, textMaxLength);
-                return `
+            }
+            if (def.kind === "array") {
+              const items = Array.isArray(resolved) ? resolved : normalizeNonNumericArrayItems(resolved, def.textMaxLength);
+              const textValueRaw = items.length ? items.join(", ") : "未設定";
+              const textValue = truncateDisplayText(textValueRaw, textMaxLength);
+              return `
                   <div class="bst-row bst-row-non-numeric">
                     <div class="bst-label">
                       ${showLabel ? `<span>${escapeHtml(statLabel)}</span>` : ""}
                       ${valueStyle === "plain"
-                        ? `<span class="bst-scene-plain-value" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(textValueRaw)}">${escapeHtml(textValue)}</span>`
-                        : `<span class="bst-non-numeric-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(textValueRaw)}">${escapeHtml(textValue)}</span>`}
+                  ? `<span class="bst-scene-plain-value" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(textValueRaw)}">${escapeHtml(textValue)}</span>`
+                  : `<span class="bst-non-numeric-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(textValueRaw)}">${escapeHtml(textValue)}</span>`}
                     </div>
                   </div>
                 `;
-              }
-              if (def.kind === "date_time") {
-                const dateFormat =
-                  display?.dateTimeDateFormat === "dmy" ||
+            }
+            if (def.kind === "date_time") {
+              const dateFormat =
+                display?.dateTimeDateFormat === "dmy" ||
                   display?.dateTimeDateFormat === "mdy" ||
                   display?.dateTimeDateFormat === "d_mmm_yyyy" ||
                   display?.dateTimeDateFormat === "mmmm_d_yyyy" ||
                   display?.dateTimeDateFormat === "mmmm_do_yyyy"
-                    ? display.dateTimeDateFormat
-                    : "iso";
-                const displayValueRaw = formatDateTimeTimestampDisplay(resolved ?? "", dateFormat);
-                const displayValue = truncateDisplayText(displayValueRaw, textMaxLength);
-                return `
+                  ? display.dateTimeDateFormat
+                  : "iso";
+              const displayValueRaw = formatDateTimeTimestampDisplay(resolved ?? "", dateFormat);
+              const displayValue = truncateDisplayText(displayValueRaw, textMaxLength);
+              return `
                   <div class="bst-row bst-row-non-numeric">
                     <div class="bst-label">
                       ${showLabel ? `<span>${escapeHtml(statLabel)}</span>` : ""}
                       ${valueStyle === "plain"
-                        ? `<span class="bst-scene-plain-value" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`
-                        : `<span class="bst-non-numeric-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`}
+                  ? `<span class="bst-scene-plain-value" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`
+                  : `<span class="bst-non-numeric-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`}
                     </div>
                   </div>
                 `;
-              }
-              const displayValueRaw = resolved == null ? "未設定" : formatNonNumericForDisplay(def, resolved);
-              const displayValue = truncateDisplayText(displayValueRaw, textMaxLength);
-              return `
+            }
+            const displayValueRaw = resolved == null ? "未設定" : formatNonNumericForDisplay(def, resolved);
+            const displayValue = truncateDisplayText(displayValueRaw, textMaxLength);
+            return `
                 <div class="bst-row bst-row-non-numeric">
                   <div class="bst-label">
                     ${showLabel ? `<span>${escapeHtml(statLabel)}</span>` : ""}
                     ${valueStyle === "plain"
-                      ? `<span class="bst-scene-plain-value" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`
-                      : `<span class="bst-non-numeric-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`}
+                ? `<span class="bst-scene-plain-value" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`
+                : `<span class="bst-non-numeric-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`}
                   </div>
                 </div>
               `;
-            }
-            if (def.kind === "date_time" && def.dateTimeMode === "structured") {
-              return `
+          }
+          if (def.kind === "date_time" && def.dateTimeMode === "structured") {
+            return `
                 <div class="bst-row bst-row-non-numeric">
                   <div class="bst-label">
                     ${showLabel ? `<span>${escapeHtml(statLabel)}</span>` : ""}
                   </div>
                   <div class="bst-array-items">
                     ${renderDateTimeStructuredChips(resolved ?? "", color, {
-                      showWeekday: display?.dateTimeShowWeekday,
-                      showDate: display?.dateTimeShowDate,
-                      showTime: display?.dateTimeShowTime,
-                      showPhase: display?.dateTimeShowPhase,
-                      showPartLabels: display?.dateTimeShowPartLabels,
-                      labelWeekday: display?.dateTimeLabelWeekday,
-                      labelDate: display?.dateTimeLabelDate,
-                      labelTime: display?.dateTimeLabelTime,
-                      labelPhase: display?.dateTimeLabelPhase,
-                      dateFormat: display?.dateTimeDateFormat,
-                      partOrder: display?.dateTimePartOrder,
-                    })}
+              showWeekday: display?.dateTimeShowWeekday,
+              showDate: display?.dateTimeShowDate,
+              showTime: display?.dateTimeShowTime,
+              showPhase: display?.dateTimeShowPhase,
+              showPartLabels: display?.dateTimeShowPartLabels,
+              labelWeekday: display?.dateTimeLabelWeekday,
+              labelDate: display?.dateTimeLabelDate,
+              labelTime: display?.dateTimeLabelTime,
+              labelPhase: display?.dateTimeLabelPhase,
+              dateFormat: display?.dateTimeDateFormat,
+              partOrder: display?.dateTimePartOrder,
+            })}
                   </div>
                 </div>
               `;
-            }
-            if (def.kind === "array") {
-              const items = Array.isArray(resolved) ? resolved : normalizeNonNumericArrayItems(resolved, def.textMaxLength);
-              const arrayLimit = Math.max(1, Math.min(20, display?.arrayCollapsedLimit ?? settings.sceneCardArrayCollapsedLimit));
-              const sceneArrayKey = `arrscene:${entry.messageIndex}:${def.id}`;
-              const expanded = expandedArrayValueKeys.has(sceneArrayKey);
-              const hasOverflow = items.length > arrayLimit;
-              const visibleItems = hasOverflow && !expanded ? items.slice(0, arrayLimit) : items;
-              const chips = visibleItems.length
-                ? visibleItems.map(itemValue => {
-                  const value = truncateDisplayText(itemValue, textMaxLength);
-                  return `<span class="bst-array-item-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(itemValue)}">${escapeHtml(value)}</span>`;
-                }).join("")
-                : `<span class="bst-array-item-empty">未設定</span>`;
-              return `
+          }
+          if (def.kind === "array") {
+            const items = Array.isArray(resolved) ? resolved : normalizeNonNumericArrayItems(resolved, def.textMaxLength);
+            const arrayLimit = Math.max(1, Math.min(20, display?.arrayCollapsedLimit ?? settings.sceneCardArrayCollapsedLimit));
+            const sceneArrayKey = `arrscene:${entry.messageIndex}:${def.id}`;
+            const expanded = expandedArrayValueKeys.has(sceneArrayKey);
+            const hasOverflow = items.length > arrayLimit;
+            const visibleItems = hasOverflow && !expanded ? items.slice(0, arrayLimit) : items;
+            const chips = visibleItems.length
+              ? visibleItems.map(itemValue => {
+                const value = truncateDisplayText(itemValue, textMaxLength);
+                return `<span class="bst-array-item-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(itemValue)}">${escapeHtml(value)}</span>`;
+              }).join("")
+              : `<span class="bst-array-item-empty">未設定</span>`;
+            return `
                 <div class="bst-row bst-row-non-numeric">
                   <div class="bst-label">
                     ${showLabel ? `<span>${escapeHtml(statLabel)}</span>` : ""}
@@ -5027,47 +5027,47 @@ export function renderTracker(
                   <div class="bst-array-items">
                     ${chips}
                     ${hasOverflow
-                      ? `<button type="button" class="bst-array-toggle" data-bst-action="toggle-array-values" data-bst-array-key="${escapeHtml(sceneArrayKey)}" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "顯示較少" : `+${items.length - arrayLimit} more`}</button>`
-                      : ""}
+                ? `<button type="button" class="bst-array-toggle" data-bst-action="toggle-array-values" data-bst-array-key="${escapeHtml(sceneArrayKey)}" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "顯示較少" : `+${items.length - arrayLimit} more`}</button>`
+                : ""}
                   </div>
                 </div>
               `;
-            }
-            if (def.kind === "date_time") {
-              const dateFormat =
-                display?.dateTimeDateFormat === "dmy" ||
+          }
+          if (def.kind === "date_time") {
+            const dateFormat =
+              display?.dateTimeDateFormat === "dmy" ||
                 display?.dateTimeDateFormat === "mdy" ||
                 display?.dateTimeDateFormat === "d_mmm_yyyy" ||
                 display?.dateTimeDateFormat === "mmmm_d_yyyy" ||
                 display?.dateTimeDateFormat === "mmmm_do_yyyy"
-                  ? display.dateTimeDateFormat
-                  : "iso";
-              const displayValueRaw = formatDateTimeTimestampDisplay(resolved ?? "", dateFormat);
-              const displayValue = truncateDisplayText(displayValueRaw, textMaxLength);
-              return `
+                ? display.dateTimeDateFormat
+                : "iso";
+            const displayValueRaw = formatDateTimeTimestampDisplay(resolved ?? "", dateFormat);
+            const displayValue = truncateDisplayText(displayValueRaw, textMaxLength);
+            return `
                 <div class="bst-row bst-row-non-numeric">
                   <div class="bst-label">
                     ${showLabel ? `<span>${escapeHtml(statLabel)}</span>` : ""}
                     ${valueStyle === "plain"
-                      ? `<span class="bst-scene-plain-value" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`
-                      : `<span class="bst-non-numeric-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`}
+                ? `<span class="bst-scene-plain-value" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`
+                : `<span class="bst-non-numeric-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`}
                   </div>
                 </div>
               `;
-            }
-            const displayValueRaw = resolved == null ? "未設定" : formatNonNumericForDisplay(def, resolved);
-            const displayValue = truncateDisplayText(displayValueRaw, textMaxLength);
-            return `
+          }
+          const displayValueRaw = resolved == null ? "未設定" : formatNonNumericForDisplay(def, resolved);
+          const displayValue = truncateDisplayText(displayValueRaw, textMaxLength);
+          return `
               <div class="bst-row bst-row-non-numeric">
                 <div class="bst-label">
                   ${showLabel ? `<span>${escapeHtml(statLabel)}</span>` : ""}
                   ${valueStyle === "plain"
-                    ? `<span class="bst-scene-plain-value" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`
-                    : `<span class="bst-non-numeric-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`}
+              ? `<span class="bst-scene-plain-value" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`
+              : `<span class="bst-non-numeric-chip" style="--bst-stat-color:${escapeHtml(color)};" title="${escapeHtml(displayValueRaw)}">${escapeHtml(displayValue)}</span>`}
                 </div>
               </div>
             `;
-          }).join("")}
+        }).join("")}
           ${sceneValues.length === 0 ? `<div class="bst-empty">尚無全域統計資料。</div>` : ""}
         </div>
       `
@@ -5216,7 +5216,7 @@ function openEditStatsModal(input: {
     : rawDisplayName;
   const characterLabel = String(
     displayName
-      || (isGlobalCharacter ? "Scene" : (input.character === USER_TRACKER_KEY ? "User" : input.character)),
+    || (isGlobalCharacter ? "Scene" : (input.character === USER_TRACKER_KEY ? "User" : input.character)),
   ).trim() || (isGlobalCharacter ? "Scene" : (input.character === USER_TRACKER_KEY ? "User" : input.character));
 
   const isUserCharacter = input.character === USER_TRACKER_KEY;
@@ -5235,12 +5235,12 @@ function openEditStatsModal(input: {
   const numericDefs = isGlobalCharacter
     ? []
     : getAllNumericStatDefinitions(input.settings).filter(def => {
-    if (!def.track) return false;
-    if (def.builtIn) return !isUserCharacter;
-    const scope = customScopeById.get(String(def.id ?? "").trim().toLowerCase());
-    if (!scope) return !isUserCharacter;
-    return isUserCharacter ? scope.trackUser : scope.trackCharacters;
-  });
+      if (!def.track) return false;
+      if (def.builtIn) return !isUserCharacter;
+      const scope = customScopeById.get(String(def.id ?? "").trim().toLowerCase());
+      if (!scope) return !isUserCharacter;
+      return isUserCharacter ? scope.trackUser : scope.trackCharacters;
+    });
   const builtInDefs = numericDefs.filter(def => def.builtIn);
   const customDefs = numericDefs.filter(def => !def.builtIn);
   const nonNumericDefs = getNonNumericStatDefinitions(input.settings).filter(def => {
@@ -5284,10 +5284,10 @@ function openEditStatsModal(input: {
           <select data-bst-edit-non-numeric="${escapeHtml(def.id)}" data-bst-edit-kind="enum_single">
             <option value="">Clear value</option>
             ${def.enumOptions.map(option => {
-              const safe = escapeHtml(option);
-              const isSelected = selected === option ? "selected" : "";
-              return `<option value="${safe}" ${isSelected}>${safe}</option>`;
-            }).join("")}
+        const safe = escapeHtml(option);
+        const isSelected = selected === option ? "selected" : "";
+        return `<option value="${safe}" ${isSelected}>${safe}</option>`;
+      }).join("")}
           </select>
         </label>
       `;
@@ -5354,11 +5354,11 @@ function openEditStatsModal(input: {
   const modal = document.createElement("div");
   modal.className = EDIT_STATS_MODAL_CLASS;
   const modalIntro = isGlobalCharacter
-    ? "Scene/global stats only. Leave a field empty to clear that stat for this tracker entry. Edits apply to the latest scene tracker snapshot."
-    : "Numeric values are percentages (0-100). Leave a field empty to clear that stat for this tracker entry. Edits apply to the latest tracker snapshot for this character.";
+    ? "僅場景/全域統計。欄位留空可清除該追蹤條目的統計資料。編輯將套用至最新的場景追蹤快照。"
+    : "數值為百分比（0-100）。欄位留空可清除該追蹤條目的統計資料。編輯將套用至此角色的最新追蹤快照。";
   modal.innerHTML = `
     <div class="bst-edit-head">
-      <div class="bst-edit-title">Edit Tracker Stats - ${escapeHtml(characterLabel)}</div>
+      <div class="bst-edit-title">編輯追蹤統計 — ${escapeHtml(characterLabel)}</div>
       <button class="bst-btn bst-close-btn" data-action="close" aria-label="關閉編輯視窗">&times;</button>
     </div>
     <div class="bst-edit-sub">${escapeHtml(modalIntro)}</div>
@@ -5366,12 +5366,12 @@ function openEditStatsModal(input: {
       ? `<div class="bst-edit-divider"></div>
          <label class="bst-edit-field bst-check">
            <input type="checkbox" data-bst-edit-meta="active" ${isCurrentlyActive ? "checked" : ""}>
-           <span>Active In This Snapshot</span>
+           <span>在此快照中標記為活躍</span>
          </label>`
       : ""}
     ${builtInDefs.length
       ? `<div class="bst-edit-grid bst-edit-grid-two">${builtInDefs.map(numericField).join("")}</div>`
-      : (!isGlobalCharacter ? `<div class="bst-edit-sub">No built-in numeric stats are currently tracked.</div>` : "")}
+      : (!isGlobalCharacter ? `<div class="bst-edit-sub">目前沒有正在追蹤的內建數值統計。</div>` : "")}
     ${customDefs.length
       ? `<div class="bst-edit-divider"></div>
          <div class="bst-edit-grid bst-edit-grid-two">${customDefs.map(numericField).join("")}</div>`
@@ -5383,22 +5383,22 @@ function openEditStatsModal(input: {
     ${!isGlobalCharacter && input.settings.trackMood
       ? `<div class="bst-edit-divider"></div>
          <label class="bst-edit-field">
-           <span>Mood</span>
+           <span>心情</span>
            <select data-bst-edit-text="mood">
-             <option value="">Clear mood</option>
+             <option value="">清除心情</option>
              ${MOOD_LABELS.map(label => {
-               const safe = escapeHtml(label);
-               const selected = normalizedMood === label ? "selected" : "";
-               return `<option value="${safe}" ${selected}>${safe}</option>`;
-             }).join("")}
+        const safe = escapeHtml(label);
+        const selected = normalizedMood === label ? "selected" : "";
+        return `<option value="${safe}" ${selected}>${safe}</option>`;
+      }).join("")}
            </select>
          </label>`
       : ""}
     ${!isGlobalCharacter && input.settings.trackLastThought
       ? `<div class="bst-edit-divider"></div>
          <label class="bst-edit-field">
-           <span>Last Thought</span>
-           <textarea rows="3" maxlength="${MAX_EDIT_LAST_THOUGHT_CHARS}" data-bst-edit-text="lastThought" placeholder="Optional. Keep it concise (max ${MAX_EDIT_LAST_THOUGHT_CHARS} chars).">${escapeHtml(String(currentThought ?? ""))}</textarea>
+           <span>最後想法</span>
+           <textarea rows="3" maxlength="${MAX_EDIT_LAST_THOUGHT_CHARS}" data-bst-edit-text="lastThought" placeholder="選填。請保持簡潔（最多 ${MAX_EDIT_LAST_THOUGHT_CHARS} 字元）。">${escapeHtml(String(currentThought ?? ""))}</textarea>
          </label>`
       : ""}
     <div class="bst-edit-actions">
@@ -5907,17 +5907,17 @@ export function openGraphModal(input: {
 
   modal.innerHTML = `
     <div class="bst-graph-top">
-      <div class="bst-graph-title">${input.character} Relationship Trend</div>
+      <div class="bst-graph-title">${input.character} 關係趨勢</div>
       <button class="bst-btn bst-close-btn" data-action="close" title="關閉圖表" aria-label="關閉圖表">&times;</button>
     </div>
     <div class="bst-graph-controls">
-      <label class="bst-graph-toggle" title="Display history range">
-        <span>History</span>
+      <label class="bst-graph-toggle" title="顯示歷史範圍">
+        <span>歷史</span>
         <select class="bst-graph-window-select${windowPreference !== "all" ? " active" : ""}" data-action="window">
           <option value="30" ${windowPreference === "30" ? "selected" : ""}>30</option>
           <option value="60" ${windowPreference === "60" ? "selected" : ""}>60</option>
           <option value="120" ${windowPreference === "120" ? "selected" : ""}>120</option>
-          <option value="all" ${windowPreference === "all" ? "selected" : ""}>All</option>
+          <option value="all" ${windowPreference === "all" ? "selected" : ""}>全部</option>
         </select>
       </label>
       <label class="bst-graph-toggle" title="Toggle smoothed graph lines">
@@ -5949,26 +5949,26 @@ export function openGraphModal(input: {
       <g id="bst-graph-hover" opacity="0">
         <line id="bst-graph-hover-line" x1="0" y1="24" x2="0" y2="${height - 24}" stroke="rgba(255,255,255,0.25)" stroke-width="1"></line>
         ${enabledNumeric.map(def => {
-          const color = def.key === "connection" ? connectionColor : def.color;
-          return `<circle id="bst-graph-hover-${graphSeriesDomId(def.key)}" r="3.8" fill="${color}"></circle>`;
-        }).join("")}
+    const color = def.key === "connection" ? connectionColor : def.color;
+    return `<circle id="bst-graph-hover-${graphSeriesDomId(def.key)}" r="3.8" fill="${color}"></circle>`;
+  }).join("")}
       </g>
       ${enabledNumeric.length === 0 && snapshotCount === 0
-        ? `<text x="${Math.round(width / 2)}" y="${Math.round(height / 2)}" fill="rgba(255,255,255,0.65)" font-size="13" text-anchor="middle">No numeric stats recorded</text>`
-        : enabledNumeric.length > 0 && snapshotCount === 0
-          ? `<text x="${Math.round(width / 2)}" y="${Math.round(height / 2)}" fill="rgba(255,255,255,0.65)" font-size="13" text-anchor="middle">No tracker history yet</text>`
-          : ""}
+      ? `<text x="${Math.round(width / 2)}" y="${Math.round(height / 2)}" fill="rgba(255,255,255,0.65)" font-size="13" text-anchor="middle">No numeric stats recorded</text>`
+      : enabledNumeric.length > 0 && snapshotCount === 0
+        ? `<text x="${Math.round(width / 2)}" y="${Math.round(height / 2)}" fill="rgba(255,255,255,0.65)" font-size="13" text-anchor="middle">No tracker history yet</text>`
+        : ""}
     </svg>
     <div class="bst-graph-tooltip" id="bst-graph-tooltip"></div>
     </div>
     <div class="bst-graph-legend">
       ${enabledNumeric.length
-        ? enabledNumeric.map(def => {
-            const color = def.key === "connection" ? connectionColor : def.color;
-            const value = Math.round(latest[def.key] ?? 0);
-            return `<span><i class="bst-legend-dot" style="background:${color};"></i>${def.label} ${value}</span>`;
-          }).join("")
-        : `<span class="bst-graph-legend-empty">No numeric stats recorded for this character.</span>`}
+      ? enabledNumeric.map(def => {
+        const color = def.key === "connection" ? connectionColor : def.color;
+        const value = Math.round(latest[def.key] ?? 0);
+        return `<span><i class="bst-legend-dot" style="background:${color};"></i>${def.label} ${value}</span>`;
+      }).join("")
+      : `<span class="bst-graph-legend-empty">No numeric stats recorded for this character.</span>`}
     </div>
   `;
   document.body.appendChild(modal);
@@ -5991,37 +5991,37 @@ export function openGraphModal(input: {
     const yFor = (value: number): number => pad + ((100 - value) / 100) * drawableH;
     const clampIndex = (idx: number): number => Math.max(0, Math.min(pointCount - 1, idx));
     const updateHover = (clientX: number, clientY: number): void => {
-        const rect = svg.getBoundingClientRect();
-        const relX = clientX - rect.left;
-        const idx = clampIndex(Math.round(((relX - pad) / drawableW) * (pointCount - 1)));
-        const cx = xFor(idx);
+      const rect = svg.getBoundingClientRect();
+      const relX = clientX - rect.left;
+      const idx = clampIndex(Math.round(((relX - pad) / drawableW) * (pointCount - 1)));
+      const cx = xFor(idx);
 
-        hoverGroup.setAttribute("opacity", "1");
-        hoverLine.setAttribute("x1", String(cx));
-        hoverLine.setAttribute("x2", String(cx));
-        for (const def of enabledNumeric) {
-          const series = points[def.key] ?? [];
-          const value = series[idx] ?? 0;
-          hoverDots[def.key]?.setAttribute("cx", String(cx));
-          hoverDots[def.key]?.setAttribute("cy", String(yFor(value)));
-        }
+      hoverGroup.setAttribute("opacity", "1");
+      hoverLine.setAttribute("x1", String(cx));
+      hoverLine.setAttribute("x2", String(cx));
+      for (const def of enabledNumeric) {
+        const series = points[def.key] ?? [];
+        const value = series[idx] ?? 0;
+        hoverDots[def.key]?.setAttribute("cx", String(cx));
+        hoverDots[def.key]?.setAttribute("cy", String(yFor(value)));
+      }
 
-        tooltip.classList.add("visible");
-        tooltip.innerHTML = `
+      tooltip.classList.add("visible");
+      tooltip.innerHTML = `
           <div><strong>Index:</strong> ${idx + 1}/${pointCount}</div>
           ${enabledNumeric.map(def => `<div>${def.label}: ${Math.round((points[def.key]?.[idx] ?? 0))}</div>`).join("")}
         `;
-        const canvas = modal.querySelector(".bst-graph-canvas") as HTMLElement;
-        const canvasRect = canvas.getBoundingClientRect();
-        const localX = clientX - canvasRect.left;
-        const localY = clientY - canvasRect.top;
-        const tooltipWidth = tooltip.offsetWidth || 140;
-        const tooltipHeight = tooltip.offsetHeight || 60;
-        const left = Math.min(canvasRect.width - tooltipWidth - 8, Math.max(8, localX + 12));
-        const top = Math.min(canvasRect.height - tooltipHeight - 8, Math.max(8, localY + 12));
-        tooltip.style.left = `${left}px`;
-        tooltip.style.top = `${top}px`;
-      };
+      const canvas = modal.querySelector(".bst-graph-canvas") as HTMLElement;
+      const canvasRect = canvas.getBoundingClientRect();
+      const localX = clientX - canvasRect.left;
+      const localY = clientY - canvasRect.top;
+      const tooltipWidth = tooltip.offsetWidth || 140;
+      const tooltipHeight = tooltip.offsetHeight || 60;
+      const left = Math.min(canvasRect.width - tooltipWidth - 8, Math.max(8, localX + 12));
+      const top = Math.min(canvasRect.height - tooltipHeight - 8, Math.max(8, localY + 12));
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    };
     svg.addEventListener("mousemove", event => updateHover(event.clientX, event.clientY));
     svg.addEventListener("mouseleave", () => {
       hoverGroup.setAttribute("opacity", "0");
