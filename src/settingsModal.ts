@@ -111,7 +111,7 @@ export function openSettingsModal(input: {
   }
 
   const profileOptionsHtml = [
-    `<option value="">Use active connection</option>`,
+    `<option value="">使用當前連線</option>`,
     ...Array.from(profileMap.entries()).map(([id, label]) => `<option value="${id}">${label}</option>`)
   ].join("");
   let customStatsState: CustomStatDefinition[] = Array.isArray(input.settings.customStats)
@@ -183,8 +183,8 @@ export function openSettingsModal(input: {
   modal.innerHTML = `
     <div class="bst-settings-top">
       <div>
-        <h3>BetterSimTracker Settings</h3>
-        <p class="bst-settings-subtitle">Changes are saved automatically.</p>
+        <h3>BetterSimTracker 設定</h3>
+        <p class="bst-settings-subtitle">變更將自動儲存。</p>
       </div>
       <div class="bst-settings-top-actions">
         <button class="bst-btn bst-btn-soft" data-action="toggle-all-sections" title="展開所有區段">全部展開</button>
@@ -192,7 +192,7 @@ export function openSettingsModal(input: {
       </div>
     </div>
     <div class="bst-settings-section bst-quick-help">
-      <h4><span class="bst-header-icon fa-solid fa-circle-info"></span>Quick Help</h4>
+      <h4><span class="bst-header-icon fa-solid fa-circle-info"></span>快速說明</h4>
       <div class="bst-help-line"><strong>Extraction mode:</strong> Unified = faster single request. Sequential = one request per stat (more robust, slower).</div>
       <ul class="bst-help-list">
         <li><strong>Affection:</strong> emotional warmth and care</li>
@@ -203,9 +203,9 @@ export function openSettingsModal(input: {
       <div class="bst-help-line"><strong>Mood</strong> is short-term tone. <strong>Last Thought</strong> is one brief internal line for continuity.</div>
     </div>
     <div class="bst-settings-section">
-      <h4><span class="bst-header-icon fa-solid fa-plug"></span>Connection</h4>
+      <h4><span class="bst-header-icon fa-solid fa-plug"></span>連線設定</h4>
       <div class="bst-settings-grid">
-        <label>Connection Profile <select data-k="connectionProfile">${profileOptionsHtml}</select></label>
+        <label>連線 Profile <select data-k="connectionProfile">${profileOptionsHtml}</select></label>
         <label>Max Tokens Override <input data-k="maxTokensOverride" type="number" min="0" max="100000"></label>
         <label>Context Size Override <input data-k="truncationLengthOverride" type="number" min="0" max="200000"></label>
       </div>
@@ -213,7 +213,7 @@ export function openSettingsModal(input: {
     <div class="bst-settings-section">
       <h4><span class="bst-header-icon fa-solid fa-filter"></span>Extraction &amp; Injection</h4>
       <div class="bst-settings-grid">
-        <div class="bst-section-divider">Extraction Settings</div>
+        <div class="bst-section-divider">提取設定</div>
         <label>Context Messages <input data-k="contextMessages" type="number" min="1" max="40"></label>
         <label data-bst-row="maxConcurrentCalls">Max Concurrent Requests <input data-k="maxConcurrentCalls" type="number" min="1" max="8"></label>
         <label data-bst-row="maxRetriesPerStat">Max Retries Per Stat <input data-k="maxRetriesPerStat" type="number" min="0" max="4"></label>
@@ -221,47 +221,47 @@ export function openSettingsModal(input: {
         <label>Confidence Dampening <input data-k="confidenceDampening" type="number" min="0" max="1" step="0.05"></label>
         <label>Mood Stickiness <input data-k="moodStickiness" type="number" min="0" max="1" step="0.05"></label>
         <label data-bst-row="activityLookback">Activity Lookback <input data-k="activityLookback" type="number" min="1" max="25"></label>
-        <div class="bst-section-divider">Extraction Includes</div>
+        <div class="bst-section-divider">提取包含</div>
         <div class="bst-check-grid">
-          <label class="bst-check"><input data-k="includeCharacterCardsInPrompt" type="checkbox">Include Character Cards in Extraction Prompt</label>
-          <label class="bst-check"><input data-k="includeLorebookInExtraction" type="checkbox">Include Activated Lorebook in Extraction Prompt</label>
+          <label class="bst-check"><input data-k="includeCharacterCardsInPrompt" type="checkbox">Include 角色卡片s in Extraction Prompt</label>
+          <label class="bst-check"><input data-k="includeLorebookInExtraction" type="checkbox">在提取 Prompt 中包含已啟動的知識書</label>
         </div>
         <label data-bst-row="lorebookExtractionMaxChars">Lorebook Extraction Limit <input data-k="lorebookExtractionMaxChars" type="number" min="0" max="12000"></label>
         <div class="bst-help-line bst-toggle-help" data-bst-row="lorebookExtractionHelp">Maximum lorebook characters included in extraction context (0 = no trim).</div>
 
-        <div class="bst-section-divider">Extraction Toggles</div>
+        <div class="bst-section-divider">提取開關</div>
         <div class="bst-check-grid">
-          <label class="bst-check"><input data-k="sequentialExtraction" type="checkbox">Sequential Extraction (per stat)</label>
-          <label class="bst-check"><input data-k="enableSequentialStatGroups" type="checkbox">Enable Sequential Stat Groups</label>
-          <label class="bst-check"><input data-k="strictJsonRepair" type="checkbox">Strict JSON Repair</label>
-          <label class="bst-check"><input data-k="autoDetectActive" type="checkbox">Auto Detect Active</label>
-          <label class="bst-check"><input data-k="regenerateOnMessageEdit" type="checkbox">Regenerate Tracker After Message Edit</label>
-          <label class="bst-check"><input data-k="generateOnGreetingMessages" type="checkbox">Generate Tracker on Greetings</label>
+          <label class="bst-check"><input data-k="sequentialExtraction" type="checkbox">循序提取（每個統計）</label>
+          <label class="bst-check"><input data-k="enableSequentialStatGroups" type="checkbox">啟用循序統計群組</label>
+          <label class="bst-check"><input data-k="strictJsonRepair" type="checkbox">嚴格 JSON 修復</label>
+          <label class="bst-check"><input data-k="autoDetectActive" type="checkbox">自動偵測活躍</label>
+          <label class="bst-check"><input data-k="regenerateOnMessageEdit" type="checkbox">訊息編輯後重新生成追蹤器</label>
+          <label class="bst-check"><input data-k="generateOnGreetingMessages" type="checkbox">問候語時生成追蹤器</label>
         </div>
 
-        <div class="bst-section-divider">User Tracking</div>
+        <div class="bst-section-divider">使用者追蹤</div>
         <div class="bst-check-grid">
-          <label class="bst-check"><input data-k="enableUserTracking" type="checkbox">Enable User-Side Extraction</label>
-          <label class="bst-check"><input data-k="userTrackMood" type="checkbox">Track User Mood</label>
-          <label class="bst-check"><input data-k="userTrackLastThought" type="checkbox">Track User Last Thought</label>
-          <label class="bst-check"><input data-k="includeUserTrackerInInjection" type="checkbox">Include User Tracker In Injection</label>
+          <label class="bst-check"><input data-k="enableUserTracking" type="checkbox">啟用使用者端提取</label>
+          <label class="bst-check"><input data-k="userTrackMood" type="checkbox">追蹤使用者心情</label>
+          <label class="bst-check"><input data-k="userTrackLastThought" type="checkbox">追蹤使用者最後想法</label>
+          <label class="bst-check"><input data-k="includeUserTrackerInInjection" type="checkbox">在注入中包含使用者追蹤器</label>
         </div>
 
-        <div class="bst-section-divider">Injection Settings</div>
+        <div class="bst-section-divider">注入設定</div>
         <label data-bst-row="injectPromptDepth">Injection Depth <select data-k="injectPromptDepth"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></label>
         <label data-bst-row="injectionPromptMaxChars">Injection Prompt Max Chars <input data-k="injectionPromptMaxChars" type="number" min="500" max="30000"></label>
         <div class="bst-check-grid">
-          <label class="bst-check"><input data-k="injectTrackerIntoPrompt" type="checkbox">Inject Tracker Into Prompt</label>
-          <label class="bst-check"><input data-k="summarizationNoteVisibleForAI" type="checkbox">Summarization Note Visible for AI (future notes)</label>
-          <label class="bst-check" data-bst-row="injectSummarizationNote"><input data-k="injectSummarizationNote" type="checkbox">Inject Summarization Note</label>
+          <label class="bst-check"><input data-k="injectTrackerIntoPrompt" type="checkbox">注入追蹤器至 Prompt</label>
+          <label class="bst-check"><input data-k="summarizationNoteVisibleForAI" type="checkbox">供 AI 可見的摘要備註（未來備註）</label>
+          <label class="bst-check" data-bst-row="injectSummarizationNote"><input data-k="injectSummarizationNote" type="checkbox">注入摘要備註</label>
         </div>
         <div class="bst-help-line bst-toggle-help">Global macro: <code>{{bst_injection}}</code></div>
         <div class="bst-help-line bst-toggle-help"><strong>Summarize</strong> creates a prose note of current tracked stats (no numbers), typically 4-6 sentences, grounded in recent messages.</div>
         <div class="bst-help-line bst-toggle-help"><code>Summarization Note Visible for AI</code> affects only newly generated BetterSimTracker summary notes. Existing notes are not modified for safety.</div>
-        <div class="bst-help-line bst-toggle-help"><code>Inject Summarization Note</code> only affects hidden tracker prompt injection guidance and does not edit chat messages.</div>
-        <div class="bst-section-divider" data-bst-row="injectPromptDivider">Injection Prompt</div>
+        <div class="bst-help-line bst-toggle-help"><code>注入摘要備註</code> only affects hidden tracker prompt injection guidance and does not edit chat messages.</div>
+        <div class="bst-section-divider" data-bst-row="injectPromptDivider">注入 Prompt</div>
         <div class="bst-injection-prompt" data-bst-row="injectPromptBlock">
-          <div class="bst-help-line">Shown only when Inject Tracker Into Prompt is enabled.</div>
+          <div class="bst-help-line">僅在「注入追蹤器至 Prompt」啟用時顯示。</div>
           <div class="bst-help-line">Placeholders you can use:</div>
           <ul class="bst-help-list">
             <li><code>{{header}}</code> — privacy + usage rules header</li>
@@ -274,11 +274,11 @@ export function openSettingsModal(input: {
           </ul>
           <div class="bst-prompt-group bst-prompt-inline">
             <div class="bst-prompt-head">
-              <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-wand-magic-sparkles"></span>Injection Prompt</span>
+              <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-wand-magic-sparkles"></span>注入 Prompt</span>
               <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateInjection" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
             </div>
             <div class="bst-prompt-body">
-              <div class="bst-prompt-caption">Template (editable)</div>
+              <div class="bst-prompt-caption">模板（可編輯）</div>
               <textarea data-k="promptTemplateInjection" rows="8"></textarea>
             </div>
           </div>
@@ -286,17 +286,17 @@ export function openSettingsModal(input: {
       </div>
     </div>
     <div class="bst-settings-section">
-      <h4><span class="bst-header-icon fa-solid fa-chart-line"></span>Tracked Stats</h4>
+      <h4><span class="bst-header-icon fa-solid fa-chart-line"></span>追蹤統計</h4>
       <div class="bst-custom-stats-top bst-custom-stats-top-centered">
-        <button type="button" class="bst-btn bst-btn-soft" data-action="manage-builtins">Manage Built-in Stats</button>
+        <button type="button" class="bst-btn bst-btn-soft" data-action="manage-builtins">管理內建統計</button>
       </div>
       <div data-bst-row="moodAdvancedBlock" class="bst-mood-advanced-settings">
-        <div class="bst-section-divider">Mood Advanced Settings</div>
+        <div class="bst-section-divider">心情進階設定</div>
         <div class="bst-settings-grid bst-settings-grid-single">
           <label>Mood Source
             <select data-k="moodSource">
-              <option value="bst_images">BST mood images</option>
-              <option value="st_expressions">ST expressions</option>
+              <option value="bst_images">BST 心情圖片</option>
+              <option value="st_expressions">ST 表情</option>
             </select>
           </label>
         </div>
@@ -323,7 +323,7 @@ export function openSettingsModal(input: {
         <div data-bst-row="stExpressionImageOptions">
           <div class="bst-help-line">ST expression framing (global): zoom and crop position for expression sprites.</div>
           <div class="bst-st-expression-control">
-            <button type="button" class="bst-btn bst-btn-soft" data-action="open-global-st-framing">Adjust ST Expression Framing</button>
+            <button type="button" class="bst-btn bst-btn-soft" data-action="open-global-st-framing">調整 ST 表情取景框</button>
             <div class="bst-help-line bst-st-expression-summary" data-bst-row="stExpressionImageSummary"></div>
             <input data-k="stExpressionImageZoom" type="hidden">
             <input data-k="stExpressionImagePositionX" type="hidden">
@@ -334,7 +334,7 @@ export function openSettingsModal(input: {
       </div>
     </div>
     <div class="bst-settings-section">
-      <h4><span class="bst-header-icon fa-solid fa-sliders"></span>Custom Stats</h4>
+      <h4><span class="bst-header-icon fa-solid fa-sliders"></span>自訂統計</h4>
       <div class="bst-custom-stats-top">
         <div class="bst-help-line">Add custom stats (numeric, enum, boolean, short text, array). Maximum ${MAX_CUSTOM_STATS} custom stats.</div>
         <div class="bst-custom-stats-actions">
@@ -346,7 +346,7 @@ export function openSettingsModal(input: {
       <div class="bst-custom-stats-list" data-bst-row="customStatsList"></div>
     </div>
     <div class="bst-settings-section">
-      <h4><span class="bst-header-icon fa-solid fa-eye"></span>Display</h4>
+      <h4><span class="bst-header-icon fa-solid fa-eye"></span>顯示</h4>
       <div class="bst-settings-grid">
         <label data-bst-row="inactiveLabel">Inactive Label <input data-k="inactiveLabel" type="text"></label>
         <label>Accent Color
@@ -359,32 +359,32 @@ export function openSettingsModal(input: {
           <div class="bst-color-inputs">
             <input data-k-color="userCardColor" type="color">
             <input data-k="userCardColor" type="text" placeholder="Auto">
-            <button type="button" class="bst-btn bst-btn-soft" data-action="reset-user-card-color">Auto</button>
+            <button type="button" class="bst-btn bst-btn-soft" data-action="reset-user-card-color">自動</button>
           </div>
         </label>
         <label>Card Opacity <input data-k="cardOpacity" type="number" min="0.1" max="1" step="0.01"></label>
         <label>Border Radius <input data-k="borderRadius" type="number" min="0" max="32"></label>
         <label>Font Size <input data-k="fontSize" type="number" min="10" max="22"></label>
-        <div class="bst-section-divider">Toggles</div>
+        <div class="bst-section-divider">開關</div>
         <div class="bst-check-grid">
-          <label class="bst-check"><input data-k="showInactive" type="checkbox">Show Inactive</label>
-          <label class="bst-check"><input data-k="showLastThought" type="checkbox">Show Last Thought</label>
+          <label class="bst-check"><input data-k="showInactive" type="checkbox">顯示非活躍</label>
+          <label class="bst-check"><input data-k="showLastThought" type="checkbox">顯示最後想法</label>
         </div>
       </div>
       <details class="bst-subdrawer" data-bst-row="sceneCardDrawer">
-        <summary><span class="bst-subdrawer-title"><span class="fa-solid fa-layer-group" aria-hidden="true"></span>Scene Card</span></summary>
+        <summary><span class="bst-subdrawer-title"><span class="fa-solid fa-layer-group" aria-hidden="true"></span>場景卡片</span></summary>
         <div class="bst-settings-grid bst-settings-grid-single">
-          <label class="bst-check" data-bst-row="sceneCardEnabled"><input data-k="sceneCardEnabled" type="checkbox">Enable Scene Card (global stats)</label>
+          <label class="bst-check" data-bst-row="sceneCardEnabled"><input data-k="sceneCardEnabled" type="checkbox">Enable 場景卡片 (global stats)</label>
           <label data-bst-row="sceneCardPosition">Position
             <select data-k="sceneCardPosition">
-              <option value="above_tracker_cards">Above tracker cards</option>
-              <option value="above_message">Above message text</option>
+              <option value="above_tracker_cards">追蹤器卡片上方</option>
+              <option value="above_message">訊息文字上方</option>
             </select>
           </label>
           <label data-bst-row="sceneCardLayout">Stat Layout
             <select data-k="sceneCardLayout">
-              <option value="chips">Chips</option>
-              <option value="rows">Rows</option>
+              <option value="chips">晶片式</option>
+              <option value="rows">列式</option>
             </select>
           </label>
           <div data-bst-row="sceneCardOrderManager">
@@ -407,12 +407,12 @@ export function openSettingsModal(input: {
               <input data-k="sceneCardValueColor" type="text" placeholder="Per-stat/Accent auto">
             </div>
           </label>
-          <label class="bst-check" data-bst-row="sceneCardShowWhenEmpty"><input data-k="sceneCardShowWhenEmpty" type="checkbox">Show Scene card even when empty</label>
-          <div class="bst-help-line">When enabled, global custom stats are shown only in Scene Card (hidden on owner cards).</div>
+          <label class="bst-check" data-bst-row="sceneCardShowWhenEmpty"><input data-k="sceneCardShowWhenEmpty" type="checkbox">即使為空也顯示場景卡片</label>
+          <div class="bst-help-line">When enabled, global custom stats are shown only in 場景卡片 (hidden on owner cards).</div>
         </div>
       </details>
       <details class="bst-subdrawer" data-bst-row="characterCardOrderDrawer">
-        <summary><span class="bst-subdrawer-title"><span class="fa-solid fa-list-ol" aria-hidden="true"></span>Character Card Stat Order</span></summary>
+        <summary><span class="bst-subdrawer-title"><span class="fa-solid fa-list-ol" aria-hidden="true"></span>角色卡片 Stat Order</span></summary>
         <div class="bst-settings-grid bst-settings-grid-single">
           <div class="bst-help-line">Order controls for stat rows shown on character cards (built-in + custom, non-global).</div>
           <div class="bst-scene-order-list" data-bst-row="characterCardOrderList"></div>
@@ -447,25 +447,25 @@ export function openSettingsModal(input: {
         </ul>
       </details>
       <div class="bst-check-grid">
-        <label class="bst-check"><input data-k="unlockProtocolPrompts" type="checkbox">Unlock Protocol Prompt Editing (Advanced)</label>
+        <label class="bst-check"><input data-k="unlockProtocolPrompts" type="checkbox">解鎖協定 Prompt 編輯（進階）</label>
       </div>
       <div class="bst-help-line">By default protocol blocks are locked. Enable the toggle above to edit and reset them.</div>
       <div class="bst-settings-grid bst-settings-grid-single bst-prompts-stack">
         <label class="bst-prompt-group">
           <div class="bst-prompt-head">
-            <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-layer-group"></span>Unified Prompt</span>
+            <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-layer-group"></span>統一 Prompt</span>
             <span class="bst-prompt-toggle fa-solid fa-circle-chevron-down"></span>
             <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateUnified" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
-            <div class="bst-prompt-caption">Instruction (editable)</div>
+            <div class="bst-prompt-caption">指令（可編輯）</div>
             <textarea data-k="promptTemplateUnified" rows="8"></textarea>
             <div class="bst-protocol-readonly-wrap">
-              <div class="bst-prompt-caption">Protocol (read-only)</div>
+              <div class="bst-prompt-caption">協定（唯讀）</div>
               <pre class="bst-prompt-protocol">${escapeHtml(input.settings.promptProtocolUnified)}</pre>
             </div>
             <div class="bst-protocol-editable-wrap">
-              <div class="bst-prompt-caption">Protocol (advanced editable)</div>
+              <div class="bst-prompt-caption">協定（進階可編輯）</div>
               <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolUnified" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolUnified" rows="10"></textarea>
             </div>
@@ -479,19 +479,19 @@ export function openSettingsModal(input: {
             <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialAffection" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
-            <div class="bst-prompt-caption">Instruction (editable)</div>
+            <div class="bst-prompt-caption">指令（可編輯）</div>
             <textarea data-k="promptTemplateSequentialAffection" rows="6"></textarea>
-            <div class="bst-prompt-caption">Behavior Instruction (injection only)</div>
+            <div class="bst-prompt-caption">行為指令（僅注入）</div>
             <textarea data-k="builtInBehaviorAffection" rows="5" placeholder="How affection should change visible behavior in replies. Leave empty to use BST fallback rules."></textarea>
             <div class="bst-prompt-ai-row" style="display:none;">
               <span class="bst-prompt-ai-status" data-bst-seq-ai-status="promptTemplateSequentialAffection"></span>
             </div>
             <div class="bst-protocol-readonly-wrap">
-              <div class="bst-prompt-caption">Protocol (read-only)</div>
+              <div class="bst-prompt-caption">協定（唯讀）</div>
               <pre class="bst-prompt-protocol">${escapeHtml(input.settings.promptProtocolSequentialAffection)}</pre>
             </div>
             <div class="bst-protocol-editable-wrap">
-              <div class="bst-prompt-caption">Protocol (advanced editable)</div>
+              <div class="bst-prompt-caption">協定（進階可編輯）</div>
               <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialAffection" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialAffection" rows="10"></textarea>
             </div>
@@ -505,19 +505,19 @@ export function openSettingsModal(input: {
             <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialTrust" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
-            <div class="bst-prompt-caption">Instruction (editable)</div>
+            <div class="bst-prompt-caption">指令（可編輯）</div>
             <textarea data-k="promptTemplateSequentialTrust" rows="6"></textarea>
-            <div class="bst-prompt-caption">Behavior Instruction (injection only)</div>
+            <div class="bst-prompt-caption">行為指令（僅注入）</div>
             <textarea data-k="builtInBehaviorTrust" rows="5" placeholder="How trust should change visible behavior in replies. Leave empty to use BST fallback rules."></textarea>
             <div class="bst-prompt-ai-row" style="display:none;">
               <span class="bst-prompt-ai-status" data-bst-seq-ai-status="promptTemplateSequentialTrust"></span>
             </div>
             <div class="bst-protocol-readonly-wrap">
-              <div class="bst-prompt-caption">Protocol (read-only)</div>
+              <div class="bst-prompt-caption">協定（唯讀）</div>
               <pre class="bst-prompt-protocol">${escapeHtml(input.settings.promptProtocolSequentialTrust)}</pre>
             </div>
             <div class="bst-protocol-editable-wrap">
-              <div class="bst-prompt-caption">Protocol (advanced editable)</div>
+              <div class="bst-prompt-caption">協定（進階可編輯）</div>
               <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialTrust" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialTrust" rows="10"></textarea>
             </div>
@@ -531,19 +531,19 @@ export function openSettingsModal(input: {
             <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialDesire" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
-            <div class="bst-prompt-caption">Instruction (editable)</div>
+            <div class="bst-prompt-caption">指令（可編輯）</div>
             <textarea data-k="promptTemplateSequentialDesire" rows="6"></textarea>
-            <div class="bst-prompt-caption">Behavior Instruction (injection only)</div>
+            <div class="bst-prompt-caption">行為指令（僅注入）</div>
             <textarea data-k="builtInBehaviorDesire" rows="5" placeholder="How desire should change visible behavior in replies. Leave empty to use BST fallback rules."></textarea>
             <div class="bst-prompt-ai-row" style="display:none;">
               <span class="bst-prompt-ai-status" data-bst-seq-ai-status="promptTemplateSequentialDesire"></span>
             </div>
             <div class="bst-protocol-readonly-wrap">
-              <div class="bst-prompt-caption">Protocol (read-only)</div>
+              <div class="bst-prompt-caption">協定（唯讀）</div>
               <pre class="bst-prompt-protocol">${escapeHtml(input.settings.promptProtocolSequentialDesire)}</pre>
             </div>
             <div class="bst-protocol-editable-wrap">
-              <div class="bst-prompt-caption">Protocol (advanced editable)</div>
+              <div class="bst-prompt-caption">協定（進階可編輯）</div>
               <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialDesire" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialDesire" rows="10"></textarea>
             </div>
@@ -557,19 +557,19 @@ export function openSettingsModal(input: {
             <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialConnection" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
-            <div class="bst-prompt-caption">Instruction (editable)</div>
+            <div class="bst-prompt-caption">指令（可編輯）</div>
             <textarea data-k="promptTemplateSequentialConnection" rows="6"></textarea>
-            <div class="bst-prompt-caption">Behavior Instruction (injection only)</div>
+            <div class="bst-prompt-caption">行為指令（僅注入）</div>
             <textarea data-k="builtInBehaviorConnection" rows="5" placeholder="How connection should change visible behavior in replies. Leave empty to use BST fallback rules."></textarea>
             <div class="bst-prompt-ai-row" style="display:none;">
               <span class="bst-prompt-ai-status" data-bst-seq-ai-status="promptTemplateSequentialConnection"></span>
             </div>
             <div class="bst-protocol-readonly-wrap">
-              <div class="bst-prompt-caption">Protocol (read-only)</div>
+              <div class="bst-prompt-caption">協定（唯讀）</div>
               <pre class="bst-prompt-protocol">${escapeHtml(input.settings.promptProtocolSequentialConnection)}</pre>
             </div>
             <div class="bst-protocol-editable-wrap">
-              <div class="bst-prompt-caption">Protocol (advanced editable)</div>
+              <div class="bst-prompt-caption">協定（進階可編輯）</div>
               <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialConnection" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialConnection" rows="10"></textarea>
             </div>
@@ -577,7 +577,7 @@ export function openSettingsModal(input: {
         </label>
         <label class="bst-prompt-group">
           <div class="bst-prompt-head">
-            <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-sliders"></span>Custom Numeric Default</span>
+            <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-sliders"></span>自訂數字預設值</span>
             <span class="bst-prompt-toggle fa-solid fa-circle-chevron-down"></span>
             <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialCustomNumeric" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
@@ -585,11 +585,11 @@ export function openSettingsModal(input: {
             <div class="bst-prompt-caption">Instruction (editable default used when a custom stat has no per-stat override, in all modes)</div>
             <textarea data-k="promptTemplateSequentialCustomNumeric" rows="6"></textarea>
             <div class="bst-protocol-readonly-wrap">
-              <div class="bst-prompt-caption">Protocol (read-only)</div>
+              <div class="bst-prompt-caption">協定（唯讀）</div>
               <pre class="bst-prompt-protocol">${escapeHtml(input.settings.promptProtocolSequentialCustomNumeric)}</pre>
             </div>
             <div class="bst-protocol-editable-wrap">
-              <div class="bst-prompt-caption">Protocol (advanced editable)</div>
+              <div class="bst-prompt-caption">協定（進階可編輯）</div>
               <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialCustomNumeric" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialCustomNumeric" rows="10"></textarea>
             </div>
@@ -597,7 +597,7 @@ export function openSettingsModal(input: {
         </label>
         <label class="bst-prompt-group">
           <div class="bst-prompt-head">
-            <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-list-check"></span>Custom Non-Numeric Default</span>
+            <span class="bst-prompt-title"><span class="bst-prompt-icon fa-solid fa-list-check"></span>自訂非數字預設值</span>
             <span class="bst-prompt-toggle fa-solid fa-circle-chevron-down"></span>
             <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialCustomNonNumeric" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
@@ -605,11 +605,11 @@ export function openSettingsModal(input: {
             <div class="bst-prompt-caption">Instruction (editable default used when enum/boolean/text/array custom stats have no per-stat override, in all modes)</div>
             <textarea data-k="promptTemplateSequentialCustomNonNumeric" rows="6"></textarea>
             <div class="bst-protocol-readonly-wrap">
-              <div class="bst-prompt-caption">Protocol (read-only)</div>
+              <div class="bst-prompt-caption">協定（唯讀）</div>
               <pre class="bst-prompt-protocol">${escapeHtml(input.settings.promptProtocolSequentialCustomNonNumeric)}</pre>
             </div>
             <div class="bst-protocol-editable-wrap">
-              <div class="bst-prompt-caption">Protocol (advanced editable)</div>
+              <div class="bst-prompt-caption">協定（進階可編輯）</div>
               <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialCustomNonNumeric" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialCustomNonNumeric" rows="10"></textarea>
             </div>
@@ -623,17 +623,17 @@ export function openSettingsModal(input: {
             <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialMood" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
-            <div class="bst-prompt-caption">Instruction (editable)</div>
+            <div class="bst-prompt-caption">指令（可編輯）</div>
             <textarea data-k="promptTemplateSequentialMood" rows="6"></textarea>
             <div class="bst-prompt-ai-row">
-              <span class="bst-prompt-ai-status" data-bst-seq-ai-status="promptTemplateSequentialMood">Uses current connection profile.</span>
+              <span class="bst-prompt-ai-status" data-bst-seq-ai-status="promptTemplateSequentialMood">使用當前連線 Profile。</span>
             </div>
             <div class="bst-protocol-readonly-wrap">
-              <div class="bst-prompt-caption">Protocol (read-only)</div>
+              <div class="bst-prompt-caption">協定（唯讀）</div>
               <pre class="bst-prompt-protocol">${escapeHtml(input.settings.promptProtocolSequentialMood)}</pre>
             </div>
             <div class="bst-protocol-editable-wrap">
-              <div class="bst-prompt-caption">Protocol (advanced editable)</div>
+              <div class="bst-prompt-caption">協定（進階可編輯）</div>
               <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialMood" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialMood" rows="10"></textarea>
             </div>
@@ -647,17 +647,17 @@ export function openSettingsModal(input: {
             <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptTemplateSequentialLastThought" title="還原預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
           </div>
           <div class="bst-prompt-body">
-            <div class="bst-prompt-caption">Instruction (editable)</div>
+            <div class="bst-prompt-caption">指令（可編輯）</div>
             <textarea data-k="promptTemplateSequentialLastThought" rows="6"></textarea>
             <div class="bst-prompt-ai-row">
-              <span class="bst-prompt-ai-status" data-bst-seq-ai-status="promptTemplateSequentialLastThought">Uses current connection profile.</span>
+              <span class="bst-prompt-ai-status" data-bst-seq-ai-status="promptTemplateSequentialLastThought">使用當前連線 Profile。</span>
             </div>
             <div class="bst-protocol-readonly-wrap">
-              <div class="bst-prompt-caption">Protocol (read-only)</div>
+              <div class="bst-prompt-caption">協定（唯讀）</div>
               <pre class="bst-prompt-protocol">${escapeHtml(input.settings.promptProtocolSequentialLastThought)}</pre>
             </div>
             <div class="bst-protocol-editable-wrap">
-              <div class="bst-prompt-caption">Protocol (advanced editable)</div>
+              <div class="bst-prompt-caption">協定（進階可編輯）</div>
               <button class="bst-prompt-reset" data-action="reset-prompt" data-reset-for="promptProtocolSequentialLastThought" title="還原協議至預設值。"><span class="fa-solid fa-rotate-left" aria-hidden="true"></span></button>
               <textarea data-k="promptProtocolSequentialLastThought" rows="10"></textarea>
             </div>
@@ -666,18 +666,18 @@ export function openSettingsModal(input: {
       </div>
     </div>
     <div class="bst-settings-section">
-      <h4><span class="bst-header-icon fa-solid fa-bug"></span>Debug</h4>
+      <h4><span class="bst-header-icon fa-solid fa-bug"></span>除錯</h4>
       <div class="bst-check-grid">
-        <label class="bst-check"><input data-k="debug" type="checkbox">Debug</label>
+        <label class="bst-check"><input data-k="debug" type="checkbox">除錯</label>
       </div>
       <div class="bst-check-grid" data-bst-row="debugFlags">
-        <label class="bst-check"><input data-k="debugExtraction" type="checkbox">Extraction</label>
+        <label class="bst-check"><input data-k="debugExtraction" type="checkbox">提取</label>
         <label class="bst-check"><input data-k="debugPrompts" type="checkbox">Prompts</label>
         <label class="bst-check"><input data-k="debugUi" type="checkbox">UI</label>
-        <label class="bst-check"><input data-k="debugMoodImages" type="checkbox">Mood Images</label>
-        <label class="bst-check"><input data-k="debugStorage" type="checkbox">Storage</label>
-        <label class="bst-check" data-bst-row="includeContextInDiagnostics"><input data-k="includeContextInDiagnostics" type="checkbox">Include Context In Diagnostics</label>
-        <label class="bst-check" data-bst-row="includeGraphInDiagnostics"><input data-k="includeGraphInDiagnostics" type="checkbox">Include Graph Data In Diagnostics</label>
+        <label class="bst-check"><input data-k="debugMoodImages" type="checkbox">心情圖片</label>
+        <label class="bst-check"><input data-k="debugStorage" type="checkbox">儲存</label>
+        <label class="bst-check" data-bst-row="includeContextInDiagnostics"><input data-k="includeContextInDiagnostics" type="checkbox">在診斷中包含上下文</label>
+        <label class="bst-check" data-bst-row="includeGraphInDiagnostics"><input data-k="includeGraphInDiagnostics" type="checkbox">在診斷中包含圖表資料s</label>
       </div>
       <div data-bst-row="debugBody">
         <div class="bst-debug-actions">
@@ -697,9 +697,9 @@ export function openSettingsModal(input: {
             Clear Diagnostics
           </button>
         </div>
-        <div style="margin-top:8px;font-size:12px;opacity:.9;">Latest Extraction Debug Record</div>
-        <div class="bst-debug-box">${input.debugRecord ? JSON.stringify(input.debugRecord, null, 2) : "No debug record yet."}</div>
-        <div style="margin-top:8px;font-size:12px;opacity:.9;">Latest Injected Prompt Block</div>
+        <div style="margin-top:8px;font-size:12px;opacity:.9;">最後提取除錯記錄</div>
+        <div class="bst-debug-box">${input.debugRecord ? JSON.stringify(input.debugRecord, null, 2) : "尚無除錯記錄。"}</div>
+        <div style="margin-top:8px;font-size:12px;opacity:.9;">最後注入的 Prompt 區塊</div>
         <div class="bst-debug-box">${input.injectedPrompt?.trim() ? input.injectedPrompt : "No injected prompt currently active."}</div>
       </div>
     </div>
@@ -801,7 +801,7 @@ export function openSettingsModal(input: {
       "Connection": "connection",
       "Extraction & Injection": "extraction",
       "Tracked Stats": "tracked-stats",
-      "Custom Stats": "custom-stats",
+      "自訂統計": "custom-stats",
       "Display": "display",
       "Prompts": "prompts",
       "Debug": "debug"
@@ -1709,15 +1709,15 @@ export function openSettingsModal(input: {
       <div class="bst-custom-wizard-head">
         <div>
           <div class="bst-custom-wizard-title">${escapeHtml(title)}</div>
-          <div class="bst-custom-wizard-step">Clipboard unavailable. Copy manually from the box below.</div>
+          <div class="bst-custom-wizard-step">剪貼簿無法使用，請從下方框手動複製。</div>
         </div>
-        <button class="bst-btn bst-btn-soft" data-action="custom-close">Close</button>
+        <button class="bst-btn bst-btn-soft" data-action="custom-close">關閉</button>
       </div>
       <div class="bst-custom-import-box">
         <textarea class="bst-custom-import-textarea" data-bst-manual-copy readonly></textarea>
       </div>
       <div class="bst-custom-wizard-actions">
-        <button type="button" class="bst-btn" data-action="custom-close">Close</button>
+        <button type="button" class="bst-btn" data-action="custom-close">關閉</button>
       </div>
     `;
 
@@ -1747,10 +1747,10 @@ export function openSettingsModal(input: {
     wizard.innerHTML = `
       <div class="bst-custom-wizard-head">
         <div>
-          <div class="bst-custom-wizard-title">Import Custom Stats JSON</div>
+          <div class="bst-custom-wizard-title">Import 自訂統計 JSON</div>
           <div class="bst-custom-wizard-step">Merge mode: updates existing stats by ID, adds new stats, never replace-all.</div>
         </div>
-        <button class="bst-btn bst-btn-soft" data-action="custom-close">Close</button>
+        <button class="bst-btn bst-btn-soft" data-action="custom-close">關閉</button>
       </div>
       <div class="bst-custom-import-box">
         <div class="bst-help-line">Paste JSON array or wrapped object: <code>{ "customStats": [...] }</code></div>
@@ -1758,9 +1758,9 @@ export function openSettingsModal(input: {
         <div class="bst-help-line bst-custom-import-status is-info" data-bst-custom-import-status style="display:none;"></div>
       </div>
       <div class="bst-custom-wizard-actions">
-        <button type="button" class="bst-btn" data-action="custom-close">Cancel</button>
+        <button type="button" class="bst-btn" data-action="custom-close">取消</button>
         <button type="button" class="bst-btn bst-btn-soft" data-action="custom-validate-import">Validate</button>
-        <button type="button" class="bst-btn bst-btn-soft" data-action="custom-apply-import">Import</button>
+        <button type="button" class="bst-btn bst-btn-soft" data-action="custom-apply-import">匯入</button>
       </div>
     `;
 
@@ -1815,7 +1815,7 @@ export function openSettingsModal(input: {
         conflictWizard.innerHTML = `
           <div class="bst-custom-wizard-head">
             <div>
-              <div class="bst-custom-wizard-title">Import Conflict Warning</div>
+              <div class="bst-custom-wizard-title">匯入衝突警告</div>
               <div class="bst-custom-wizard-step">${conflicts.length} existing stat ID conflict(s)</div>
             </div>
           </div>
@@ -1828,7 +1828,7 @@ export function openSettingsModal(input: {
             </div>
           </div>
           <div class="bst-custom-wizard-actions">
-            <button type="button" class="bst-btn" data-action="import-conflict-cancel">Cancel</button>
+            <button type="button" class="bst-btn" data-action="import-conflict-cancel">取消</button>
             <button type="button" class="bst-btn bst-btn-soft" data-action="import-conflict-skip">Skip conflicts</button>
             <button type="button" class="bst-btn bst-btn-soft" data-action="import-conflict-update">Update existing</button>
           </div>
@@ -1987,10 +1987,10 @@ export function openSettingsModal(input: {
               <span class="bst-custom-stat-toggle-pill" aria-hidden="true"></span>
               <span class="bst-custom-stat-toggle-label">${enabled ? "Enabled" : "Disabled"}</span>
             </button>
-            <button type="button" class="bst-btn bst-btn-soft" data-action="custom-edit" data-custom-id="${escapeHtml(stat.id)}">Edit</button>
+            <button type="button" class="bst-btn bst-btn-soft" data-action="custom-edit" data-custom-id="${escapeHtml(stat.id)}">編輯</button>
             <button type="button" class="bst-btn bst-btn-soft" data-action="custom-duplicate" data-custom-id="${escapeHtml(stat.id)}">Clone</button>
             <button type="button" class="bst-btn bst-btn-soft" data-action="custom-export-json" data-custom-id="${escapeHtml(stat.id)}">Export JSON</button>
-            <button type="button" class="bst-btn bst-btn-danger" data-action="custom-remove" data-custom-id="${escapeHtml(stat.id)}">Remove</button>
+            <button type="button" class="bst-btn bst-btn-danger" data-action="custom-remove" data-custom-id="${escapeHtml(stat.id)}">移除</button>
           </div>
         </div>
       `;
@@ -2054,7 +2054,7 @@ export function openSettingsModal(input: {
     syncSceneCardStatOrderState();
     const eligible = getSceneOrderEligibleStats();
     if (!eligible.length) {
-      orderListNode.innerHTML = `<div class="bst-scene-order-empty">No global non-numeric stats available for Scene Card ordering.</div>`;
+      orderListNode.innerHTML = `<div class="bst-scene-order-empty">No global non-numeric stats available for 場景卡片 ordering.</div>`;
       return;
     }
     const byId = new Map(eligible.map(stat => [String(stat.id ?? "").trim().toLowerCase(), stat]));
@@ -2085,7 +2085,7 @@ export function openSettingsModal(input: {
     syncCharacterCardStatOrderState();
     const eligible = getCharacterOrderEligibleStats();
     if (!eligible.length) {
-      orderListNode.innerHTML = `<div class="bst-scene-order-empty">No character-card stats available for ordering.</div>`;
+      orderListNode.innerHTML = `<div class="bst-scene-order-empty">沒有可排序的角色卡統計。</div>`;
       return;
     }
     const byId = new Map(eligible.map(stat => [stat.id, stat]));
@@ -2148,23 +2148,23 @@ export function openSettingsModal(input: {
     wizard.innerHTML = `
       <div class="bst-custom-wizard-head">
         <div>
-          <div class="bst-custom-wizard-title">Scene Stat Display</div>
+          <div class="bst-custom-wizard-title">場景統計顯示</div>
           <div class="bst-custom-wizard-step">${escapeHtml(stat.label)} (${escapeHtml(stat.id)})</div>
         </div>
-        <button type="button" class="bst-btn bst-close-btn" data-action="scene-stat-close" aria-label="Close">&times;</button>
+        <button type="button" class="bst-btn bst-close-btn" data-action="scene-stat-close" aria-label="關閉">&times;</button>
       </div>
       <div class="bst-custom-wizard-panel is-active">
         <div class="bst-settings-grid bst-settings-grid-single">
           <div class="bst-scene-stat-editor-group">
-            <div class="bst-scene-stat-editor-group-title">Visibility</div>
+            <div class="bst-scene-stat-editor-group-title">可見性</div>
             <div class="bst-check-grid">
-              <label class="bst-check"><input type="checkbox" data-scene-opt="visible" ${current.visible ? "checked" : ""}>Show on Scene Card</label>
-              <label class="bst-check"><input type="checkbox" data-scene-opt="showLabel" ${current.showLabel !== false ? "checked" : ""}>Show label</label>
-              <label class="bst-check"><input type="checkbox" data-scene-opt="hideWhenEmpty" ${current.hideWhenEmpty !== false ? "checked" : ""}>Hide when empty</label>
+              <label class="bst-check"><input type="checkbox" data-scene-opt="visible" ${current.visible ? "checked" : ""}>Show on 場景卡片</label>
+              <label class="bst-check"><input type="checkbox" data-scene-opt="showLabel" ${current.showLabel !== false ? "checked" : ""}>顯示標籤</label>
+              <label class="bst-check"><input type="checkbox" data-scene-opt="hideWhenEmpty" ${current.hideWhenEmpty !== false ? "checked" : ""}>空時隱藏</label>
             </div>
           </div>
           <div class="bst-scene-stat-editor-group">
-            <div class="bst-scene-stat-editor-group-title">Presentation</div>
+            <div class="bst-scene-stat-editor-group-title">呈現方式</div>
             <label>Label Override
               <input type="text" data-scene-opt="labelOverride" maxlength="40" value="${escapeHtml(current.labelOverride)}" placeholder="Use default label">
             </label>
@@ -2176,16 +2176,16 @@ export function openSettingsModal(input: {
             </label>
             <label>Layout Override
               <select data-scene-opt="layoutOverride">
-                <option value="auto"${current.layoutOverride === "auto" ? " selected" : ""}>Use Scene Card default</option>
-                <option value="chips"${current.layoutOverride === "chips" ? " selected" : ""}>Chips</option>
-                <option value="rows"${current.layoutOverride === "rows" ? " selected" : ""}>Rows</option>
+                <option value="auto"${current.layoutOverride === "auto" ? " selected" : ""}>Use 場景卡片 default</option>
+                <option value="chips"${current.layoutOverride === "chips" ? " selected" : ""}>晶片式</option>
+                <option value="rows"${current.layoutOverride === "rows" ? " selected" : ""}>列式</option>
               </select>
             </label>
             <label>Value Style (non-array)
               <select data-scene-opt="valueStyle">
-                <option value="auto"${current.valueStyle === "auto" ? " selected" : ""}>Auto</option>
-                <option value="chip"${current.valueStyle === "chip" ? " selected" : ""}>Chip</option>
-                <option value="plain"${current.valueStyle === "plain" ? " selected" : ""}>Plain text</option>
+                <option value="auto"${current.valueStyle === "auto" ? " selected" : ""}>自動</option>
+                <option value="chip"${current.valueStyle === "chip" ? " selected" : ""}>晶片</option>
+                <option value="plain"${current.valueStyle === "plain" ? " selected" : ""}>純文字</option>
               </select>
             </label>
             <label>Text Max Length
@@ -2193,9 +2193,9 @@ export function openSettingsModal(input: {
             </label>
           </div>
           <div class="bst-scene-stat-editor-group" data-scene-opt-row="arrayLimit">
-            <div class="bst-scene-stat-editor-group-title">Array Handling</div>
+            <div class="bst-scene-stat-editor-group-title">陣列處理</div>
             <label>Array Collapse Limit (1-20)
-              <input type="number" min="1" max="20" data-scene-opt="arrayCollapsedLimit" value="${current.arrayCollapsedLimit == null ? "" : String(current.arrayCollapsedLimit)}" placeholder="Use Scene Card default">
+              <input type="number" min="1" max="20" data-scene-opt="arrayCollapsedLimit" value="${current.arrayCollapsedLimit == null ? "" : String(current.arrayCollapsedLimit)}" placeholder="Use 場景卡片 default">
             </label>
           </div>
           <div class="bst-scene-stat-editor-group" data-scene-opt-row="dateTimeFormat"${isDateTime ? "" : " style=\"display:none;\""}>
@@ -2214,11 +2214,11 @@ export function openSettingsModal(input: {
           <div class="bst-scene-stat-editor-group" data-scene-opt-row="dateTimeStructured"${isStructuredDateTime ? "" : " style=\"display:none;\""}>
             <div class="bst-scene-stat-editor-group-title">Structured Date/Time Parts</div>
             <div class="bst-check-grid">
-              <label class="bst-check"><input type="checkbox" data-scene-opt="dateTimeShowWeekday" ${current.dateTimeShowWeekday !== false ? "checked" : ""}>Show weekday</label>
-              <label class="bst-check"><input type="checkbox" data-scene-opt="dateTimeShowDate" ${current.dateTimeShowDate !== false ? "checked" : ""}>Show date</label>
-              <label class="bst-check"><input type="checkbox" data-scene-opt="dateTimeShowTime" ${current.dateTimeShowTime !== false ? "checked" : ""}>Show time</label>
-              <label class="bst-check"><input type="checkbox" data-scene-opt="dateTimeShowPhase" ${current.dateTimeShowPhase !== false ? "checked" : ""}>Show phase</label>
-              <label class="bst-check"><input type="checkbox" data-scene-opt="dateTimeShowPartLabels" ${current.dateTimeShowPartLabels ? "checked" : ""}>Show part labels</label>
+              <label class="bst-check"><input type="checkbox" data-scene-opt="dateTimeShowWeekday" ${current.dateTimeShowWeekday !== false ? "checked" : ""}>顯示星期</label>
+              <label class="bst-check"><input type="checkbox" data-scene-opt="dateTimeShowDate" ${current.dateTimeShowDate !== false ? "checked" : ""}>顯示日期</label>
+              <label class="bst-check"><input type="checkbox" data-scene-opt="dateTimeShowTime" ${current.dateTimeShowTime !== false ? "checked" : ""}>顯示時間</label>
+              <label class="bst-check"><input type="checkbox" data-scene-opt="dateTimeShowPhase" ${current.dateTimeShowPhase !== false ? "checked" : ""}>顯示時相</label>
+              <label class="bst-check"><input type="checkbox" data-scene-opt="dateTimeShowPartLabels" ${current.dateTimeShowPartLabels ? "checked" : ""}>顯示部件標籤</label>
             </div>
             <div class="bst-settings-grid">
               <label>Weekday Label
@@ -2234,14 +2234,14 @@ export function openSettingsModal(input: {
                 <input type="text" maxlength="20" data-scene-opt="dateTimeLabelPhase" value="${escapeHtml(current.dateTimeLabelPhase ?? "Phase")}" placeholder="Phase">
               </label>
             </div>
-            <div class="bst-scene-stat-editor-group-title">Part Order</div>
+            <div class="bst-scene-stat-editor-group-title">部件順序</div>
             <div data-scene-opt="dateTimePartOrderRows"></div>
           </div>
         </div>
       </div>
       <div class="bst-custom-wizard-actions">
-        <button type="button" class="bst-btn" data-action="scene-stat-cancel">Cancel</button>
-        <button type="button" class="bst-btn bst-btn-soft" data-action="scene-stat-save">Save</button>
+        <button type="button" class="bst-btn" data-action="scene-stat-cancel">取消</button>
+        <button type="button" class="bst-btn bst-btn-soft" data-action="scene-stat-save">儲存</button>
       </div>
     `;
     const close = (): void => {
@@ -2416,9 +2416,9 @@ export function openSettingsModal(input: {
           <div class="bst-check-grid bst-toggle-block ${isNumeric ? "" : "bst-check-grid-single"}">
             <label class="bst-check"><input type="checkbox" data-bst-builtin-enabled="${key}" ${enabled ? "checked" : ""}>${isNumeric ? "Enabled (Track + Card + Graph)" : "Enabled (Track)"}</label>
             ${isNumeric
-              ? `<label class="bst-check"><input type="checkbox" data-bst-builtin-inject="${key}" ${draftUi[key as keyof BuiltInNumericStatUiSettings].includeInInjection ? "checked" : ""}>Include in prompt injection</label>`
+              ? `<label class="bst-check"><input type="checkbox" data-bst-builtin-inject="${key}" ${draftUi[key as keyof BuiltInNumericStatUiSettings].includeInInjection ? "checked" : ""}>包含於 Prompt 注入</label>`
               : key === "lastThought"
-                ? `<label class="bst-check"><input type="checkbox" data-bst-builtin-last-thought-private="1" ${draftLastThoughtPrivate ? "checked" : ""}>Private (owner-scoped)</label>`
+                ? `<label class="bst-check"><input type="checkbox" data-bst-builtin-last-thought-private="1" ${draftLastThoughtPrivate ? "checked" : ""}>私有（擁有者範圍）</label>`
                 : ""}
           </div>
         </div>
@@ -2428,17 +2428,17 @@ export function openSettingsModal(input: {
     wizard.innerHTML = `
       <div class="bst-custom-wizard-head">
         <div>
-          <div class="bst-custom-wizard-title">Manage Built-in Stats</div>
+          <div class="bst-custom-wizard-title">管理內建統計</div>
           <div class="bst-custom-wizard-step" data-bst-builtin-step>Step 1 / 2</div>
         </div>
-        <button type="button" class="bst-btn bst-close-btn" data-action="custom-close" aria-label="Close">&times;</button>
+        <button type="button" class="bst-btn bst-close-btn" data-action="custom-close" aria-label="關閉">&times;</button>
       </div>
       <div class="bst-custom-wizard-panel is-active" data-bst-builtin-panel="1">
         <div class="bst-help-line">Built-in stats are never deleted. You can manage whether each one is enabled.</div>
         <ul class="bst-help-list">
-          <li><strong>Enabled</strong>: one toggle for Track + Card + Graph on numeric built-ins, and Track on text built-ins.</li>
-          <li><strong>Include in prompt injection</strong>: controls prompt injection lines for numeric built-ins.</li>
-          <li><strong>Private (owner-scoped)</strong>: for lastThought, keep it visible only to the current target owner in prompt injection.</li>
+          <li><strong>已啟用</strong>: one toggle for Track + Card + Graph on numeric built-ins, and Track on text built-ins.</li>
+          <li><strong>包含於 Prompt 注入</strong>: controls prompt injection lines for numeric built-ins.</li>
+          <li><strong>私有（擁有者範圍）</strong>: for lastThought, keep it visible only to the current target owner in prompt injection.</li>
         </ul>
       </div>
       <div class="bst-custom-wizard-panel" data-bst-builtin-panel="2">
@@ -2449,7 +2449,7 @@ export function openSettingsModal(input: {
         <button type="button" class="bst-btn" data-action="builtin-back">Back</button>
         <div style="display:flex; gap:8px;">
           <button type="button" class="bst-btn bst-btn-soft" data-action="builtin-next">Next</button>
-          <button type="button" class="bst-btn bst-btn-soft" data-action="builtin-save" style="display:none;">Save</button>
+          <button type="button" class="bst-btn bst-btn-soft" data-action="builtin-save" style="display:none;">儲存</button>
         </div>
       </div>
     `;
@@ -2524,22 +2524,22 @@ export function openSettingsModal(input: {
     wizard.innerHTML = `
       <div class="bst-custom-wizard-head">
         <div>
-          <div class="bst-custom-wizard-title">Remove Custom Stat</div>
+          <div class="bst-custom-wizard-title">移除自訂統計</div>
           <div class="bst-custom-wizard-step" data-bst-remove-step>Step 1 / 2</div>
         </div>
-        <button type="button" class="bst-btn bst-close-btn" data-action="custom-close" aria-label="Close">&times;</button>
+        <button type="button" class="bst-btn bst-close-btn" data-action="custom-close" aria-label="關閉">&times;</button>
       </div>
       <div class="bst-custom-wizard-panel is-active" data-bst-remove-panel="1">
         <div class="bst-help-line"><strong>${escapeHtml(target.label)}</strong> (${escapeHtml(target.id)}) will be removed from active definitions.</div>
         <ul class="bst-help-list">
-          <li>Future extraction will stop updating this stat.</li>
+          <li>未來提取將停止更新此統計。</li>
           <li>Cards/graph/injection will stop showing this stat.</li>
-          <li>Historical snapshot payload is retained (soft remove).</li>
+          <li>歷史快照資料已保留（軟移除）。</li>
         </ul>
       </div>
       <div class="bst-custom-wizard-panel" data-bst-remove-panel="2">
         <div class="bst-help-line">Confirm removal of <strong>${escapeHtml(target.label)}</strong>.</div>
-        <div class="bst-help-line">This is a soft remove only in current release.</div>
+        <div class="bst-help-line">目前版本僅為軟移除。</div>
       </div>
       <div class="bst-custom-wizard-actions">
         <button type="button" class="bst-btn" data-action="custom-remove-back">Back</button>
@@ -2637,7 +2637,7 @@ export function openSettingsModal(input: {
           <div class="bst-custom-wizard-title">${mode === "edit" ? "Edit" : mode === "duplicate" ? "Clone" : "Add"} Custom Stat</div>
           <div class="bst-custom-wizard-step" data-bst-custom-step>Step 1 / 6</div>
         </div>
-        <button type="button" class="bst-btn bst-close-btn" data-action="custom-close" aria-label="Close">&times;</button>
+        <button type="button" class="bst-btn bst-close-btn" data-action="custom-close" aria-label="關閉">&times;</button>
       </div>
       <div class="bst-custom-wizard-error" data-bst-custom-error></div>
 
@@ -2651,11 +2651,11 @@ export function openSettingsModal(input: {
           </label>
           <label>Type
             <select data-bst-custom-field="kind">
-              <option value="numeric" ${draft.kind === "numeric" ? "selected" : ""}>Numeric (0-100)</option>
-              <option value="enum_single" ${draft.kind === "enum_single" ? "selected" : ""}>Enum (single choice)</option>
+              <option value="numeric" ${draft.kind === "numeric" ? "selected" : ""}>數字（0-100）</option>
+              <option value="enum_single" ${draft.kind === "enum_single" ? "selected" : ""}>列舉（單選）</option>
               <option value="boolean" ${draft.kind === "boolean" ? "selected" : ""}>Boolean (true/false)</option>
-              <option value="text_short" ${draft.kind === "text_short" ? "selected" : ""}>Short text</option>
-              <option value="array" ${draft.kind === "array" ? "selected" : ""}>Array (list)</option>
+              <option value="text_short" ${draft.kind === "text_short" ? "selected" : ""}>短文字</option>
+              <option value="array" ${draft.kind === "array" ? "selected" : ""}>陣列（清單）</option>
               <option value="date_time" ${draft.kind === "date_time" ? "selected" : ""}>Date/Time</option>
             </select>
           </label>
@@ -2667,9 +2667,9 @@ export function openSettingsModal(input: {
         <div class="bst-custom-ai-row">
           <button type="button" class="bst-btn bst-btn-soft bst-custom-ai-btn" data-action="custom-improve-description" data-loading="false">
             <span class="bst-custom-ai-btn-icon fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span>
-            <span class="bst-custom-ai-btn-label" data-bst-custom-description-btn-label>Improve description with AI</span>
+            <span class="bst-custom-ai-btn-label" data-bst-custom-description-btn-label>以 AI 改進描述</span>
           </button>
-          <span class="bst-custom-ai-status" data-bst-custom-description-status>Uses current connection profile.</span>
+          <span class="bst-custom-ai-status" data-bst-custom-description-status>使用當前連線 Profile。</span>
         </div>
       </div>
 
@@ -2700,8 +2700,8 @@ export function openSettingsModal(input: {
         <div class="bst-custom-wizard-grid" data-bst-kind-panel="boolean" style="display:none;">
           <label>Default Value
             <select data-bst-custom-field="defaultBoolean">
-              <option value="true" ${draft.defaultBoolean ? "selected" : ""}>True</option>
-              <option value="false" ${!draft.defaultBoolean ? "selected" : ""}>False</option>
+              <option value="true" ${draft.defaultBoolean ? "selected" : ""}>是</option>
+              <option value="false" ${!draft.defaultBoolean ? "selected" : ""}>否</option>
             </select>
           </label>
           <label>True Label
@@ -2740,11 +2740,11 @@ export function openSettingsModal(input: {
           </label>
           <label>Date/Time Mode
             <select data-bst-custom-field="dateTimeMode">
-              <option value="timestamp" ${draft.dateTimeMode === "timestamp" ? "selected" : ""}>Timestamp (strict)</option>
-              <option value="structured" ${draft.dateTimeMode === "structured" ? "selected" : ""}>Structured (semantic)</option>
+              <option value="timestamp" ${draft.dateTimeMode === "timestamp" ? "selected" : ""}>時間戳記（嚴格）</option>
+              <option value="structured" ${draft.dateTimeMode === "structured" ? "selected" : ""}>結構化（語意）</option>
             </select>
           </label>
-          <label>Date Format (Scene Card)
+          <label>Date Format (場景卡片)
             <select data-bst-custom-field="dateTimeDateFormat">
               <option value="iso"${dateTimeDateFormatSeed === "iso" ? " selected" : ""}>YYYY-MM-DD</option>
               <option value="dmy"${dateTimeDateFormatSeed === "dmy" ? " selected" : ""}>DD-MM-YYYY</option>
@@ -2755,14 +2755,14 @@ export function openSettingsModal(input: {
             </select>
           </label>
           <div class="bst-scene-stat-editor-group" data-bst-date-time-structured-options style="display:none;">
-            <div class="bst-scene-stat-editor-group-title">Structured Display (Scene Card)</div>
+            <div class="bst-scene-stat-editor-group-title">Structured Display (場景卡片)</div>
             <div class="bst-help-line">Visible only when mode is <code>structured</code>.</div>
             <div class="bst-check-grid">
-              <label class="bst-check"><input type="checkbox" data-bst-custom-field="dateTimeShowWeekday" ${dateTimeShowWeekdaySeed ? "checked" : ""}>Show weekday</label>
-              <label class="bst-check"><input type="checkbox" data-bst-custom-field="dateTimeShowDate" ${dateTimeShowDateSeed ? "checked" : ""}>Show date</label>
-              <label class="bst-check"><input type="checkbox" data-bst-custom-field="dateTimeShowTime" ${dateTimeShowTimeSeed ? "checked" : ""}>Show time</label>
-              <label class="bst-check"><input type="checkbox" data-bst-custom-field="dateTimeShowPhase" ${dateTimeShowPhaseSeed ? "checked" : ""}>Show phase</label>
-              <label class="bst-check"><input type="checkbox" data-bst-custom-field="dateTimeShowPartLabels" ${dateTimeShowPartLabelsSeed ? "checked" : ""}>Show part labels</label>
+              <label class="bst-check"><input type="checkbox" data-bst-custom-field="dateTimeShowWeekday" ${dateTimeShowWeekdaySeed ? "checked" : ""}>顯示星期</label>
+              <label class="bst-check"><input type="checkbox" data-bst-custom-field="dateTimeShowDate" ${dateTimeShowDateSeed ? "checked" : ""}>顯示日期</label>
+              <label class="bst-check"><input type="checkbox" data-bst-custom-field="dateTimeShowTime" ${dateTimeShowTimeSeed ? "checked" : ""}>顯示時間</label>
+              <label class="bst-check"><input type="checkbox" data-bst-custom-field="dateTimeShowPhase" ${dateTimeShowPhaseSeed ? "checked" : ""}>顯示時相</label>
+              <label class="bst-check"><input type="checkbox" data-bst-custom-field="dateTimeShowPartLabels" ${dateTimeShowPartLabelsSeed ? "checked" : ""}>顯示部件標籤</label>
             </div>
             <div class="bst-settings-grid">
               <label>Weekday Label
@@ -2778,7 +2778,7 @@ export function openSettingsModal(input: {
                 <input type="text" maxlength="20" data-bst-custom-field="dateTimeLabelPhase" value="${escapeHtml(dateTimeLabelPhaseSeed)}" placeholder="Phase">
               </label>
             </div>
-            <div class="bst-scene-stat-editor-group-title">Part Order</div>
+            <div class="bst-scene-stat-editor-group-title">部件順序</div>
             <div data-bst-custom-field="dateTimePartOrderRows"></div>
           </div>
           <div class="bst-help-line">Stored format: <code>YYYY-MM-DD HH:mm</code>. Empty means no explicit default.</div>
@@ -2788,11 +2788,11 @@ export function openSettingsModal(input: {
 
       <div class="bst-custom-wizard-panel" data-bst-custom-panel="3">
         <div class="bst-check-grid bst-toggle-block">
-          <label class="bst-check"><input type="checkbox" data-bst-custom-field="trackCharacters" ${draft.trackCharacters ? "checked" : ""}>Track for Characters</label>
-          <label class="bst-check"><input type="checkbox" data-bst-custom-field="trackUser" ${draft.trackUser ? "checked" : ""}>Track for User</label>
-          <label class="bst-check"><input type="checkbox" data-bst-custom-field="globalScope" ${draft.globalScope ? "checked" : ""}>Global stat (shared)</label>
-          <label class="bst-check"><input type="checkbox" data-bst-custom-field="privateToOwner" ${draft.privateToOwner ? "checked" : ""}>Private (owner-scoped)</label>
-          <label class="bst-check"><input type="checkbox" data-bst-custom-field="includeInInjection" ${draft.includeInInjection ? "checked" : ""}>Include in prompt injection</label>
+          <label class="bst-check"><input type="checkbox" data-bst-custom-field="trackCharacters" ${draft.trackCharacters ? "checked" : ""}>為角色追蹤</label>
+          <label class="bst-check"><input type="checkbox" data-bst-custom-field="trackUser" ${draft.trackUser ? "checked" : ""}>為使用者追蹤</label>
+          <label class="bst-check"><input type="checkbox" data-bst-custom-field="globalScope" ${draft.globalScope ? "checked" : ""}>全域統計（共用）</label>
+          <label class="bst-check"><input type="checkbox" data-bst-custom-field="privateToOwner" ${draft.privateToOwner ? "checked" : ""}>私有（擁有者範圍）</label>
+          <label class="bst-check"><input type="checkbox" data-bst-custom-field="includeInInjection" ${draft.includeInInjection ? "checked" : ""}>包含於 Prompt 注入</label>
         </div>
         <label>Per-Stat Prompt Override (optional)
           <textarea data-bst-custom-field="promptOverride" rows="6" placeholder="Optional per-stat override used in all extraction modes. Leave empty to use the global custom-stat fallback for this kind.">${escapeHtml(draft.promptOverride)}</textarea>
@@ -2800,15 +2800,15 @@ export function openSettingsModal(input: {
         <label>Sequential Group (optional)
           <input type="text" data-bst-custom-field="sequentialGroup" maxlength="32" value="${escapeHtml(draft.sequentialGroup)}" placeholder="e.g. appearance">
         </label>
-        <div class="bst-help-line">When <strong>Enable Sequential Stat Groups</strong> is on, stats with the same group are extracted together in one sequential request.</div>
+        <div class="bst-help-line">When <strong>啟用循序統計群組</strong> is on, stats with the same group are extracted together in one sequential request.</div>
         <div class="bst-help-line" data-bst-kind-help="templateFallback">Used in all extraction modes. Empty override uses global Custom Numeric Default.</div>
         <div class="bst-help-line">Template placeholders: <code>{{user}}</code>, <code>{{char}}</code>, <code>{{characters}}</code>, <code>{{contextText}}</code>, <code>{{envelope}}</code>, <code>{{statId}}</code>.</div>
         <div class="bst-custom-ai-row">
           <button type="button" class="bst-btn bst-btn-soft bst-custom-ai-btn" data-action="custom-generate-template" data-loading="false">
             <span class="bst-custom-ai-btn-icon fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span>
-            <span class="bst-custom-ai-btn-label" data-bst-custom-template-btn-label>Generate with AI</span>
+            <span class="bst-custom-ai-btn-label" data-bst-custom-template-btn-label>以 AI 生成</span>
           </button>
-          <span class="bst-custom-ai-status" data-bst-custom-template-status>Uses current connection profile.</span>
+          <span class="bst-custom-ai-status" data-bst-custom-template-status>使用當前連線 Profile。</span>
         </div>
       </div>
 
@@ -2820,9 +2820,9 @@ export function openSettingsModal(input: {
         <div class="bst-custom-ai-row">
           <button type="button" class="bst-btn bst-btn-soft bst-custom-ai-btn" data-action="custom-generate-behavior" data-loading="false">
             <span class="bst-custom-ai-btn-icon fa-solid fa-wand-magic-sparkles" aria-hidden="true"></span>
-            <span class="bst-custom-ai-btn-label" data-bst-custom-behavior-btn-label>Generate with AI</span>
+            <span class="bst-custom-ai-btn-label" data-bst-custom-behavior-btn-label>以 AI 生成</span>
           </button>
-          <span class="bst-custom-ai-status" data-bst-custom-behavior-status>Uses current connection profile.</span>
+          <span class="bst-custom-ai-status" data-bst-custom-behavior-status>使用當前連線 Profile。</span>
         </div>
       </div>
 
@@ -2845,7 +2845,7 @@ export function openSettingsModal(input: {
         <button type="button" class="bst-btn" data-action="custom-prev">Back</button>
         <div style="display:flex; gap:8px;">
           <button type="button" class="bst-btn bst-btn-soft" data-action="custom-next">Next</button>
-          <button type="button" class="bst-btn bst-btn-soft" data-action="custom-save" style="display:none;">Save</button>
+          <button type="button" class="bst-btn bst-btn-soft" data-action="custom-save" style="display:none;">儲存</button>
         </div>
       </div>
     `;
@@ -4259,7 +4259,7 @@ export function openSettingsModal(input: {
     }
     const selected = globalPreviewCharacters.find(item => item.name === globalPreviewSelected) ?? globalPreviewCharacters[0] ?? null;
     openStExpressionFrameEditor({
-      title: "Adjust ST Expression Framing",
+      title: "調整 ST 表情取景框",
       description: selected
         ? `Global framing preview using ${selected.name}'s ST expression sprite.`
         : "Global framing used when mood source is ST expressions.",
