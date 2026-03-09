@@ -6,6 +6,28 @@ It tracks character relationship stats over time, stores them per AI message, vi
 
 [![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/dogzera)
 
+## 繁體中文版說明
+
+這是 BetterSimTracker 的**繁體中文化 (zh-tw)** 分支，由 [Minijinai75](https://github.com/Minijinai75) 維護。
+
+主要翻譯範圍：
+- 追蹤卡片 UI（活躍/非活躍、圖表、重新分析等按鈕）
+- 設定面板（所有 Section 標題、選項名稱、統計類型）
+- Slash 命令說明文字
+- 心情圖片 Modal、ST 表情取景編輯器
+- 角色面板與人格面板
+
+> **注意**：AI 提示模板 (Prompts) 維持英文，以確保模型提取效能。
+
+### 中文版安裝方式
+
+1. 在 SillyTavern 開啟「擴充功能」→「安裝擴充功能」
+2. 貼入此 URL：https://github.com/Minijinai75/BetterSimTracker
+3. 選擇安裝時選擇分支 **zh-tw**
+4. 重新載入 SillyTavern，啟用 BetterSimTracker
+
+---
+
 ## Key Features
 
 - Per-message tracker cards directly in chat
