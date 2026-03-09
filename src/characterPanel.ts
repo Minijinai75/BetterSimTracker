@@ -554,7 +554,7 @@ function renderPanel(input: InitInput, force = false): void {
   if (!characterName) {
     panel.innerHTML = `
       <div class="bst-character-title">BetterSimTracker</div>
-      <div class="bst-character-sub">Open a character to edit defaults.</div>
+      <div class="bst-character-sub">開啟角色以編輯預設值。</div>
     `;
     return;
   }
@@ -626,7 +626,7 @@ function renderPanel(input: InitInput, force = false): void {
       return `
         <label>${escapeHtml(label)} Default
           <select data-bst-custom-default-enum="${escapeHtml(id)}">
-            <option value="">Use stat default</option>
+            <option value="">使用統計預設值</option>
             ${options.map(option => `<option value="${escapeHtml(option)}" ${selected === option ? "selected" : ""}>${escapeHtml(option)}</option>`).join("")}
           </select>
         </label>
@@ -640,7 +640,7 @@ function renderPanel(input: InitInput, force = false): void {
       return `
         <label>${escapeHtml(label)} Default
           <select data-bst-custom-default-bool="${escapeHtml(id)}">
-            <option value="">Use stat default</option>
+            <option value="">使用統計預設值</option>
             <option value="true" ${selected === "true" ? "selected" : ""}>${escapeHtml(trueLabel)}</option>
             <option value="false" ${selected === "false" ? "selected" : ""}>${escapeHtml(falseLabel)}</option>
           </select>
@@ -694,8 +694,8 @@ function renderPanel(input: InitInput, force = false): void {
   };
 
   panel.innerHTML = `
-    <div class="bst-character-title">BetterSimTracker Defaults</div>
-    <div class="bst-character-sub">Per-character defaults and optional mood source overrides.</div>
+    <div class="bst-character-title">BetterSimTracker 預設值</div>
+    <div class="bst-character-sub">每個角色的預設值與可選心情來源覆蓋。</div>
     <div class="bst-character-grid">
       <label>Affection Default <input type="number" min="0" max="100" step="1" data-bst-default="affection" value="${defaults.affection ?? ""}" ${trackAffection ? "" : "disabled"}></label>
       <label>Trust Default <input type="number" min="0" max="100" step="1" data-bst-default="trust" value="${defaults.trust ?? ""}" ${trackTrust ? "" : "disabled"}></label>
@@ -718,17 +718,17 @@ function renderPanel(input: InitInput, force = false): void {
       </div>
     `}
     <div class="bst-character-help">Leave card color empty to use the automatic palette for this character. Hex colors like #2b7cff.</div>
-    <div class="bst-character-divider">Custom Stat Defaults</div>
+    <div class="bst-character-divider">自訂統計預設值</div>
     ${customStatFieldsHtml
       ? `<div class="bst-character-grid bst-character-grid-three">${customStatFieldsHtml}</div>`
-      : `<div class="bst-character-help">No custom stats configured in extension settings yet.</div>`}
-    <div class="bst-character-divider">Mood Source Override</div>
+      : `<div class="bst-character-help">尚未在擴充設定中配置自訂統計。</div>`}
+    <div class="bst-character-divider">心情來源覆蓋</div>
     <div class="bst-character-grid">
       <label class="bst-character-wide">Mood Source
         <select data-bst-default="moodSource">
-          <option value="">Use global setting</option>
-          <option value="bst_images" ${moodSourceOverride === "bst_images" ? "selected" : ""}>BST mood images</option>
-          <option value="st_expressions" ${moodSourceOverride === "st_expressions" ? "selected" : ""}>ST expressions</option>
+          <option value="">使用全域設定</option>
+          <option value="bst_images" ${moodSourceOverride === "bst_images" ? "selected" : ""}>BST 心情圖片</option>
+          <option value="st_expressions" ${moodSourceOverride === "st_expressions" ? "selected" : ""}>ST 表情</option>
         </select>
       </label>
     </div>
@@ -736,7 +736,7 @@ function renderPanel(input: InitInput, force = false): void {
       Effective mood source right now: <strong>${effectiveMoodSource === "st_expressions" ? "ST expressions" : "BST mood images"}</strong>.
     </div>
     <div style="display:${showStExpressionControls ? "grid" : "none"}; gap:8px;">
-      <div class="bst-character-divider">Mood to ST Expression Map</div>
+      <div class="bst-character-divider">心情至 ST 表情對應</div>
       <div class="bst-character-help">
         Optional per-character overrides. Leave empty to use the global map from extension settings.
       </div>
@@ -755,17 +755,17 @@ function renderPanel(input: InitInput, force = false): void {
           `;
         }).join("")}
       </div>
-      <div class="bst-character-divider">ST Expression Image Options</div>
+      <div class="bst-character-divider">ST 表情圖片選項</div>
       <div class="bst-character-help">
         Optional per-character override for expression image framing.
       </div>
       <label class="bst-character-check">
         <input type="checkbox" data-bst-st-image-override ${hasStExpressionImageOverride ? "checked" : ""}>
-        <span>Advanced image options (override global)</span>
+        <span>進階圖片選項（覆蓋全域）</span>
       </label>
       <div class="bst-character-grid" data-bst-st-image-options style="display:${hasStExpressionImageOverride ? "grid" : "none"};">
         <div class="bst-character-wide bst-character-st-tools">
-          <button type="button" class="bst-btn bst-btn-soft" data-action="open-st-image-editor">Adjust ST Expression Framing</button>
+          <button type="button" class="bst-btn bst-btn-soft" data-action="open-st-image-editor">調整 ST 表情取景框</button>
           <div class="bst-character-help bst-character-help-compact" data-bst-st-image-summary>
             Current override: ${formatStExpressionFrameSummary(stExpressionImageOptions)}
           </div>
@@ -776,7 +776,7 @@ function renderPanel(input: InitInput, force = false): void {
       Switch effective mood source to ST expressions to edit expression mapping and framing.
     </div>
     <div style="display:${showBstMoodImageControls ? "grid" : "none"}; gap:8px;">
-      <div class="bst-character-divider">Mood Images</div>
+      <div class="bst-character-divider">心情圖片</div>
       <div class="bst-character-help">
         Upload one image per mood label. Missing images fall back to emoji.
         Max ${formatBytes(MAX_IMAGE_BYTES)} and ${MAX_IMAGE_WIDTH}x${MAX_IMAGE_HEIGHT}px. PNG/JPG/WebP only.
@@ -790,12 +790,12 @@ function renderPanel(input: InitInput, force = false): void {
           return `
             <div class="bst-mood-slot" data-mood="${safeLabel}">
               <div class="bst-mood-thumb">
-                ${url ? `<img src="${safeUrl}" alt="${safeLabel} mood">` : `<span>No image</span>`}
+                ${url ? `<img src="${safeUrl}" alt="${safeLabel} mood">` : `<span>無圖片</span>`}
               </div>
               <div class="bst-mood-label">${safeLabel}</div>
               <div class="bst-mood-actions">
-                <button type="button" class="bst-btn bst-btn-soft bst-mood-upload" data-action="upload" data-mood="${safeLabel}">Upload</button>
-                <button type="button" class="bst-btn bst-btn-danger bst-mood-clear" data-action="clear" data-mood="${safeLabel}">Clear</button>
+                <button type="button" class="bst-btn bst-btn-soft bst-mood-upload" data-action="upload" data-mood="${safeLabel}">上傳</button>
+                <button type="button" class="bst-btn bst-btn-danger bst-mood-clear" data-action="clear" data-mood="${safeLabel}">清除</button>
                 <input class="bst-mood-input" type="file" accept="image/*" data-mood="${safeLabel}">
               </div>
             </div>
@@ -803,7 +803,7 @@ function renderPanel(input: InitInput, force = false): void {
         }).join("")}
       </div>
       <div class="bst-character-actions">
-        <button type="button" class="bst-btn bst-btn-danger" data-action="clear-all">Clear All Mood Images</button>
+        <button type="button" class="bst-btn bst-btn-danger" data-action="clear-all">清除所有心情圖片</button>
       </div>
     </div>
     <div class="bst-character-help" style="display:${showBstMoodImageControls ? "none" : "block"};">
