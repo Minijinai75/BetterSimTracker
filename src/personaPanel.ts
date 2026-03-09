@@ -422,8 +422,8 @@ function renderPanel(input: InitInput, force = false): void {
   const persona = getSelectedPersona(context);
   if (!persona) {
     panel.innerHTML = `
-      <div class="bst-character-title">BetterSimTracker Persona Defaults</div>
-      <div class="bst-character-sub">Select a persona to edit BST user defaults and mood image settings.</div>
+      <div class="bst-character-title">BetterSimTracker 人格預設值</div>
+      <div class="bst-character-sub">選擇人格以編輯 BST 使用者預設值與心情圖片設定。</div>
     `;
     return;
   }
@@ -469,7 +469,7 @@ function renderPanel(input: InitInput, force = false): void {
       return `
         <label>${escapeHtml(label)} Default
           <select data-bst-persona-custom-default-enum="${escapeHtml(id)}">
-            <option value="">Use stat default</option>
+            <option value="">使用統計預設值</option>
             ${options.map(option => `<option value="${escapeHtml(option)}" ${selected === option ? "selected" : ""}>${escapeHtml(option)}</option>`).join("")}
           </select>
         </label>
@@ -483,7 +483,7 @@ function renderPanel(input: InitInput, force = false): void {
       return `
         <label>${escapeHtml(label)} Default
           <select data-bst-persona-custom-default-bool="${escapeHtml(id)}">
-            <option value="">Use stat default</option>
+            <option value="">使用統計預設值</option>
             <option value="true" ${selected === "true" ? "selected" : ""}>${escapeHtml(trueLabel)}</option>
             <option value="false" ${selected === "false" ? "selected" : ""}>${escapeHtml(falseLabel)}</option>
           </select>
@@ -532,31 +532,31 @@ function renderPanel(input: InitInput, force = false): void {
   };
 
   panel.innerHTML = `
-    <div class="bst-character-title">BetterSimTracker Persona Defaults</div>
+    <div class="bst-character-title">BetterSimTracker 人格預設值</div>
     <div class="bst-character-sub">Per-persona user defaults, mood source override, and BST mood images for the user tracker card.</div>
     <div class="bst-character-help">Active persona: <strong>${escapeHtml(persona.personaName)}</strong></div>
     <div class="bst-character-help">Persona avatar key: <code>${escapeHtml(persona.avatarId || "(missing)")}</code></div>
-    <div class="bst-character-divider">Mood Source Override</div>
+    <div class="bst-character-divider">心情來源覆蓋</div>
     <div class="bst-character-grid">
       <label class="bst-character-wide">Mood Source
         <select data-bst-persona="moodSource">
-          <option value="">Use global setting</option>
-          <option value="bst_images" ${moodSourceOverride === "bst_images" ? "selected" : ""}>BST mood images</option>
-          <option value="st_expressions" ${moodSourceOverride === "st_expressions" ? "selected" : ""}>ST expressions</option>
+          <option value="">使用全域設定</option>
+          <option value="bst_images" ${moodSourceOverride === "bst_images" ? "selected" : ""}>BST 心情圖片</option>
+          <option value="st_expressions" ${moodSourceOverride === "st_expressions" ? "selected" : ""}>ST 表情</option>
         </select>
       </label>
     </div>
     <div class="bst-character-help">
       Effective mood source right now: <strong>${effectiveMoodSource === "st_expressions" ? "ST expressions" : "BST mood images"}</strong>.
     </div>
-    <div class="bst-character-divider">Persona Defaults</div>
+    <div class="bst-character-divider">人格預設值</div>
     <div class="bst-character-help">
       These defaults apply to the user tracker when this persona is active.
     </div>
     <div class="bst-character-grid">
       <label class="bst-character-wide">Mood Default
         <select data-bst-persona-default="mood" ${settings.userTrackMood ? "" : "disabled"}>
-          <option value="">Use stat default</option>
+          <option value="">使用統計預設值</option>
           ${moodLabels.map(label => {
             const selected = normalizeMoodLabel(String(defaults.mood ?? "")) === label ? "selected" : "";
             return `<option value="${escapeHtml(label)}" ${selected}>${escapeHtml(label)}</option>`;
@@ -567,13 +567,13 @@ function renderPanel(input: InitInput, force = false): void {
         <textarea rows="3" maxlength="${LAST_THOUGHT_DEFAULT_MAX_CHARS}" data-bst-persona-default="lastThought" placeholder="Use stat default" ${settings.userTrackLastThought ? "" : "disabled"}>${escapeHtml(String(defaults.lastThought ?? ""))}</textarea>
       </label>
     </div>
-    ${settings.userTrackMood ? "" : `<div class="bst-character-help">Mood default is unavailable because User Mood tracking is disabled.</div>`}
+    ${settings.userTrackMood ? "" : `<div class="bst-character-help">因使用者心情追蹤已停用，心情預設值無法使用。</div>`}
     ${settings.userTrackLastThought ? "" : `<div class="bst-character-help">Last Thought default is unavailable because User Last Thought tracking is disabled.</div>`}
     ${userCustomDefaultFieldsHtml
       ? `<div class="bst-character-grid bst-character-grid-single">${userCustomDefaultFieldsHtml}</div>`
-      : `<div class="bst-character-help">No user-trackable custom stats configured yet.</div>`}
+      : `<div class="bst-character-help">尚未配置任何可追蹤的使用者自訂統計。</div>`}
     <div style="display:${showBstMoodImageControls ? "grid" : "none"}; gap:8px;">
-      <div class="bst-character-divider">Mood Images</div>
+      <div class="bst-character-divider">心情圖片</div>
       <div class="bst-character-help">
         Upload one image per mood label. Missing images fall back to emoji.
         Max ${formatBytes(MAX_IMAGE_BYTES)} and ${MAX_IMAGE_WIDTH}x${MAX_IMAGE_HEIGHT}px. PNG/JPG/WebP only.
@@ -587,12 +587,12 @@ function renderPanel(input: InitInput, force = false): void {
           return `
             <div class="bst-mood-slot" data-mood="${safeLabel}">
               <div class="bst-mood-thumb">
-                ${url ? `<img src="${safeUrl}" alt="${safeLabel} mood">` : `<span>No image</span>`}
+                ${url ? `<img src="${safeUrl}" alt="${safeLabel} mood">` : `<span>無圖片</span>`}
               </div>
               <div class="bst-mood-label">${safeLabel}</div>
               <div class="bst-mood-actions">
-                <button type="button" class="bst-btn bst-btn-soft bst-mood-upload" data-action="upload" data-mood="${safeLabel}">Upload</button>
-                <button type="button" class="bst-btn bst-btn-danger bst-mood-clear" data-action="clear" data-mood="${safeLabel}">Clear</button>
+                <button type="button" class="bst-btn bst-btn-soft bst-mood-upload" data-action="upload" data-mood="${safeLabel}">上傳</button>
+                <button type="button" class="bst-btn bst-btn-danger bst-mood-clear" data-action="clear" data-mood="${safeLabel}">清除</button>
                 <input class="bst-mood-input" type="file" accept="image/*" data-mood="${safeLabel}">
               </div>
             </div>
@@ -600,7 +600,7 @@ function renderPanel(input: InitInput, force = false): void {
         }).join("")}
       </div>
       <div class="bst-character-actions">
-        <button type="button" class="bst-btn bst-btn-danger" data-action="clear-all">Clear All Mood Images</button>
+        <button type="button" class="bst-btn bst-btn-danger" data-action="clear-all">清除所有心情圖片</button>
       </div>
     </div>
     <div class="bst-character-help" style="display:${showBstMoodImageControls ? "none" : "block"};">
