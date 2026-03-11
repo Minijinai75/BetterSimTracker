@@ -200,33 +200,33 @@ export function openSettingsModal(input: {
         <li><strong>Desire:</strong> attraction/flirt tension</li>
         <li><strong>Connection:</strong> bond depth and emotional attunement</li>
       </ul>
-      <div class="bst-help-line"><strong>Mood</strong> is short-term tone. <strong>Last Thought</strong> is one brief internal line for continuity.</div>
+      <div class="bst-help-line"><strong>Mood</strong> is short-term tone. <strong>最近想法</strong> is one brief internal line for continuity.</div>
     </div>
     <div class="bst-settings-section">
       <h4><span class="bst-header-icon fa-solid fa-plug"></span>連線設定</h4>
       <div class="bst-settings-grid">
         <label>連線 Profile <select data-k="connectionProfile">${profileOptionsHtml}</select></label>
-        <label>Max Tokens Override <input data-k="maxTokensOverride" type="number" min="0" max="100000"></label>
-        <label>Context Size Override <input data-k="truncationLengthOverride" type="number" min="0" max="200000"></label>
+        <label>最大 Token 覆蓋 <input data-k="maxTokensOverride" type="number" min="0" max="100000"></label>
+        <label>上下文大小覆蓋 <input data-k="truncationLengthOverride" type="number" min="0" max="200000"></label>
       </div>
     </div>
     <div class="bst-settings-section">
       <h4><span class="bst-header-icon fa-solid fa-filter"></span>Extraction &amp; Injection</h4>
       <div class="bst-settings-grid">
         <div class="bst-section-divider">提取設定</div>
-        <label>Context Messages <input data-k="contextMessages" type="number" min="1" max="40"></label>
-        <label data-bst-row="maxConcurrentCalls">Max Concurrent Requests <input data-k="maxConcurrentCalls" type="number" min="1" max="8"></label>
-        <label data-bst-row="maxRetriesPerStat">Max Retries Per Stat <input data-k="maxRetriesPerStat" type="number" min="0" max="4"></label>
-        <label>Max Delta Per Turn <input data-k="maxDeltaPerTurn" type="number" min="1" max="30"></label>
-        <label>Confidence Dampening <input data-k="confidenceDampening" type="number" min="0" max="1" step="0.05"></label>
-        <label>Mood Stickiness <input data-k="moodStickiness" type="number" min="0" max="1" step="0.05"></label>
-        <label data-bst-row="activityLookback">Activity Lookback <input data-k="activityLookback" type="number" min="1" max="25"></label>
+        <label>上下文訊息數 <input data-k="contextMessages" type="number" min="1" max="40"></label>
+        <label data-bst-row="maxConcurrentCalls">最大並行請求數 <input data-k="maxConcurrentCalls" type="number" min="1" max="8"></label>
+        <label data-bst-row="maxRetriesPerStat">每統計最大重試次數 <input data-k="maxRetriesPerStat" type="number" min="0" max="4"></label>
+        <label>每回合最大變動值 <input data-k="maxDeltaPerTurn" type="number" min="1" max="30"></label>
+        <label>信心度抑制 <input data-k="confidenceDampening" type="number" min="0" max="1" step="0.05"></label>
+        <label>心情黏性 <input data-k="moodStickiness" type="number" min="0" max="1" step="0.05"></label>
+        <label data-bst-row="activityLookback">活動回溯 <input data-k="activityLookback" type="number" min="1" max="25"></label>
         <div class="bst-section-divider">提取包含</div>
         <div class="bst-check-grid">
           <label class="bst-check"><input data-k="includeCharacterCardsInPrompt" type="checkbox">Include 角色卡片s in Extraction Prompt</label>
           <label class="bst-check"><input data-k="includeLorebookInExtraction" type="checkbox">在提取 Prompt 中包含已啟動的知識書</label>
         </div>
-        <label data-bst-row="lorebookExtractionMaxChars">Lorebook Extraction Limit <input data-k="lorebookExtractionMaxChars" type="number" min="0" max="12000"></label>
+        <label data-bst-row="lorebookExtractionMaxChars">世界書提取限制 <input data-k="lorebookExtractionMaxChars" type="number" min="0" max="12000"></label>
         <div class="bst-help-line bst-toggle-help" data-bst-row="lorebookExtractionHelp">Maximum lorebook characters included in extraction context (0 = no trim).</div>
 
         <div class="bst-section-divider">提取開關</div>
@@ -248,16 +248,16 @@ export function openSettingsModal(input: {
         </div>
 
         <div class="bst-section-divider">注入設定</div>
-        <label data-bst-row="injectPromptDepth">Injection Depth <select data-k="injectPromptDepth"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></label>
-        <label data-bst-row="injectionPromptMaxChars">Injection Prompt Max Chars <input data-k="injectionPromptMaxChars" type="number" min="500" max="30000"></label>
+        <label data-bst-row="injectPromptDepth">注入深度 <select data-k="injectPromptDepth"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></label>
+        <label data-bst-row="injectionPromptMaxChars">注入 Prompt 最大字元數 <input data-k="injectionPromptMaxChars" type="number" min="500" max="30000"></label>
         <div class="bst-check-grid">
           <label class="bst-check"><input data-k="injectTrackerIntoPrompt" type="checkbox">注入追蹤器至 Prompt</label>
           <label class="bst-check"><input data-k="summarizationNoteVisibleForAI" type="checkbox">供 AI 可見的摘要備註（未來備註）</label>
           <label class="bst-check" data-bst-row="injectSummarizationNote"><input data-k="injectSummarizationNote" type="checkbox">注入摘要備註</label>
         </div>
         <div class="bst-help-line bst-toggle-help">Global macro: <code>{{bst_injection}}</code></div>
-        <div class="bst-help-line bst-toggle-help"><strong>Summarize</strong> creates a prose note of current tracked stats (no numbers), typically 4-6 sentences, grounded in recent messages.</div>
-        <div class="bst-help-line bst-toggle-help"><code>Summarization Note Visible for AI</code> affects only newly generated BetterSimTracker summary notes. Existing notes are not modified for safety.</div>
+        <div class="bst-help-line bst-toggle-help"><strong>摘要</strong> creates a prose note of current tracked stats (no numbers), typically 4-6 sentences, grounded in recent messages.</div>
+        <div class="bst-help-line bst-toggle-help"><code>摘要備註對 AI 可見</code> affects only newly generated BetterSimTracker summary notes. Existing notes are not modified for safety.</div>
         <div class="bst-help-line bst-toggle-help"><code>注入摘要備註</code> only affects hidden tracker prompt injection guidance and does not edit chat messages.</div>
         <div class="bst-section-divider" data-bst-row="injectPromptDivider">注入 Prompt</div>
         <div class="bst-injection-prompt" data-bst-row="injectPromptBlock">
@@ -338,8 +338,8 @@ export function openSettingsModal(input: {
       <div class="bst-custom-stats-top">
         <div class="bst-help-line">Add custom stats (numeric, enum, boolean, short text, array). Maximum ${MAX_CUSTOM_STATS} custom stats.</div>
         <div class="bst-custom-stats-actions">
-          <button type="button" class="bst-btn bst-btn-soft" data-action="custom-add">Add Custom Stat</button>
-          <button type="button" class="bst-btn bst-btn-soft" data-action="custom-import-json">Import JSON</button>
+          <button type="button" class="bst-btn bst-btn-soft" data-action="custom-add">新增自訂統計</button>
+          <button type="button" class="bst-btn bst-btn-soft" data-action="custom-import-json">匯入 JSON</button>
         </div>
       </div>
       <div class="bst-help-line bst-custom-stats-status is-info" data-bst-row="customStatsImportStatus" style="display:none;"></div>
@@ -348,7 +348,7 @@ export function openSettingsModal(input: {
     <div class="bst-settings-section">
       <h4><span class="bst-header-icon fa-solid fa-eye"></span>顯示</h4>
       <div class="bst-settings-grid">
-        <label data-bst-row="inactiveLabel">Inactive Label <input data-k="inactiveLabel" type="text"></label>
+        <label data-bst-row="inactiveLabel">非活躍標籤 <input data-k="inactiveLabel" type="text"></label>
         <label>Accent Color
           <div class="bst-color-inputs">
             <input data-k-color="accentColor" type="color">
@@ -358,13 +358,13 @@ export function openSettingsModal(input: {
         <label>User Card Color
           <div class="bst-color-inputs">
             <input data-k-color="userCardColor" type="color">
-            <input data-k="userCardColor" type="text" placeholder="Auto">
+            <input data-k="userCardColor" type="text" placeholder="自動">
             <button type="button" class="bst-btn bst-btn-soft" data-action="reset-user-card-color">自動</button>
           </div>
         </label>
-        <label>Card Opacity <input data-k="cardOpacity" type="number" min="0.1" max="1" step="0.01"></label>
-        <label>Border Radius <input data-k="borderRadius" type="number" min="0" max="32"></label>
-        <label>Font Size <input data-k="fontSize" type="number" min="10" max="22"></label>
+        <label>卡片透明度 <input data-k="cardOpacity" type="number" min="0.1" max="1" step="0.01"></label>
+        <label>圓角半徑 <input data-k="borderRadius" type="number" min="0" max="32"></label>
+        <label>字型大小 <input data-k="fontSize" type="number" min="10" max="22"></label>
         <div class="bst-section-divider">開關</div>
         <div class="bst-check-grid">
           <label class="bst-check"><input data-k="showInactive" type="checkbox">顯示非活躍</label>
@@ -394,17 +394,17 @@ export function openSettingsModal(input: {
           <label data-bst-row="sceneCardArrayCollapsedLimit">Array chips before collapse
             <input data-k="sceneCardArrayCollapsedLimit" type="number" min="1" max="20">
           </label>
-          <label data-bst-row="sceneCardTitle">Card Title <input data-k="sceneCardTitle" type="text" maxlength="40"></label>
+          <label data-bst-row="sceneCardTitle">卡片標題 <input data-k="sceneCardTitle" type="text" maxlength="40"></label>
           <label data-bst-row="sceneCardColor">Card Color
             <div class="bst-color-inputs">
               <input data-k-color="sceneCardColor" type="color">
-              <input data-k="sceneCardColor" type="text" placeholder="Auto">
+              <input data-k="sceneCardColor" type="text" placeholder="自動">
             </div>
           </label>
           <label data-bst-row="sceneCardValueColor">Stat Value Color
             <div class="bst-color-inputs">
               <input data-k-color="sceneCardValueColor" type="color">
-              <input data-k="sceneCardValueColor" type="text" placeholder="Per-stat/Accent auto">
+              <input data-k="sceneCardValueColor" type="text" placeholder="依統計/強調色自動">
             </div>
           </label>
           <label class="bst-check" data-bst-row="sceneCardShowWhenEmpty"><input data-k="sceneCardShowWhenEmpty" type="checkbox">即使為空也顯示場景卡片</label>
@@ -420,9 +420,9 @@ export function openSettingsModal(input: {
       </details>
     </div>
     <div class="bst-settings-section">
-      <h4><span class="bst-header-icon fa-solid fa-pen-to-square"></span>Prompts</h4>
+      <h4><span class="bst-header-icon fa-solid fa-pen-to-square"></span>提示詞</h4>
             <details class="bst-help-details">
-        <summary>Prompt help</summary>
+        <summary>提示詞說明</summary>
         <div class="bst-help-line">Unified prompt is used for one-prompt built-in extraction. Custom stats always use per-stat prompts in all modes.</div>
         <div class="bst-help-line">Instruction is always editable. Protocol can be edited only when advanced unlock is enabled.</div>
         <div class="bst-help-line">Strict/repair prompts are fixed for safety and consistency.</div>
@@ -672,7 +672,7 @@ export function openSettingsModal(input: {
       </div>
       <div class="bst-check-grid" data-bst-row="debugFlags">
         <label class="bst-check"><input data-k="debugExtraction" type="checkbox">提取</label>
-        <label class="bst-check"><input data-k="debugPrompts" type="checkbox">Prompts</label>
+        <label class="bst-check"><input data-k="debugPrompts" type="checkbox">提示詞</label>
         <label class="bst-check"><input data-k="debugUi" type="checkbox">UI</label>
         <label class="bst-check"><input data-k="debugMoodImages" type="checkbox">心情圖片</label>
         <label class="bst-check"><input data-k="debugStorage" type="checkbox">儲存</label>
@@ -1759,7 +1759,7 @@ export function openSettingsModal(input: {
       </div>
       <div class="bst-custom-wizard-actions">
         <button type="button" class="bst-btn" data-action="custom-close">取消</button>
-        <button type="button" class="bst-btn bst-btn-soft" data-action="custom-validate-import">Validate</button>
+        <button type="button" class="bst-btn bst-btn-soft" data-action="custom-validate-import">驗證</button>
         <button type="button" class="bst-btn bst-btn-soft" data-action="custom-apply-import">匯入</button>
       </div>
     `;
@@ -1829,8 +1829,8 @@ export function openSettingsModal(input: {
           </div>
           <div class="bst-custom-wizard-actions">
             <button type="button" class="bst-btn" data-action="import-conflict-cancel">取消</button>
-            <button type="button" class="bst-btn bst-btn-soft" data-action="import-conflict-skip">Skip conflicts</button>
-            <button type="button" class="bst-btn bst-btn-soft" data-action="import-conflict-update">Update existing</button>
+            <button type="button" class="bst-btn bst-btn-soft" data-action="import-conflict-skip">略過衝突</button>
+            <button type="button" class="bst-btn bst-btn-soft" data-action="import-conflict-update">更新現有</button>
           </div>
         `;
         const closeConflict = (): void => {
@@ -1985,11 +1985,11 @@ export function openSettingsModal(input: {
           <div class="bst-custom-stat-actions">
             <button type="button" class="bst-custom-stat-toggle ${enabled ? "is-on" : "is-off"}" data-action="custom-toggle-enabled" data-custom-id="${escapeHtml(stat.id)}" aria-pressed="${enabled ? "true" : "false"}" title="${enabled ? "快速停用此統計" : "快速啟用此統計"}">
               <span class="bst-custom-stat-toggle-pill" aria-hidden="true"></span>
-              <span class="bst-custom-stat-toggle-label">${enabled ? "Enabled" : "Disabled"}</span>
+              <span class="bst-custom-stat-toggle-label">${enabled ? "已啟用" : "已停用"}</span>
             </button>
             <button type="button" class="bst-btn bst-btn-soft" data-action="custom-edit" data-custom-id="${escapeHtml(stat.id)}">編輯</button>
-            <button type="button" class="bst-btn bst-btn-soft" data-action="custom-duplicate" data-custom-id="${escapeHtml(stat.id)}">Clone</button>
-            <button type="button" class="bst-btn bst-btn-soft" data-action="custom-export-json" data-custom-id="${escapeHtml(stat.id)}">Export JSON</button>
+            <button type="button" class="bst-btn bst-btn-soft" data-action="custom-duplicate" data-custom-id="${escapeHtml(stat.id)}">複製</button>
+            <button type="button" class="bst-btn bst-btn-soft" data-action="custom-export-json" data-custom-id="${escapeHtml(stat.id)}">匯出 JSON</button>
             <button type="button" class="bst-btn bst-btn-danger" data-action="custom-remove" data-custom-id="${escapeHtml(stat.id)}">移除</button>
           </div>
         </div>
@@ -2166,12 +2166,12 @@ export function openSettingsModal(input: {
           <div class="bst-scene-stat-editor-group">
             <div class="bst-scene-stat-editor-group-title">呈現方式</div>
             <label>Label Override
-              <input type="text" data-scene-opt="labelOverride" maxlength="40" value="${escapeHtml(current.labelOverride)}" placeholder="Use default label">
+              <input type="text" data-scene-opt="labelOverride" maxlength="40" value="${escapeHtml(current.labelOverride)}" placeholder="使用預設標籤">
             </label>
             <label>Color Override
               <div class="bst-color-inputs">
                 <input type="color" data-scene-opt-color="colorOverride">
-                <input type="text" data-scene-opt="colorOverride" value="${escapeHtml(current.colorOverride)}" placeholder="Use global/default">
+                <input type="text" data-scene-opt="colorOverride" value="${escapeHtml(current.colorOverride)}" placeholder="使用全域/預設">
               </div>
             </label>
             <label>Layout Override
@@ -2189,7 +2189,7 @@ export function openSettingsModal(input: {
               </select>
             </label>
             <label>Text Max Length
-              <input type="number" min="10" max="400" data-scene-opt="textMaxLength" value="${current.textMaxLength == null ? "" : String(current.textMaxLength)}" placeholder="No clamp">
+              <input type="number" min="10" max="400" data-scene-opt="textMaxLength" value="${current.textMaxLength == null ? "" : String(current.textMaxLength)}" placeholder="無限制">
             </label>
           </div>
           <div class="bst-scene-stat-editor-group" data-scene-opt-row="arrayLimit">
@@ -2222,16 +2222,16 @@ export function openSettingsModal(input: {
             </div>
             <div class="bst-settings-grid">
               <label>Weekday Label
-                <input type="text" maxlength="20" data-scene-opt="dateTimeLabelWeekday" value="${escapeHtml(current.dateTimeLabelWeekday ?? "Day")}" placeholder="Day">
+                <input type="text" maxlength="20" data-scene-opt="dateTimeLabelWeekday" value="${escapeHtml(current.dateTimeLabelWeekday ?? "Day")}" placeholder="星期">
               </label>
               <label>Date Label
-                <input type="text" maxlength="20" data-scene-opt="dateTimeLabelDate" value="${escapeHtml(current.dateTimeLabelDate ?? "Date")}" placeholder="Date">
+                <input type="text" maxlength="20" data-scene-opt="dateTimeLabelDate" value="${escapeHtml(current.dateTimeLabelDate ?? "Date")}" placeholder="日期">
               </label>
               <label>Time Label
-                <input type="text" maxlength="20" data-scene-opt="dateTimeLabelTime" value="${escapeHtml(current.dateTimeLabelTime ?? "Time")}" placeholder="Time">
+                <input type="text" maxlength="20" data-scene-opt="dateTimeLabelTime" value="${escapeHtml(current.dateTimeLabelTime ?? "Time")}" placeholder="時間">
               </label>
               <label>Phase Label
-                <input type="text" maxlength="20" data-scene-opt="dateTimeLabelPhase" value="${escapeHtml(current.dateTimeLabelPhase ?? "Phase")}" placeholder="Phase">
+                <input type="text" maxlength="20" data-scene-opt="dateTimeLabelPhase" value="${escapeHtml(current.dateTimeLabelPhase ?? "Phase")}" placeholder="時段">
               </label>
             </div>
             <div class="bst-scene-stat-editor-group-title">部件順序</div>
@@ -2446,9 +2446,9 @@ export function openSettingsModal(input: {
         ${renderRows()}
       </div>
       <div class="bst-custom-wizard-actions">
-        <button type="button" class="bst-btn" data-action="builtin-back">Back</button>
+        <button type="button" class="bst-btn" data-action="builtin-back">返回</button>
         <div style="display:flex; gap:8px;">
-          <button type="button" class="bst-btn bst-btn-soft" data-action="builtin-next">Next</button>
+          <button type="button" class="bst-btn bst-btn-soft" data-action="builtin-next">下一步</button>
           <button type="button" class="bst-btn bst-btn-soft" data-action="builtin-save" style="display:none;">儲存</button>
         </div>
       </div>
@@ -2538,14 +2538,14 @@ export function openSettingsModal(input: {
         </ul>
       </div>
       <div class="bst-custom-wizard-panel" data-bst-remove-panel="2">
-        <div class="bst-help-line">Confirm removal of <strong>${escapeHtml(target.label)}</strong>.</div>
+        <div class="bst-help-line">確認移除 <strong>${escapeHtml(target.label)}</strong>.</div>
         <div class="bst-help-line">目前版本僅為軟移除。</div>
       </div>
       <div class="bst-custom-wizard-actions">
-        <button type="button" class="bst-btn" data-action="custom-remove-back">Back</button>
+        <button type="button" class="bst-btn" data-action="custom-remove-back">返回</button>
         <div style="display:flex; gap:8px;">
-          <button type="button" class="bst-btn bst-btn-soft" data-action="custom-remove-next">Next</button>
-          <button type="button" class="bst-btn bst-btn-danger" data-action="custom-remove-confirm" style="display:none;">Remove Stat</button>
+          <button type="button" class="bst-btn bst-btn-soft" data-action="custom-remove-next">下一步</button>
+          <button type="button" class="bst-btn bst-btn-danger" data-action="custom-remove-confirm" style="display:none;">移除統計</button>
         </div>
       </div>
     `;
@@ -2644,10 +2644,10 @@ export function openSettingsModal(input: {
       <div class="bst-custom-wizard-panel is-active" data-bst-custom-panel="1">
         <div class="bst-custom-wizard-grid">
           <label>Label
-            <input type="text" data-bst-custom-field="label" maxlength="40" value="${escapeHtml(draft.label)}" placeholder="e.g. Respect">
+            <input type="text" data-bst-custom-field="label" maxlength="40" value="${escapeHtml(draft.label)}" placeholder="例如：尊重">
           </label>
           <label>ID
-            <input type="text" data-bst-custom-field="id" maxlength="32" value="${escapeHtml(draft.id)}" ${draft.lockId ? "readonly" : ""} placeholder="respect">
+            <input type="text" data-bst-custom-field="id" maxlength="32" value="${escapeHtml(draft.id)}" ${draft.lockId ? "readonly" : ""} placeholder="尊重">
           </label>
           <label>Type
             <select data-bst-custom-field="kind">
@@ -2678,8 +2678,8 @@ export function openSettingsModal(input: {
           <label>Default Value (%)
             <input type="number" min="0" max="100" data-bst-custom-field="numericDefaultValue" value="${escapeHtml(draft.kind === "numeric" ? draft.defaultValue : "50")}">
           </label>
-          <label>Max Delta Per Turn
-            <input type="number" min="1" max="30" data-bst-custom-field="maxDeltaPerTurn" value="${escapeHtml(draft.maxDeltaPerTurn)}" placeholder="Use global">
+          <label>每回合最大變動值
+            <input type="number" min="1" max="30" data-bst-custom-field="maxDeltaPerTurn" value="${escapeHtml(draft.maxDeltaPerTurn)}" placeholder="使用全域">
           </label>
         </div>
         <div class="bst-custom-wizard-grid bst-custom-wizard-grid-single" data-bst-kind-panel="enum_single" style="display:none;">
@@ -2694,7 +2694,7 @@ export function openSettingsModal(input: {
             <textarea data-bst-custom-field="enumOptionsText" rows="1" style="display:none;">${escapeHtml(draft.enumOptionsText)}</textarea>
           </label>
           <label>Default Enum Value
-            <input type="text" data-bst-custom-field="enumDefaultValue" maxlength="200" value="${escapeHtml(draft.kind === "enum_single" ? draft.defaultValue : "")}" placeholder="guarded">
+            <input type="text" data-bst-custom-field="enumDefaultValue" maxlength="200" value="${escapeHtml(draft.kind === "enum_single" ? draft.defaultValue : "")}" placeholder="防備">
           </label>
         </div>
         <div class="bst-custom-wizard-grid" data-bst-kind-panel="boolean" style="display:none;">
@@ -2705,15 +2705,15 @@ export function openSettingsModal(input: {
             </select>
           </label>
           <label>True Label
-            <input type="text" data-bst-custom-field="booleanTrueLabel" maxlength="40" value="${escapeHtml(draft.booleanTrueLabel)}" placeholder="enabled">
+            <input type="text" data-bst-custom-field="booleanTrueLabel" maxlength="40" value="${escapeHtml(draft.booleanTrueLabel)}" placeholder="已啟用">
           </label>
           <label>False Label
-            <input type="text" data-bst-custom-field="booleanFalseLabel" maxlength="40" value="${escapeHtml(draft.booleanFalseLabel)}" placeholder="disabled">
+            <input type="text" data-bst-custom-field="booleanFalseLabel" maxlength="40" value="${escapeHtml(draft.booleanFalseLabel)}" placeholder="已停用">
           </label>
         </div>
         <div class="bst-custom-wizard-grid" data-bst-kind-panel="text_short" style="display:none;">
           <label>Default Text
-            <input type="text" data-bst-custom-field="textDefaultValue" value="${escapeHtml(draft.kind === "text_short" ? draft.defaultValue : "")}" placeholder="focused on de-escalation">
+            <input type="text" data-bst-custom-field="textDefaultValue" value="${escapeHtml(draft.kind === "text_short" ? draft.defaultValue : "")}" placeholder="專注於緩和">
           </label>
           <label>Text Max Length (20-200)
             <input type="number" min="20" max="200" data-bst-custom-field="textMaxLength" value="${escapeHtml(draft.textMaxLength)}">
@@ -2756,7 +2756,7 @@ export function openSettingsModal(input: {
           </label>
           <div class="bst-scene-stat-editor-group" data-bst-date-time-structured-options style="display:none;">
             <div class="bst-scene-stat-editor-group-title">Structured Display (場景卡片)</div>
-            <div class="bst-help-line">Visible only when mode is <code>structured</code>.</div>
+            <div class="bst-help-line">僅在以下模式中顯示 <code>structured</code>.</div>
             <div class="bst-check-grid">
               <label class="bst-check"><input type="checkbox" data-bst-custom-field="dateTimeShowWeekday" ${dateTimeShowWeekdaySeed ? "checked" : ""}>顯示星期</label>
               <label class="bst-check"><input type="checkbox" data-bst-custom-field="dateTimeShowDate" ${dateTimeShowDateSeed ? "checked" : ""}>顯示日期</label>
@@ -2766,16 +2766,16 @@ export function openSettingsModal(input: {
             </div>
             <div class="bst-settings-grid">
               <label>Weekday Label
-                <input type="text" maxlength="20" data-bst-custom-field="dateTimeLabelWeekday" value="${escapeHtml(dateTimeLabelWeekdaySeed)}" placeholder="Day">
+                <input type="text" maxlength="20" data-bst-custom-field="dateTimeLabelWeekday" value="${escapeHtml(dateTimeLabelWeekdaySeed)}" placeholder="星期">
               </label>
               <label>Date Label
-                <input type="text" maxlength="20" data-bst-custom-field="dateTimeLabelDate" value="${escapeHtml(dateTimeLabelDateSeed)}" placeholder="Date">
+                <input type="text" maxlength="20" data-bst-custom-field="dateTimeLabelDate" value="${escapeHtml(dateTimeLabelDateSeed)}" placeholder="日期">
               </label>
               <label>Time Label
-                <input type="text" maxlength="20" data-bst-custom-field="dateTimeLabelTime" value="${escapeHtml(dateTimeLabelTimeSeed)}" placeholder="Time">
+                <input type="text" maxlength="20" data-bst-custom-field="dateTimeLabelTime" value="${escapeHtml(dateTimeLabelTimeSeed)}" placeholder="時間">
               </label>
               <label>Phase Label
-                <input type="text" maxlength="20" data-bst-custom-field="dateTimeLabelPhase" value="${escapeHtml(dateTimeLabelPhaseSeed)}" placeholder="Phase">
+                <input type="text" maxlength="20" data-bst-custom-field="dateTimeLabelPhase" value="${escapeHtml(dateTimeLabelPhaseSeed)}" placeholder="時段">
               </label>
             </div>
             <div class="bst-scene-stat-editor-group-title">部件順序</div>
@@ -2798,7 +2798,7 @@ export function openSettingsModal(input: {
           <textarea data-bst-custom-field="promptOverride" rows="6" placeholder="Optional per-stat override used in all extraction modes. Leave empty to use the global custom-stat fallback for this kind.">${escapeHtml(draft.promptOverride)}</textarea>
         </label>
         <label>Sequential Group (optional)
-          <input type="text" data-bst-custom-field="sequentialGroup" maxlength="32" value="${escapeHtml(draft.sequentialGroup)}" placeholder="e.g. appearance">
+          <input type="text" data-bst-custom-field="sequentialGroup" maxlength="32" value="${escapeHtml(draft.sequentialGroup)}" placeholder="例如：外觀">
         </label>
         <div class="bst-help-line">When <strong>啟用循序統計群組</strong> is on, stats with the same group are extracted together in one sequential request.</div>
         <div class="bst-help-line" data-bst-kind-help="templateFallback">Used in all extraction modes. Empty override uses global Custom Numeric Default.</div>
@@ -2830,7 +2830,7 @@ export function openSettingsModal(input: {
         <div class="bst-help-line" data-bst-kind-help="color">Color helps visually distinguish this stat in cards and graph.</div>
         <label>Color (optional)
           <div class="bst-color-inputs">
-            <input type="color" data-bst-custom-color-picker value="#66ccff" aria-label="Custom stat color picker">
+            <input type="color" data-bst-custom-color-picker value="#66ccff" aria-label="自訂統計顏色選擇器">
             <input type="text" data-bst-custom-field="color" value="${escapeHtml(draft.color)}" placeholder="#66ccff">
           </div>
         </label>
@@ -2842,9 +2842,9 @@ export function openSettingsModal(input: {
       </div>
 
       <div class="bst-custom-wizard-actions">
-        <button type="button" class="bst-btn" data-action="custom-prev">Back</button>
+        <button type="button" class="bst-btn" data-action="custom-prev">返回</button>
         <div style="display:flex; gap:8px;">
-          <button type="button" class="bst-btn bst-btn-soft" data-action="custom-next">Next</button>
+          <button type="button" class="bst-btn bst-btn-soft" data-action="custom-next">下一步</button>
           <button type="button" class="bst-btn bst-btn-soft" data-action="custom-save" style="display:none;">儲存</button>
         </div>
       </div>
@@ -2942,14 +2942,14 @@ export function openSettingsModal(input: {
 
     const arrayEditorRowHtml = (value: string, maxLength: number): string => `
       <div class="bst-array-default-row">
-        <input type="text" data-bst-array-item="1" maxlength="${maxLength}" value="${escapeHtml(value)}" placeholder="Item value">
+        <input type="text" data-bst-array-item="1" maxlength="${maxLength}" value="${escapeHtml(value)}" placeholder="項目值">
         <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="array-default-remove" aria-label="移除項目" title="移除項目"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
       </div>
     `;
 
     const enumEditorRowHtml = (value: string): string => `
       <div class="bst-enum-options-row">
-        <input type="text" data-bst-enum-option="1" maxlength="200" value="${escapeHtml(value)}" placeholder="Option value">
+        <input type="text" data-bst-enum-option="1" maxlength="200" value="${escapeHtml(value)}" placeholder="選項值">
         <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="enum-option-remove" aria-label="移除選項" title="移除選項"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
       </div>
     `;
@@ -3192,8 +3192,8 @@ export function openSettingsModal(input: {
           wrapper.classList.toggle("bst-check-disabled", disabled);
           wrapper.setAttribute("aria-disabled", disabled ? "true" : "false");
           if (disabled) {
-            wrapper.title = "Locked by Global stat";
-          } else if (wrapper.title === "Locked by Global stat") {
+            wrapper.title = "已被全域統計鎖定";
+          } else if (wrapper.title === "已被全域統計鎖定") {
             wrapper.removeAttribute("title");
           }
         }
@@ -4310,8 +4310,8 @@ export function openSettingsModal(input: {
     includeLorebookInExtraction: "Include activated lorebook context in extraction prompt building (for stat analysis only).",
     lorebookExtractionMaxChars: "Maximum lorebook characters included in extraction context (0 means no trim).",
     injectionPromptMaxChars: "Maximum size of hidden injection prompt block sent to generation.",
-    summarizationNoteVisibleForAI: "Controls visibility mode for newly generated Summarize notes (prose summaries of current tracked stats). Existing notes are unchanged for safety.",
-    injectSummarizationNote: "Include the latest Summarize note (prose summary of current tracked stats) in hidden tracker prompt injection guidance only (no chat-message edits).",
+    summarizationNoteVisibleForAI: "Controls visibility mode for newly generated 摘要 notes (prose summaries of current tracked stats). Existing notes are unchanged for safety.",
+    injectSummarizationNote: "Include the latest 摘要 note (prose summary of current tracked stats) in hidden tracker prompt injection guidance only (no chat-message edits).",
     autoDetectActive: "Automatically decide which group characters are active in current scene.",
     regenerateOnMessageEdit: "When enabled, editing an already-tracked message triggers tracker regeneration for that message.",
     generateOnGreetingMessages: "When disabled, skips tracker extraction for first-message greetings (no prior user message in chat).",

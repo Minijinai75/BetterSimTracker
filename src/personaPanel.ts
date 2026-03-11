@@ -324,8 +324,8 @@ function clampStat(value: string): number | null {
 function renderPersonaArrayDefaultRowHtml(id: string, value: string, maxLength: number): string {
   return `
     <div class="bst-array-default-row">
-      <input type="text" data-bst-persona-custom-default-array-item="${escapeHtml(id)}" maxlength="${maxLength}" value="${escapeHtml(value)}" placeholder="Item value">
-      <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="persona-default-array-remove" aria-label="Remove item" title="Remove item"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+      <input type="text" data-bst-persona-custom-default-array-item="${escapeHtml(id)}" maxlength="${maxLength}" value="${escapeHtml(value)}" placeholder="項目值">
+      <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="persona-default-array-remove" aria-label="移除項目" title="移除項目"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
     </div>
   `;
 }
@@ -458,7 +458,7 @@ function renderPanel(input: InitInput, force = false): void {
         : "";
       return `
         <label>${escapeHtml(label)} Default
-          <input type="number" min="0" max="100" step="1" data-bst-persona-custom-default-num="${escapeHtml(id)}" value="${escapeHtml(value)}" placeholder="Use stat default">
+          <input type="number" min="0" max="100" step="1" data-bst-persona-custom-default-num="${escapeHtml(id)}" value="${escapeHtml(value)}" placeholder="使用統計預設">
         </label>
       `;
     }
@@ -501,7 +501,7 @@ function renderPanel(input: InitInput, force = false): void {
             ${rows.map(item => renderPersonaArrayDefaultRowHtml(id, item, maxLength)).join("")}
           </div>
           <div class="bst-array-default-actions">
-            <button type="button" class="bst-btn bst-btn-soft bst-icon-btn" data-action="persona-default-array-add" data-bst-persona-custom-default-array-add="${escapeHtml(id)}" aria-label="Add item" title="Add item"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+            <button type="button" class="bst-btn bst-btn-soft bst-icon-btn" data-action="persona-default-array-add" data-bst-persona-custom-default-array-add="${escapeHtml(id)}" aria-label="新增項目" title="新增項目"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
             <span class="bst-editor-counter" data-bst-persona-custom-default-array-counter="${escapeHtml(id)}">${items.length}/20 items</span>
           </div>
           <textarea rows="1" style="display:none" data-bst-persona-custom-default-array="${escapeHtml(id)}" data-bst-max-length="${maxLength}" aria-hidden="true">${escapeHtml(items.join("\n"))}</textarea>
@@ -512,7 +512,7 @@ function renderPanel(input: InitInput, force = false): void {
       const value = toDateTimeInputValue(customNonNumericDefaultsRaw[id]);
       return `
         <label>${escapeHtml(label)} Default
-          <input type="datetime-local" data-bst-persona-custom-default-datetime="${escapeHtml(id)}" value="${escapeHtml(value)}" placeholder="Use stat default">
+          <input type="datetime-local" data-bst-persona-custom-default-datetime="${escapeHtml(id)}" value="${escapeHtml(value)}" placeholder="使用統計預設">
         </label>
       `;
     }
@@ -520,7 +520,7 @@ function renderPanel(input: InitInput, force = false): void {
     const rawValue = String(customNonNumericDefaultsRaw[id] ?? "").trim().replace(/\s+/g, " ");
     return `
       <label>${escapeHtml(label)} Default
-        <input type="text" maxlength="${maxLength}" data-bst-persona-custom-default-text="${escapeHtml(id)}" value="${escapeHtml(rawValue)}" placeholder="Use stat default">
+        <input type="text" maxlength="${maxLength}" data-bst-persona-custom-default-text="${escapeHtml(id)}" value="${escapeHtml(rawValue)}" placeholder="使用統計預設">
       </label>
     `;
   }).filter(Boolean).join("");
@@ -554,7 +554,7 @@ function renderPanel(input: InitInput, force = false): void {
       These defaults apply to the user tracker when this persona is active.
     </div>
     <div class="bst-character-grid">
-      <label class="bst-character-wide">Mood Default
+      <label class="bst-character-wide">心情預設值
         <select data-bst-persona-default="mood" ${settings.userTrackMood ? "" : "disabled"}>
           <option value="">使用統計預設值</option>
           ${moodLabels.map(label => {
@@ -563,12 +563,12 @@ function renderPanel(input: InitInput, force = false): void {
           }).join("")}
         </select>
       </label>
-      <label class="bst-character-wide">Last Thought Default
-        <textarea rows="3" maxlength="${LAST_THOUGHT_DEFAULT_MAX_CHARS}" data-bst-persona-default="lastThought" placeholder="Use stat default" ${settings.userTrackLastThought ? "" : "disabled"}>${escapeHtml(String(defaults.lastThought ?? ""))}</textarea>
+      <label class="bst-character-wide">最近想法 Default
+        <textarea rows="3" maxlength="${LAST_THOUGHT_DEFAULT_MAX_CHARS}" data-bst-persona-default="lastThought" placeholder="使用統計預設" ${settings.userTrackLastThought ? "" : "disabled"}>${escapeHtml(String(defaults.lastThought ?? ""))}</textarea>
       </label>
     </div>
     ${settings.userTrackMood ? "" : `<div class="bst-character-help">因使用者心情追蹤已停用，心情預設值無法使用。</div>`}
-    ${settings.userTrackLastThought ? "" : `<div class="bst-character-help">Last Thought default is unavailable because User Last Thought tracking is disabled.</div>`}
+    ${settings.userTrackLastThought ? "" : `<div class="bst-character-help">最近想法 default is unavailable because User 最近想法 tracking is disabled.</div>`}
     ${userCustomDefaultFieldsHtml
       ? `<div class="bst-character-grid bst-character-grid-single">${userCustomDefaultFieldsHtml}</div>`
       : `<div class="bst-character-help">尚未配置任何可追蹤的使用者自訂統計。</div>`}

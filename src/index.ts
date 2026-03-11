@@ -764,7 +764,7 @@ function buildFallbackSummaryProse(data: TrackerData, currentSettings: BetterSim
   }
 
   const sentences = names.map(name => {
-    const displayName = name === USER_TRACKER_KEY ? (currentSettings.enableUserTracking ? "User" : name) : name;
+    const displayName = name === USER_TRACKER_KEY ? (currentSettings.enableUserTracking ? "使用者" : name) : name;
     const affection = Number(data.statistics.affection?.[name] ?? currentSettings.defaultAffection);
     const trust = Number(data.statistics.trust?.[name] ?? currentSettings.defaultTrust);
     const desire = Number(data.statistics.desire?.[name] ?? currentSettings.defaultDesire);

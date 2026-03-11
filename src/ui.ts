@@ -1021,7 +1021,7 @@ export const BUILT_IN_STAT_LABELS: Record<"affection" | "trust" | "desire" | "co
   desire: "Desire",
   connection: "Connection",
   mood: "Mood",
-  lastThought: "Last Thought",
+  lastThought: "最近想法",
 };
 export const BUILT_IN_NUMERIC_STAT_KEY_LIST = ["affection", "trust", "desire", "connection"] as const;
 export const BUILT_IN_TRACKABLE_STAT_KEY_LIST = ["affection", "trust", "desire", "connection", "mood", "lastThought"] as const;
@@ -4811,7 +4811,7 @@ export function renderTracker(
         <div class="bst-mood${moodImage ? " bst-mood-has-image" : ""}" title="${moodText} (${moodTrend})">
           <div class="bst-mood-wrap ${moodImage ? "bst-mood-wrap--image" : "bst-mood-wrap--emoji"}">
             ${moodImage
-            ? `<button type="button" class="bst-mood-image-trigger" data-bst-action="open-mood-preview" data-bst-image-src="${escapeHtml(moodImage)}" data-bst-image-alt="${escapeHtml(moodText)}" data-bst-image-character="${escapeHtml(displayName)}" data-bst-image-mood="${escapeHtml(moodText)}" aria-label="Open mood image preview for ${escapeHtml(displayName)} (${escapeHtml(moodText)})"><span class="bst-mood-image-frame${moodSource === "st_expressions" ? " bst-mood-image-frame--st-expression" : ""}"><img class="bst-mood-image${moodSource === "st_expressions" ? " bst-mood-image--st-expression" : ""}" src="${escapeHtml(moodImage)}" alt="${escapeHtml(moodText)}"${stExpressionImageStyle}></span></button>`
+            ? `<button type="button" class="bst-mood-image-trigger" data-bst-action="open-mood-preview" data-bst-image-src="${escapeHtml(moodImage)}" data-bst-image-alt="${escapeHtml(moodText)}" data-bst-image-character="${escapeHtml(displayName)}" data-bst-image-mood="${escapeHtml(moodText)}" aria-label="開啟心情圖片預覽 ${escapeHtml(displayName)} (${escapeHtml(moodText)})"><span class="bst-mood-image-frame${moodSource === "st_expressions" ? " bst-mood-image-frame--st-expression" : ""}"><img class="bst-mood-image${moodSource === "st_expressions" ? " bst-mood-image--st-expression" : ""}" src="${escapeHtml(moodImage)}" alt="${escapeHtml(moodText)}"${stExpressionImageStyle}></span></button>`
             : `<span class="bst-mood-chip"><span class="bst-mood-emoji">${moodToEmojiEntity(moodText)}</span></span>`}
             ${moodImage && lastThoughtText
             ? renderThoughtMarkup(lastThoughtText, thoughtUiKey, "bubble")
@@ -5282,7 +5282,7 @@ function openEditStatsModal(input: {
         <label class="bst-edit-field">
           <span>${escapeHtml(def.label)}</span>
           <select data-bst-edit-non-numeric="${escapeHtml(def.id)}" data-bst-edit-kind="enum_single">
-            <option value="">Clear value</option>
+            <option value="">清除值</option>
             ${def.enumOptions.map(option => {
         const safe = escapeHtml(option);
         const isSelected = selected === option ? "selected" : "";
@@ -5298,7 +5298,7 @@ function openEditStatsModal(input: {
         <label class="bst-edit-field">
           <span>${escapeHtml(def.label)}</span>
           <select data-bst-edit-non-numeric="${escapeHtml(def.id)}" data-bst-edit-kind="boolean">
-            <option value="">Clear value</option>
+            <option value="">清除值</option>
             <option value="true" ${selected === true ? "selected" : ""}>${escapeHtml(def.booleanTrueLabel)}</option>
             <option value="false" ${selected === false ? "selected" : ""}>${escapeHtml(def.booleanFalseLabel)}</option>
           </select>
@@ -5316,17 +5316,17 @@ function openEditStatsModal(input: {
           <div class="bst-array-default-list" data-bst-edit-array-list="${safeId}">
             ${rows.map(item => `
               <div class="bst-array-default-row">
-                <input type="text" data-bst-edit-array-item="${safeId}" maxlength="${def.textMaxLength}" value="${escapeHtml(item)}" placeholder="Item value">
-                <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="edit-array-remove" aria-label="Remove item" title="Remove item"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                <input type="text" data-bst-edit-array-item="${safeId}" maxlength="${def.textMaxLength}" value="${escapeHtml(item)}" placeholder="項目值">
+                <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="edit-array-remove" aria-label="移除項目" title="移除項目"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
               </div>
             `).join("")}
           </div>
           <div class="bst-array-default-actions">
-            <button type="button" class="bst-btn bst-btn-soft bst-icon-btn" data-action="edit-array-add" data-bst-edit-array-add="${safeId}" aria-label="Add item" title="Add item"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+            <button type="button" class="bst-btn bst-btn-soft bst-icon-btn" data-action="edit-array-add" data-bst-edit-array-add="${safeId}" aria-label="新增項目" title="新增項目"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
             <span class="bst-editor-counter" data-bst-edit-array-counter="${safeId}">${items.length}/20 items</span>
           </div>
           <div class="bst-edit-array-status" data-bst-edit-array-status="${safeId}" style="display:none;"></div>
-          <textarea rows="1" style="display:none" data-bst-edit-non-numeric="${safeId}" data-bst-edit-kind="array" placeholder="One item per line, up to 20 items.">${escapeHtml(value)}</textarea>
+          <textarea rows="1" style="display:none" data-bst-edit-non-numeric="${safeId}" data-bst-edit-kind="array" placeholder="每行一個項目，最多 20 個。">${escapeHtml(value)}</textarea>
         </div>
       `;
     }
@@ -5480,8 +5480,8 @@ function openEditStatsModal(input: {
 
     const rowHtml = (value: string): string => `
       <div class="bst-array-default-row">
-        <input type="text" data-bst-edit-array-item="${escapeHtml(id)}" maxlength="${maxLength}" value="${escapeHtml(value)}" placeholder="Item value">
-        <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="edit-array-remove" aria-label="Remove item" title="Remove item"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+        <input type="text" data-bst-edit-array-item="${escapeHtml(id)}" maxlength="${maxLength}" value="${escapeHtml(value)}" placeholder="項目值">
+        <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="edit-array-remove" aria-label="移除項目" title="移除項目"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
       </div>
     `;
 
@@ -5920,10 +5920,10 @@ export function openGraphModal(input: {
           <option value="all" ${windowPreference === "all" ? "selected" : ""}>全部</option>
         </select>
       </label>
-      <label class="bst-graph-toggle" title="Toggle smoothed graph lines">
+      <label class="bst-graph-toggle" title="切換平滑化圖表線條">
         <input type="checkbox" data-action="toggle-smoothing" ${smoothing ? "checked" : ""}>
         <span class="bst-graph-toggle-switch"></span>
-        <span>Smoothed</span>
+        <span>平滑化</span>
       </label>
     </div>
     <div class="bst-graph-canvas">
@@ -5954,9 +5954,9 @@ export function openGraphModal(input: {
   }).join("")}
       </g>
       ${enabledNumeric.length === 0 && snapshotCount === 0
-      ? `<text x="${Math.round(width / 2)}" y="${Math.round(height / 2)}" fill="rgba(255,255,255,0.65)" font-size="13" text-anchor="middle">No numeric stats recorded</text>`
+      ? `<text x="${Math.round(width / 2)}" y="${Math.round(height / 2)}" fill="rgba(255,255,255,0.65)" font-size="13" text-anchor="middle">尚無數值統計資料</text>`
       : enabledNumeric.length > 0 && snapshotCount === 0
-        ? `<text x="${Math.round(width / 2)}" y="${Math.round(height / 2)}" fill="rgba(255,255,255,0.65)" font-size="13" text-anchor="middle">No tracker history yet</text>`
+        ? `<text x="${Math.round(width / 2)}" y="${Math.round(height / 2)}" fill="rgba(255,255,255,0.65)" font-size="13" text-anchor="middle">尚無追蹤歷史</text>`
         : ""}
     </svg>
     <div class="bst-graph-tooltip" id="bst-graph-tooltip"></div>
@@ -5968,7 +5968,7 @@ export function openGraphModal(input: {
         const value = Math.round(latest[def.key] ?? 0);
         return `<span><i class="bst-legend-dot" style="background:${color};"></i>${def.label} ${value}</span>`;
       }).join("")
-      : `<span class="bst-graph-legend-empty">No numeric stats recorded for this character.</span>`}
+      : `<span class="bst-graph-legend-empty">尚無數值統計資料 for this character.</span>`}
     </div>
   `;
   document.body.appendChild(modal);

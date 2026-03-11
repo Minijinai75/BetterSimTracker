@@ -271,8 +271,8 @@ function isCustomStatTrackableForScope(definition: CustomStatDefinition, scope: 
 function renderCharacterArrayDefaultRowHtml(id: string, value: string, maxLength: number): string {
   return `
     <div class="bst-array-default-row">
-      <input type="text" data-bst-custom-default-array-item="${escapeHtml(id)}" maxlength="${maxLength}" value="${escapeHtml(value)}" placeholder="Item value">
-      <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="character-default-array-remove" aria-label="Remove item" title="Remove item"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+      <input type="text" data-bst-custom-default-array-item="${escapeHtml(id)}" maxlength="${maxLength}" value="${escapeHtml(value)}" placeholder="項目值">
+      <button type="button" class="bst-btn bst-btn-danger bst-icon-btn" data-action="character-default-array-remove" aria-label="移除項目" title="移除項目"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
     </div>
   `;
 }
@@ -615,7 +615,7 @@ function renderPanel(input: InitInput, force = false): void {
         : "";
       return `
         <label>${escapeHtml(label)} Default
-          <input type="number" min="0" max="100" step="1" data-bst-custom-default-num="${escapeHtml(id)}" value="${escapeHtml(value)}" placeholder="Use stat default">
+          <input type="number" min="0" max="100" step="1" data-bst-custom-default-num="${escapeHtml(id)}" value="${escapeHtml(value)}" placeholder="使用統計預設">
         </label>
       `;
     }
@@ -659,7 +659,7 @@ function renderPanel(input: InitInput, force = false): void {
             ${rows.map(item => renderCharacterArrayDefaultRowHtml(id, item, maxLength)).join("")}
           </div>
           <div class="bst-array-default-actions">
-            <button type="button" class="bst-btn bst-btn-soft bst-icon-btn" data-action="character-default-array-add" data-bst-custom-default-array-add="${escapeHtml(id)}" aria-label="Add item" title="Add item"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+            <button type="button" class="bst-btn bst-btn-soft bst-icon-btn" data-action="character-default-array-add" data-bst-custom-default-array-add="${escapeHtml(id)}" aria-label="新增項目" title="新增項目"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
             <span class="bst-editor-counter" data-bst-custom-default-array-counter="${escapeHtml(id)}">${items.length}/20 items</span>
           </div>
           <textarea rows="1" style="display:none" data-bst-custom-default-array="${escapeHtml(id)}" data-bst-max-length="${maxLength}" aria-hidden="true">${escapeHtml(value)}</textarea>
@@ -670,7 +670,7 @@ function renderPanel(input: InitInput, force = false): void {
       const value = toDateTimeInputValue(customNonNumericDefaultsRaw[id]);
       return `
         <label>${escapeHtml(label)} Default
-          <input type="datetime-local" data-bst-custom-default-datetime="${escapeHtml(id)}" value="${escapeHtml(value)}" placeholder="Use stat default">
+          <input type="datetime-local" data-bst-custom-default-datetime="${escapeHtml(id)}" value="${escapeHtml(value)}" placeholder="使用統計預設">
         </label>
       `;
     }
@@ -678,7 +678,7 @@ function renderPanel(input: InitInput, force = false): void {
     const rawValue = String(customNonNumericDefaultsRaw[id] ?? "").trim().replace(/\s+/g, " ");
     return `
       <label>${escapeHtml(label)} Default
-        <input type="text" maxlength="${maxLength}" data-bst-custom-default-text="${escapeHtml(id)}" value="${escapeHtml(rawValue)}" placeholder="Use stat default">
+        <input type="text" maxlength="${maxLength}" data-bst-custom-default-text="${escapeHtml(id)}" value="${escapeHtml(rawValue)}" placeholder="使用統計預設">
       </label>
     `;
   }).filter(Boolean).join("");
@@ -697,18 +697,18 @@ function renderPanel(input: InitInput, force = false): void {
     <div class="bst-character-title">BetterSimTracker 預設值</div>
     <div class="bst-character-sub">每個角色的預設值與可選心情來源覆蓋。</div>
     <div class="bst-character-grid">
-      <label>Affection Default <input type="number" min="0" max="100" step="1" data-bst-default="affection" value="${defaults.affection ?? ""}" ${trackAffection ? "" : "disabled"}></label>
-      <label>Trust Default <input type="number" min="0" max="100" step="1" data-bst-default="trust" value="${defaults.trust ?? ""}" ${trackTrust ? "" : "disabled"}></label>
-      <label>Desire Default <input type="number" min="0" max="100" step="1" data-bst-default="desire" value="${defaults.desire ?? ""}" ${trackDesire ? "" : "disabled"}></label>
-      <label>Connection Default <input type="number" min="0" max="100" step="1" data-bst-default="connection" value="${defaults.connection ?? ""}" ${trackConnection ? "" : "disabled"}></label>
-      <label class="bst-character-wide">Mood Default <input type="text" data-bst-default="mood" value="${defaults.mood ?? ""}" placeholder="Neutral" ${trackMood ? "" : "disabled"}></label>
-      <label class="bst-character-wide">Last Thought Default
-        <textarea rows="3" maxlength="${LAST_THOUGHT_DEFAULT_MAX_CHARS}" data-bst-default="lastThought" placeholder="Use stat default" ${trackLastThought ? "" : "disabled"}>${escapeHtml(String(defaults.lastThought ?? ""))}</textarea>
+      <label>好感度預設值 <input type="number" min="0" max="100" step="1" data-bst-default="affection" value="${defaults.affection ?? ""}" ${trackAffection ? "" : "disabled"}></label>
+      <label>信任度預設值 <input type="number" min="0" max="100" step="1" data-bst-default="trust" value="${defaults.trust ?? ""}" ${trackTrust ? "" : "disabled"}></label>
+      <label>慾望度預設值 <input type="number" min="0" max="100" step="1" data-bst-default="desire" value="${defaults.desire ?? ""}" ${trackDesire ? "" : "disabled"}></label>
+      <label>連結度預設值 <input type="number" min="0" max="100" step="1" data-bst-default="connection" value="${defaults.connection ?? ""}" ${trackConnection ? "" : "disabled"}></label>
+      <label class="bst-character-wide">心情預設值 <input type="text" data-bst-default="mood" value="${defaults.mood ?? ""}" placeholder="中性" ${trackMood ? "" : "disabled"}></label>
+      <label class="bst-character-wide">最近想法 Default
+        <textarea rows="3" maxlength="${LAST_THOUGHT_DEFAULT_MAX_CHARS}" data-bst-default="lastThought" placeholder="使用統計預設" ${trackLastThought ? "" : "disabled"}>${escapeHtml(String(defaults.lastThought ?? ""))}</textarea>
       </label>
       <label class="bst-character-wide">Card Color (optional)
         <div class="bst-color-inputs">
           <input data-bst-color="cardColor" type="color" value="${escapeHtml(cardColorPreview)}">
-          <input type="text" data-bst-default="cardColor" value="${escapeHtml(normalizedCardColor)}" placeholder="Auto">
+          <input type="text" data-bst-default="cardColor" value="${escapeHtml(normalizedCardColor)}" placeholder="自動">
         </div>
       </label>
     </div>
